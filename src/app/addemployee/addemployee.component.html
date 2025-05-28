@@ -1,0 +1,198 @@
+<div class="border-b-3 border-red-700 mb-1 text-4xl font-bold">
+  <h1>Add Employee</h1>
+</div>
+
+@if(!isLoading){
+<form action="" #addEmployeeForm="ngForm" class="bg-white p-[40px] ">
+  <!--Name And Image-->
+  <div class="flex flex-col-reverse  lg:grid lg:grid-cols-3">
+    <div class="lg:col-span-2">
+      <div class="flex flex-col">
+        <div class="p-[12px]">
+          <p-floatlabel variant="on">
+            <input
+              pInputText
+              [(ngModel)]="addEmployee.firstName"
+              name="firstName"
+              id="on_label"
+              autocomplete="off"
+              class="w-full h-[56px] py-[16px] px-[15px]"
+            />
+            <label for="on_label">First Name</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-[12px]">
+          <p-floatlabel variant="on">
+            <input
+              pInputText
+              [(ngModel)]="addEmployee.middleName"
+              name="middleName"
+              id="on_label"
+              autocomplete="off"
+              class="w-full h-[56px] py-[16px] px-[15px]"
+            />
+            <label for="on_label">Middle Name</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-[12px]">
+          <p-floatlabel variant="on">
+            <input
+              pInputText
+              [(ngModel)]="addEmployee.lastName"
+              name="lastName"
+              id="on_label"
+              autocomplete="off"
+              class="w-full h-[56px] py-[16px] px-[15px]"
+            />
+            <label for="on_label">Last Name</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-1 p-[12px]">
+      <app-imagepreview></app-imagepreview>
+    </div>
+  </div>
+
+  <!--SPOUSE AND PARENTS Name-->
+  <div class=" flex flex-col lg:grid lg:grid-cols-3">
+    <div class="p-[12px]">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [(ngModel)]="addEmployee.spouseName"
+          name="spouseName"
+          id="on_label"
+          autocomplete="off"
+          class="w-full h-[56px] py-[16px] px-[15px]"
+        />
+        <label for="on_label">Spouse Name</label>
+      </p-floatlabel>
+    </div>
+    <div class="p-[12px]">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [(ngModel)]="addEmployee.fatherName"
+          name="fatherName"
+          id="on_label"
+          autocomplete="off"
+          class="w-full h-[56px] py-[16px] px-[15px]"
+        />
+        <label for="on_label">Father Name</label>
+      </p-floatlabel>
+    </div>
+    <div class="p-[12px]">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [(ngModel)]="addEmployee.motherName"
+          name="motherName"
+          id="on_label"
+          autocomplete="off"
+          class="w-full h-[56px] py-[16px] px-[15px]"
+        />
+        <label for="on_label">Mother Name</label>
+      </p-floatlabel>
+    </div>
+  </div>
+
+  <div class="flex flex-col lg:grid lg:grid-cols-3">
+    <div class="p-[12px]">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [(ngModel)]="addEmployee.designation"
+          name="designation"
+          id="on_label"
+          autocomplete="off"
+          class="w-full h-[56px] py-[16px] px-[15px]"
+        />
+        <label for="on_label">Designation</label>
+      </p-floatlabel>
+    </div>
+    <div class="p-[12px]">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [(ngModel)]="addEmployee.email"
+          name="email"
+          id="on_label"
+          autocomplete="off"
+          class="w-full h-[56px] py-[16px] px-[15px]"
+        />
+        <label for="on_label">Email</label>
+      </p-floatlabel>
+    </div>
+    <div class="p-[12px]">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [(ngModel)]="addEmployee.phoneNumber"
+          name="phoneNumber"
+          id="on_label"
+          autocomplete="off"
+          class="w-full h-[56px] py-[16px] px-[15px]"
+        />
+        <label for="on_label">Phone Number</label>
+      </p-floatlabel>
+    </div>
+  </div>
+
+  <div class="flex flex-col lg:grid lg:grid-cols-4">
+    <div class="p-[12px] w-full">
+      <p-iftalabel class="">
+        <p-select 
+          [(ngModel)]="selectedGender"
+          name="selectedGender"
+          inputId="dd-city"
+          [options]="genders"
+          optionLabel="name"
+          styleClass="w-full"
+        />
+        <label for="dd-city">Gender</label>
+      </p-iftalabel>
+  
+    </div>
+
+    <div class="p-[12px] w-full">
+      <p-iftalabel>
+        <p-datepicker inputId="birthdate" showIcon iconDisplay="input" [(ngModel)]="addEmployee.dob" name="dob" />
+        <label for="birthdate">Birth Date</label>
+      </p-iftalabel>
+    </div>
+
+    <div class="p-[12px] w-full">
+      <p-iftalabel>
+        <p-datepicker inputId="date" showIcon iconDisplay="input" [(ngModel)]="addEmployee.joinDate" name="joinDate"/>
+        <label for="date">Join Date</label>
+      </p-iftalabel>
+    </div>
+    <div class="p-[12px]">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [(ngModel)]="addEmployee.nid"
+          name="nid"
+          id="on_label"
+          autocomplete="off"
+          class="w-full h-[56px] py-[16px] px-[15px]"
+        />
+        <label for="on_label">NID</label>
+      </p-floatlabel>
+    </div>
+  </div>
+
+  <div class="p-[12px]">
+    <p-button label="Submit"  (onClick)="onAddEmployee()"/>
+ </div>
+
+</form>
+}
+
+@if (isLoading){
+<div class="flex justify-center items-center">
+  <app-spinner></app-spinner>
+</div>
+}

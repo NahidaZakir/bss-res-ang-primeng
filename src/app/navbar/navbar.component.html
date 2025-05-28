@@ -1,0 +1,33 @@
+<div class="relative h-screen sticky top-0">
+  <div >
+    <div class="border-b-1 border-gray-200 mb-2">
+      <div class="flex p-1">
+        <img
+          class="w-[40px] h-[40px] rounded-full mr-4"
+          src="rifat-5033ad07.jpg"
+          alt=""
+        />
+        <div>
+          <p>{{ userFullName() }}</p>
+          <p class="text-[14px] text-gray-500 mb-1">{{ userEmail() }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-0">
+      <p-menu [model]="items" />
+    </div>
+  </div>
+  <div class="absolute bottom-5 left-1">
+    <p-button
+    class="navbar-btn"
+    icon="pi pi-sign-out"
+      label="Log Out"
+      variant="outlined"
+      severity="danger"
+      [rounded]="true"
+      (click)="onLogOut()"
+    />
+  </div>
+
+</div>

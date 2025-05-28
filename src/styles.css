@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+:root {
+  --grey: #f1f1f1;
+  --red: #cc080b;
+}
+
+.flexing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-field{
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    padding: 10px 50px 10px 10px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.text-red{
+    color: var(--red);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.red-icon {
+  color: #cc080b !important;
+  font-size: 24px !important;
+  margin-right: 5px;
+}
+
+.red-bg{
+  background-color: #cc080b;
+}

@@ -1,0 +1,36 @@
+::ng-deep .modalButton {
+  border: none;
+  background-color: white;
+  color: #90ce93;
+  transition: none; 
+}
+::ng-deep .modalButton .pi{
+    font-size: 1.3rem;
+}
+::ng-deep .modalButton:hover {
+  border: none !important;
+  background-color: white !important;
+  color: #90ce93 !important;
+}
+
+::ng-deep .assignbtn{
+    background-color: white;
+    border: none !important;
+    color:red !important;
+    transition: none;
+}
+::ng-deep .assignbtn:hover{
+    background-color: white !important;
+    border: none;
+}
+
+::ng-deep .closebtn{
+    background-color: white;
+    border: none !important;
+    color: red !important;;
+    transition: none;
+}
+::ng-deep .closebtn:hover{
+    background-color: white !important;
+    border: none;
+}

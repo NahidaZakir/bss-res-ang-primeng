@@ -1,0 +1,73 @@
+
+@if(!isLoading){
+<div class="w-screen h-screen flex bgimage">
+  <div class="w-1/2 h-screen self-center">
+    <div class="shapeimage">
+      <img class="rotateimage" src="/spin-image.png" alt="" />
+    </div>
+  </div>
+  <div class="w-1/2 my-auto">
+    <div class="w-[500px] h-[600px] my-auto login-section">
+      <div class="flex flex-col mx-auto">
+        <div class="w-[110px] h-[110px] mx-auto">
+          <img src="/logo.png" alt="" />
+        </div>
+        <div class="text-center">
+          <h1 class="res-name">BSS RESTAURANT</h1>
+        </div>
+      </div>
+      <form action="" class="" #loginform="ngForm">
+        <div class="card flex justify-center flex-col">
+          <div class="flex flex-col gap-2 my-2">
+            <label
+              for="username"
+              class="label text-[18px] mb-[8px] text-black font-semibold"
+              >Username:</label
+            >
+            <input
+              class="w-[450px] bg-white-300 h-[50px]"
+              pInputText
+              id="username"
+              aria-describedby="username-help"
+              [(ngModel)]="loginObj.userName"
+              required
+              email
+              name="userName"
+              pSize="large"
+            />
+          </div>
+          <div class="card flex justify-center flex-col my-2">
+            <label for="Password">Password</label>
+            <p-password
+              [(ngModel)]="loginObj.password"
+              name="password"
+              [feedback]="false"
+              inputId="Password"
+              [inputStyle]="{ width: '450px', height: '50px' }"
+            />
+          </div>
+        </div>
+      </form>
+      <button
+        routerLink="/admin"
+        routerLinkActive="router-link-active"
+        class="btn red-btn mt-4"
+        [disabled]="loginform.invalid"
+        (click)="onLogin()"
+      >
+        Login
+      </button>
+
+      <div class="text-center my-2">
+        <a class="link text-red link-hover">Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+@if (isLoading){
+<div class="flex h-screen justify-center items-center">
+  <app-spinner></app-spinner>
+</div>
+}

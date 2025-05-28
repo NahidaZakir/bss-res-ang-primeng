@@ -1,0 +1,54 @@
+<div class="border-b-3 border-red-700 mb-1 text-4xl font-bold">
+  <h1>Add Employee</h1>
+</div>
+
+<form action="" #addEmployeeForm="ngForm" class="bg-white p-[40px]">
+  <!--Name And Image-->
+
+  <div class="flex flex-col-reverse lg:grid lg:grid-cols-4">
+    <div class="col-span-3">
+      <div class="flex flex-col ">
+        <div class="p-[12px]">
+          <p-floatlabel variant="on">
+            <input
+              pInputText
+              [(ngModel)]="createTable.tableNumber"
+              name="tableNumber"
+              id="on_label"
+              autocomplete="off"
+              class="w-full h-[56px] py-[16px] px-[15px]"
+            />
+            <label for="on_label">Table Number</label>
+          </p-floatlabel>
+        </div>
+
+        <div class="p-[12px]">
+          <p-iftalabel class="">
+            <p-select
+              [(ngModel)]="selectedSeats"
+              name="selectedGender"
+              inputId="dd-city"
+              [options]="seats"
+              optionLabel="name"
+              styleClass="w-full"
+            />
+            <label for="dd-city">Select Seats</label>
+          </p-iftalabel>
+        </div>
+
+        <div class="p-[12px] ">
+          <p-button label="SUBMIT" (onClick)="onAddTable()" class="" />
+        </div>
+      </div>
+    </div>
+    <div class="col-span-1 p-[12px]">
+      <app-imagepreview></app-imagepreview>
+    </div>
+  </div>
+</form>
+
+@if (isLoading){
+<div class="flex justify-center items-center">
+  <app-spinner></app-spinner>
+</div>
+}

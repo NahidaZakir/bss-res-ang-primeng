@@ -1,0 +1,81 @@
+<div class="flex justify-between">
+  <div class="border-b-4 border-red-700 mb-5 text-4xl font-bold w-[250px]">
+    <h1>All Table</h1>
+  </div>
+  <div>
+    <p-button
+      label="ADD TABLE"
+      variant="outlined"
+      severity="danger"
+      styleClass="tableButton"
+      (onClick)="onAddTable()"
+    />
+  </div>
+</div>
+
+@if(!isloading){
+<div class="card">
+  <p-table
+    [value]="showAllTables"
+    [lazy]="true"
+    (onLazyLoad)="onNextPage($event)"
+    [paginator]="true"
+    [rows]="10"
+    [totalRecords]="totalRecords"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template #header>
+      <tr>
+        <th class="text-red">Table Number</th>
+        <th class="text-red">Total seats</th>
+        <th class="text-red">Booking Status</th>
+        <th class="text-red">Employees</th>
+        <th class="text-red">Action</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-table>
+      <tr class="hover:bg-base-300">
+        <td>{{ table.tableNumber }}</td>
+        <td>{{ table.numberOfSeats }}</td>
+        @if(table.isOccupied === true){
+        <td>Not Available</td>
+        }@else {
+        <td>Available</td>
+
+        }
+
+        <td>
+          <div *ngFor="let emp of table.employees" class="w-1/2">
+            <div class="rounded-full flex justify-center items-center w-auto my-1 bg-gray-300  h-[30px] text-sm">
+              <p class="mx-1">              {{ emp.name }}</p>
+
+              <button (click)="onDeleteEmployeeAssign(emp.employeeTableId)"><i class="pi pi-minus-circle" style="font-size: 1.2rem"></i></button>
+            </div>
+          </div>
+          <app-employee-modal
+            [seatNumber]="table.numberOfSeats"
+            [tableId]="table.id"
+            [tableNumber]="table.tableNumber"
+            [tableImage]="table.image"
+          ></app-employee-modal>
+        </td>
+        <td>
+          <div class="flex">
+            <button (click)="onDeleteTable(table.id)">
+              <i class="pi pi-trash text-red-700" style="font-size: 20px"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+}@else{
+<div class="flex justify-center items-center">
+  <app-spinner></app-spinner>
+</div>
+}

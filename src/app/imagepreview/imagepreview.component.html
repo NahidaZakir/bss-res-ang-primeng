@@ -1,0 +1,9 @@
+
+<input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden >
+<div class="upload-box w-full" (click)="triggerFileInput()">
+@if(imagePreview === null){
+    <p>Add a picture</p>
+}@else{
+  <img [src]="imagePreview" alt="Preview" class="  p-[10px]" />
+}
+</div>

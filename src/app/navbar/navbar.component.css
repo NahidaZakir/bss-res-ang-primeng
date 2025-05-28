@@ -1,0 +1,28 @@
+::ng-deep .p-menu {
+  border: 0px !important;
+}
+
+::ng-deep .p-menu .p-menu-item-link {
+  width: 100%;
+  border-radius: 5px;
+  color: #cc080b;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1rem;
+}
+
+::ng-deep .p-menu .p-menu-item-link:hover {
+  background-color: #f2dfdf !important;
+}
+
+::ng-deep .navbar-btn .p-button {
+  width: 200px;
+  border: 2px solid #cc080b !important;
+  background-color: white;
+}
+
+::ng-deep .navbar-btn .p-button:hover {
+ background-color:#cc080b !important;
+ color: white !important;
+}

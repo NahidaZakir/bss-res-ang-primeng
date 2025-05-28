@@ -1,0 +1,18 @@
+::ng-deep .tableButton{
+  width: 200px;
+  border: 2px solid #cc080b !important;
+  background-color: white;
+}
+
+::ng-deep .tableButton:hover{
+ background-color:#cc080b !important;
+ color: white !important;
+}
+
+
+.text-red{
+  color: #cc080b;
+}
+::ng-deep .p-datatable .p-datatable-thead .p-datatable-column-header-content {
+  color: red !important;
+}

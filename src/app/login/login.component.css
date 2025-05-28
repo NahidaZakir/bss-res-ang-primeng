@@ -1,0 +1,57 @@
+.bgimage{   
+background: linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgb(255, 255, 255)), url(/background.png);
+background-position: center ;
+background-size: cover;
+background-repeat: no-repeat;
+}
+
+.shapeimage{   
+  background: url(/shape1.png) center center / 1000px no-repeat;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(rgba(0, 0, 0, 0.25) 8px 8px 10px);
+}
+
+.rotateimage {
+    width: 480px;
+    height: 480px;
+    padding: 0px;
+    margin: 0px;
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+.login-section{
+  width: 540px;
+  padding: 30px 45px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+
+
+.res-name{
+    margin-top: 10px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: #cc080b 2px 0px 0px, #cc080b 1.75517px .958851px 0px, #cc080b 1.0806px 1.68294px 0px, #cc080b .141474px 1.99499px 0px, #cc080b -.832294px 1.81859px 0px, #cc080b -1.60229px 1.19694px 0px, #cc080b -1.97998px .28224px 0px, #cc080b -1.87291px -.701566px 0px, #cc080b -1.30729px -1.5136px 0px, #cc080b -.421592px -1.95506px 0px, #cc080b .567324px -1.91785px 0px, #cc080b 1.41734px -1.41108px 0px, #cc080b 1.92034px -.558831px 0px;
+}
+::ng-deep .fixed-password  {
+  width: 400px !important;
+  height: 50px !important;
+  background-color: green !important;
+}
+.bg-color{
+    background-color: #f1f1f1;
+}
