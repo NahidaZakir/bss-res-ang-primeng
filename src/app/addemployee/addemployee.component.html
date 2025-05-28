@@ -3,12 +3,12 @@
 </div>
 
 @if(!isLoading){
-<form action="" #addEmployeeForm="ngForm" class="bg-white p-[40px] ">
+<form action="" #addEmployeeForm="ngForm" class="bg-white p-[40px]">
   <!--Name And Image-->
-  <div class="flex flex-col-reverse  lg:grid lg:grid-cols-3">
+  <div class="flex flex-col-reverse lg:grid lg:grid-cols-3">
     <div class="lg:col-span-2">
-      <div class="flex flex-col">
-        <div class="p-[12px]">
+      <div class="flex flex-col p-[12px]">
+        <div class="mb-[18px]">
           <p-floatlabel variant="on">
             <input
               pInputText
@@ -17,11 +17,18 @@
               id="on_label"
               autocomplete="off"
               class="w-full h-[56px] py-[16px] px-[15px]"
+              required
+              #firstname="ngModel"
             />
+            <div>
+              @if(firstname.errors?.['required']){
+              <span class="text-red-700">* required</span>
+              }
+            </div>
             <label for="on_label">First Name</label>
           </p-floatlabel>
         </div>
-        <div class="p-[12px]">
+        <div class="my-[18px]">
           <p-floatlabel variant="on">
             <input
               pInputText
@@ -31,10 +38,11 @@
               autocomplete="off"
               class="w-full h-[56px] py-[16px] px-[15px]"
             />
+
             <label for="on_label">Middle Name</label>
           </p-floatlabel>
         </div>
-        <div class="p-[12px]">
+        <div class="my-[16px]">
           <p-floatlabel variant="on">
             <input
               pInputText
@@ -43,7 +51,14 @@
               id="on_label"
               autocomplete="off"
               class="w-full h-[56px] py-[16px] px-[15px]"
+              required
+              #lastname="ngModel"
             />
+            <div>
+              @if(lastname.errors?.['required']){
+              <span class="text-red-700">* required</span>
+              }
+            </div>
             <label for="on_label">Last Name</label>
           </p-floatlabel>
         </div>
@@ -56,7 +71,7 @@
   </div>
 
   <!--SPOUSE AND PARENTS Name-->
-  <div class=" flex flex-col lg:grid lg:grid-cols-3">
+  <div class="flex flex-col lg:grid lg:grid-cols-3">
     <div class="p-[12px]">
       <p-floatlabel variant="on">
         <input
@@ -65,7 +80,7 @@
           name="spouseName"
           id="on_label"
           autocomplete="off"
-          class="w-full h-[56px] py-[16px] px-[15px]"
+          class="w-full h-[56px] py-[17px] px-[15px]"
         />
         <label for="on_label">Spouse Name</label>
       </p-floatlabel>
@@ -79,7 +94,14 @@
           id="on_label"
           autocomplete="off"
           class="w-full h-[56px] py-[16px] px-[15px]"
+          required
+          #fathername="ngModel"
         />
+        <div>
+          @if(fathername.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          }
+        </div>
         <label for="on_label">Father Name</label>
       </p-floatlabel>
     </div>
@@ -92,7 +114,14 @@
           id="on_label"
           autocomplete="off"
           class="w-full h-[56px] py-[16px] px-[15px]"
+          required
+          #mothername="ngModel"
         />
+        <div>
+          @if(mothername.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          }
+        </div>
         <label for="on_label">Mother Name</label>
       </p-floatlabel>
     </div>
@@ -108,7 +137,14 @@
           id="on_label"
           autocomplete="off"
           class="w-full h-[56px] py-[16px] px-[15px]"
+          required
+          #designation="ngModel"
         />
+        <div>
+          @if(designation.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          }
+        </div>
         <label for="on_label">Designation</label>
       </p-floatlabel>
     </div>
@@ -121,7 +157,18 @@
           id="on_label"
           autocomplete="off"
           class="w-full h-[56px] py-[16px] px-[15px]"
+          required
+          email
+          #email="ngModel"
+          type="email"
         />
+        <div>
+          @if(email.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          } @if(email.errors?.['email']){
+          <span class="text-red-700">enter valid email address</span>
+          }
+        </div>
         <label for="on_label">Email</label>
       </p-floatlabel>
     </div>
@@ -134,7 +181,22 @@
           id="on_label"
           autocomplete="off"
           class="w-full h-[56px] py-[16px] px-[15px]"
+          required
+          minlength="11"
+          maxlength="11"
+          #phonenum="ngModel"
+          (input)="setPhoneNum(addEmployee.phoneNumber)"
         />
+        <div>
+          @if(phonenum.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          } @if (phonenum.errors?.['minlength'] ||
+          phonenum.errors?.['maxlength'] ) {
+          <span class="text-red-700">* number must be 11 digits</span>
+          } @if(phoneExist === true){
+          <span class="text-red-700">Phone Number Exists</span>
+          }
+        </div>
         <label for="on_label">Phone Number</label>
       </p-floatlabel>
     </div>
@@ -143,29 +205,61 @@
   <div class="flex flex-col lg:grid lg:grid-cols-4">
     <div class="p-[12px] w-full">
       <p-iftalabel class="">
-        <p-select 
+        <p-select
           [(ngModel)]="selectedGender"
           name="selectedGender"
           inputId="dd-city"
           [options]="genders"
           optionLabel="name"
           styleClass="w-full"
+          required
+          #selectedGen="ngModel"
         />
+        <div>
+          @if(selectedGen.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          }
+        </div>
         <label for="dd-city">Gender</label>
       </p-iftalabel>
-  
     </div>
 
     <div class="p-[12px] w-full">
       <p-iftalabel>
-        <p-datepicker inputId="birthdate" showIcon iconDisplay="input" [(ngModel)]="addEmployee.dob" name="dob" />
+        <p-datepicker
+          inputId="birthdate"
+          showIcon
+          iconDisplay="input"
+          [(ngModel)]="addEmployee.dob"
+          name="dob"
+          required
+          #dob="ngModel"
+        />
+        <div>
+          @if(dob.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          }
+        </div>
         <label for="birthdate">Birth Date</label>
       </p-iftalabel>
     </div>
 
     <div class="p-[12px] w-full">
       <p-iftalabel>
-        <p-datepicker inputId="date" showIcon iconDisplay="input" [(ngModel)]="addEmployee.joinDate" name="joinDate"/>
+        <p-datepicker
+          inputId="date"
+          showIcon
+          iconDisplay="input"
+          [(ngModel)]="addEmployee.joinDate"
+          name="joinDate"
+          required
+          #joindate="ngModel"
+        />
+        <div>
+          @if(joindate.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          }
+        </div>
         <label for="date">Join Date</label>
       </p-iftalabel>
     </div>
@@ -178,20 +272,29 @@
           id="on_label"
           autocomplete="off"
           class="w-full h-[56px] py-[16px] px-[15px]"
+          required
+          #nid="ngModel"
         />
+        <div>
+          @if(nid.errors?.['required']){
+          <span class="text-red-700">* required</span>
+          }
+        </div>
         <label for="on_label">NID</label>
       </p-floatlabel>
     </div>
   </div>
 
   <div class="p-[12px]">
-    <p-button label="Submit"  (onClick)="onAddEmployee()"/>
- </div>
-
+    <p-button
+      label="Submit"
+      [disabled]="addEmployeeForm.invalid"
+      (onClick)="onAddEmployee()"
+      class="employeebtn"
+    />
+  </div>
 </form>
-}
-
-@if (isLoading){
+} @if (isLoading){
 <div class="flex justify-center items-center">
   <app-spinner></app-spinner>
 </div>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { addEmployeeReqBody } from '../model/employee.model';
 import { Router } from '@angular/router';
@@ -44,6 +44,8 @@ export class AddemployeeComponent implements OnInit {
   genders: Gender[] | undefined;
   genderCode: number = 0;
   isLoading = false;
+  enteredPhoneNum = signal<string>('');
+  phoneExist:boolean = false;
 
   constructor(
     private imageService: ImageService,
@@ -88,5 +90,23 @@ export class AddemployeeComponent implements OnInit {
     const joinDateUTC = new Date(this.addEmployee.joinDate).toISOString();
     this.addEmployee.dob = dobUTC;
     this.addEmployee.joinDate = joinDateUTC;
+  }
+
+  setPhoneNum(num: string) {
+    this.phoneExist = false;
+    if (num.length === 11) {
+      this.enteredPhoneNum.set(num);
+      console.log('New', this.enteredPhoneNum());
+      this.checkPhoneNumExist(num);
+    }
+  }
+
+  checkPhoneNumExist(phonenum: string) {
+    console.log('checking', phonenum);
+    this.userService.checkingPhoneNum(phonenum).subscribe(
+      (res:any)=>{
+        this.phoneExist= res;
+      }
+    )
   }
 }

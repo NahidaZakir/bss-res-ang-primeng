@@ -18,7 +18,11 @@ export class UserService {
     return this.http.post<loginRespBody>("https://restaurantapi.bssoln.com/api/Auth/signIn",obj)
   }
   getEmployee(){
-        return this.http.get("https://restaurantapi.bssoln.com/api/Employee/datatable");
+    return this.http.get("https://restaurantapi.bssoln.com/api/Employee/datatable");
+  }
+  
+  getRequiredEmployee(pageNumber:number, perPageNumber:number){
+    return this.http.get(`https://restaurantapi.bssoln.com/api/Employee/datatable?page=${pageNumber}&per_page=${perPageNumber}`)
   }
 
   delEmployee(employeeid:string){
@@ -31,6 +35,10 @@ export class UserService {
   
   createEmployee(obj:addEmployeeReqBody){
     return this.http.post("https://restaurantapi.bssoln.com/api/Employee/create",obj);
+  }
+
+  checkingPhoneNum(num:string){
+    return this.http.get(`https://restaurantapi.bssoln.com/api/Auth/phoneNumberExist/${num}`);
   }
 
 }

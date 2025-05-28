@@ -2,7 +2,14 @@
     width: 100%;
 }
 
-::ng-deep .p-button{
+::ng-deep .employeebtn .p-button{
     width: 100%;
     background-color:#cc080b;
+    border:none !important;
+    transition: none;
+}
+::ng-deep .employeebtn .p-button:hover{
+    width: 100%;
+    background-color:#cc080b;
+
 }

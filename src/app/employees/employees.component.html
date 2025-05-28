@@ -1,90 +1,86 @@
-<div class="flex justify-between">
-  <div class="border-b-4 border-red-700 mb-5 text-4xl font-bold w-[250px]">
-    <h1>All Employee</h1>
+<div class="">
+  <div class="flex justify-between">
+    <div class="border-b-1 border-red-700 mb-7 w-[250px]">
+      <h1 class="heading-font">All Employee</h1>
+    </div>
+    <div>
+      <p-button
+        label="ADD EMPLOYEE"
+        variant="outlined"
+        severity="danger"
+        (click)="onAddEmployee()"
+      />
+    </div>
   </div>
-  <div>
-    <p-button
-      label="ADD EMPLOYEE"
-      variant="outlined"
-      severity="danger"
-      (click)="onAddEmployee()"
-    />
-  </div>
-</div>
-@if (isLoading){
-<!--original table-->
-<div class="card">
-  <p-table
-    [value]="allemployees"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [paginator]="true"
-    [rows]="5"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="Items Per Page"
-    [rowsPerPageOptions]="[5,10, 25, 50, 100]"
-  >
-    <ng-template #header>
-      <tr >
-        <th class="text-red">Image</th>
-        <th class="text-red">Name</th>
-        <th class="text-red">Email</th>
-        <th class="text-red">Designation</th>
-        <th class="text-red">Join Date</th>
-        <th class="text-red">Phone</th>
-        <th class="text-red">Action</th>
-      </tr>
-    </ng-template>
+  @if (isLoading){
+  <!--original table-->
+  <div class="card">
+    <p-table
+      [value]="allemployees"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [lazy]="true"
+      (onLazyLoad)="onNextPage($event)"
+      [paginator]="true"
+      [rows]="10"
+      [totalRecords]="totalRecord"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+      [rowsPerPageOptions]="[10, 25, 50, 100]"
+    >
+      <ng-template #header>
+        <tr>
+          <th class="text-red">Image</th>
+          <th class="text-red">Name</th>
+          <th class="text-red">Email</th>
+          <th class="text-red">Designation</th>
+          <th class="text-red">Join Date</th>
+          <th class="text-red">Phone</th>
+          <th class="text-red">Action</th>
+        </tr>
+      </ng-template>
 
-    <ng-template #body let-employee>
-      <tr class="hover:bg-base-300">
-        <td>
-          <div class="flex items-center gap-3">
-            <img
-              class="rounded-full w-[50px] h-[50px]"
-              [src]="
-                'https://restaurantapi.bssoln.com/images/user/' +
-                employee.user.existingImage
-              "
-            />
-          </div>
-        </td>
-        <td>{{ employee.user.fullName }}</td>
-        <td>{{ employee.user.email }}</td>
-        <td>{{ employee.designation }}</td>
-        <td>{{ employee.joinDate }}</td>
-        <td>{{ employee.user.phoneNumber }}</td>
-        <td class=" ">
-          <div class="flex justify-between w-full">
-            <div>
-              <button (click)="onUpdate(employee.id)">
-                <button>
-                  <i
-                    class="pi pi-user-edit text-green-300"
-                    style="font-size: 30px"
-                  ></i>
+      <ng-template #body let-employee>
+        <tr class="hover:bg-base-300">
+          <td>
+            <div class="flex items-center gap-3">
+              <img
+                class="rounded-full w-[50px] h-[50px]"
+                [src]="
+                  'https://restaurantapi.bssoln.com/images/user/' +
+                  employee.user.existingImage
+                "
+              />
+            </div>
+          </td>
+          <td>{{ employee.user.fullName }}</td>
+          <td>{{ employee.user.email }}</td>
+          <td>{{ employee.designation }}</td>
+          <td>{{ employee.joinDate }}</td>
+          <td>{{ employee.user.phoneNumber }}</td>
+          <td class=" ">
+            <div class="flex justify-between w-full">
+              <div>
+                <button (click)="onUpdate(employee.id)">
+                  <button>
+                    <i
+                      class="pi pi-user-edit text-green-300"
+                      style="font-size: 30px"
+                    ></i>
+                  </button>
                 </button>
+              </div>
+              <button (click)="onDelete(employee.id)">
+                <i class="pi pi-trash text-red-300" style="font-size: 20px"></i>
               </button>
             </div>
-            <button (click)="onDelete(employee.id)">
-              <i class="pi pi-trash text-red-300" style="font-size: 20px;"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  } @if (!isLoading){
+  <div class="flex justify-center items-center">
+    <app-spinner></app-spinner>
+  </div>
+  }
 </div>
-}
-
-@if (!isLoading){
-<div class="flex justify-center items-center">
-  <app-spinner></app-spinner>
-</div>
-}
-
-
-
-
-
-
-

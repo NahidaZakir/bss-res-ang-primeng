@@ -1,6 +1,6 @@
-export class updateReqBody{
+export class updateReqBody {
   designation: string;
-  constructor(){
+  constructor() {
     this.designation = '';
   }
 }
@@ -35,8 +35,7 @@ export interface Employee {
   };
 }
 
-
-export class addEmployeeReqBody{
+export class addEmployeeReqBody {
   designation: string;
   joinDate: string;
   email: string;
@@ -52,27 +51,72 @@ export class addEmployeeReqBody{
   genderId: number;
   image: string;
   base64: string;
-  constructor(){
-    this.designation='';
-    this.joinDate='',
-    this.email='',
-    this.phoneNumber='';
-    this.firstName='';
-    this.middleName='';
-    this.lastName='';
-    this.fatherName='';
-    this.motherName='';
-    this.spouseName='';
-    this.dob='';
-    this.nid='';
-    this.genderId=0;
-    this.image='';
-    this.base64='';
+  constructor() {
+    this.designation = '';
+    (this.joinDate = ''), (this.email = ''), (this.phoneNumber = '');
+    this.firstName = '';
+    this.middleName = '';
+    this.lastName = '';
+    this.fatherName = '';
+    this.motherName = '';
+    this.spouseName = '';
+    this.dob = '';
+    this.nid = '';
+    this.genderId = 0;
+    this.image = '';
+    this.base64 = '';
   }
 }
 
-export interface getAllEmployees{
-    employeeId: string,
-    name: string;
-  }
+export interface getAllEmployees {
+  employeeId: string;
+  name: string;
+}
 
+export interface getEmployeeDatatable {
+  data: [
+    {
+      id: string;
+      designation: string;
+      joinDate: string;
+      amountSold: number;
+      user: {
+        id: string;
+        userName: string;
+        email: string;
+        fullName: string;
+        phoneNumber: string;
+        label: string;
+        firstName: string;
+        middleName: string;
+        lastName: string;
+        fatherName: string;
+        motherName: string;
+        spouseName: string;
+        dob: string;
+        address: string;
+        nid: string;
+        image: string;
+        existingImage: string;
+        facebook: string;
+        instagram: string;
+        genderId: number;
+        genderName: string;
+      };
+    }
+  ];
+  pageNumber: number;
+  current_page: number;
+  per_page: number;
+  pageSize: number;
+  firstPage: string;
+  lastPage: string;
+  last_page: number;
+  totalPages: number;
+  totalRecords: number;
+  total: number;
+  from: number;
+  to: number;
+  next_page_url: string;
+  prev_page_url: string;
+}

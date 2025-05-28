@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Employee, updateReqBody } from '../model/employee.model';
+import { Employee, getEmployeeDatatable, updateReqBody } from '../model/employee.model';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -23,10 +23,11 @@ import { SpinnerComponent } from "../spinner/spinner.component";
 export class EmployeesComponent implements OnInit {
   userService = inject(UserService);
   router = inject(Router);
-  allemployees: Employee[] = [];
+  allemployees: getEmployeeDatatable[] = [];
   updateReq: updateReqBody = new updateReqBody();
   employeeID: string = '';
   isLoading=false;
+  totalRecord: number = 0;
   ngOnInit() {
       this.getEmployees();
       
@@ -44,6 +45,28 @@ export class EmployeesComponent implements OnInit {
       (error) => {}
     );
   }
+
+
+ //when next page is clicked
+  onNextPage(event: any) {
+    console.log(event);
+    const page = Math.floor(event.first / event.rows) + 1; // calculate page number (1-based)
+    const perPage = event.rows;
+    this.userService
+      .getRequiredEmployee(page, perPage)
+      .subscribe((response: any) => {
+        this.allemployees = response.data;
+        console.log(this.allemployees, 'for next page');
+        this.totalRecord = response.total;
+      });
+  }
+
+
+
+
+
+
+
 
   onDelete(employeeid: string) {
     this.userService.delEmployee(employeeid).subscribe(
