@@ -1,15 +1,15 @@
 <div class="flex justify-between">
-  <div class="border-b-4 border-red-700 mb-5 text-4xl font-bold w-[250px]">
-    <h1>All Table</h1>
+  <div class="border-b-1 border-red-700 mb-7 text-4xl font-bold w-[250px]">
+    <h1 class="heading-font">All Table</h1>
   </div>
   <div>
-    <p-button
-      label="ADD TABLE"
-      variant="outlined"
-      severity="danger"
-      styleClass="tableButton"
-      (onClick)="onAddTable()"
-    />
+      <p-button
+        label="ADD TABLE"
+        variant="outlined"
+        severity="danger"
+        styleClass="tableButton"
+        (click)="onAddTable()"
+      />
   </div>
 </div>
 
@@ -45,15 +45,17 @@
         <td>Not Available</td>
         }@else {
         <td>Available</td>
-
         }
 
         <td>
-          <div *ngFor="let emp of table.employees" class="w-1/2">
-            <div class="rounded-full flex justify-center items-center w-auto my-1 bg-gray-300  h-[30px] text-sm">
-              <p class="mx-1">              {{ emp.name }}</p>
-
-              <button (click)="onDeleteEmployeeAssign(emp.employeeTableId)"><i class="pi pi-minus-circle" style="font-size: 1.2rem"></i></button>
+          <div *ngFor="let emp of table.employees" >
+            <div class="flex justify-between items-center ">
+         
+                <div class="flex justify-center items-center m-2 bg-gray-300 rounded-full py-[5px] px-[10px] mt-[0px] mb-[5px]">
+                <p class="text-[16px] mr-[5px] text-black">{{ emp.name }}</p>
+                <i class="pi pi-minus-circle text-black " style="font-size: 20px" (click)="onDeleteEmployeeAssign(emp.employeeTableId)"></i>
+                </div>
+                  
             </div>
           </div>
           <app-employee-modal
@@ -61,6 +63,8 @@
             [tableId]="table.id"
             [tableNumber]="table.tableNumber"
             [tableImage]="table.image"
+            (loadingNewAssignedEmployee)="reloadingAfterModal($event)"
+          
           ></app-employee-modal>
         </td>
         <td>

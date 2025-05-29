@@ -13,6 +13,8 @@
 .text-red{
   color: #cc080b;
 }
-::ng-deep .p-datatable .p-datatable-thead .p-datatable-column-header-content {
-  color: red !important;
+
+::ng-deep td{
+  padding: 8px 15px !important;
+  margin: 0px !important;
 }

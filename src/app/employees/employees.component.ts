@@ -7,6 +7,8 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { SpinnerComponent } from "../spinner/spinner.component";
+import { AvatarModule } from 'primeng/avatar';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 @Component({
   selector: 'app-employees',
@@ -15,7 +17,7 @@ import { SpinnerComponent } from "../spinner/spinner.component";
     TableModule,
     CommonModule,
     ButtonModule,
-    SpinnerComponent
+    SpinnerComponent,AvatarModule, OverlayBadgeModule
 ],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css',
@@ -60,14 +62,6 @@ export class EmployeesComponent implements OnInit {
         this.totalRecord = response.total;
       });
   }
-
-
-
-
-
-
-
-
   onDelete(employeeid: string) {
     this.userService.delEmployee(employeeid).subscribe(
       (res: any) => {

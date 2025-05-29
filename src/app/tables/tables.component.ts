@@ -87,9 +87,12 @@ export class TablesComponent {
   }
   onDeleteEmployeeAssign(tableId: number) {
     this.tableService.delEmployeeFromTable(tableId).subscribe((res: any) => {
-      alert('deleted');
       this.getTable();
       this.getEmployeeAll();
     });
+  }
+
+  reloadingAfterModal(event:boolean){
+    this.getTable();
   }
 }

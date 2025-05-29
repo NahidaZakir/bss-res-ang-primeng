@@ -1,9 +1,9 @@
-::ng-deep .p-button{
+::ng-deep .submitFood .p-button{
     width: 100%;
     background-color:#cc080b;
     border:none
 }
-::ng-deep .p-button{
+::ng-deep .submitFood .p-button{
     width: 100%;
     background-color:#cc080b !important;
     border: none !important;

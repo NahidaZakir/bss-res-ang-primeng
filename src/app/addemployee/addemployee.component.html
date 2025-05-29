@@ -1,5 +1,5 @@
-<div class="border-b-3 border-red-700 mb-1 text-4xl font-bold">
-  <h1>Add Employee</h1>
+<div class="border-b-1 border-red-700 mb-7 text-4xl font-bold">
+  <h1 class="heading-font">Add Employee</h1>
 </div>
 
 @if(!isLoading){
@@ -21,7 +21,7 @@
               #firstname="ngModel"
             />
             <div>
-              @if(firstname.errors?.['required']){
+              @if(firstname.errors?.['required'] && firstname.touched){
               <span class="text-red-700">* required</span>
               }
             </div>
@@ -55,7 +55,7 @@
               #lastname="ngModel"
             />
             <div>
-              @if(lastname.errors?.['required']){
+              @if(lastname.errors?.['required'] && lastname.touched){
               <span class="text-red-700">* required</span>
               }
             </div>
@@ -98,7 +98,7 @@
           #fathername="ngModel"
         />
         <div>
-          @if(fathername.errors?.['required']){
+          @if(fathername.errors?.['required'] && fathername.touched){
           <span class="text-red-700">* required</span>
           }
         </div>
@@ -118,7 +118,7 @@
           #mothername="ngModel"
         />
         <div>
-          @if(mothername.errors?.['required']){
+          @if(mothername.errors?.['required'] && mothername.touched){
           <span class="text-red-700">* required</span>
           }
         </div>
@@ -141,7 +141,7 @@
           #designation="ngModel"
         />
         <div>
-          @if(designation.errors?.['required']){
+          @if(designation.errors?.['required'] && designation.touched){
           <span class="text-red-700">* required</span>
           }
         </div>
@@ -163,7 +163,7 @@
           type="email"
         />
         <div>
-          @if(email.errors?.['required']){
+          @if(email.errors?.['required'] && email.touched){
           <span class="text-red-700">* required</span>
           } @if(email.errors?.['email']){
           <span class="text-red-700">enter valid email address</span>
@@ -188,7 +188,7 @@
           (input)="setPhoneNum(addEmployee.phoneNumber)"
         />
         <div>
-          @if(phonenum.errors?.['required']){
+          @if(phonenum.errors?.['required'] && phonenum.touched){
           <span class="text-red-700">* required</span>
           } @if (phonenum.errors?.['minlength'] ||
           phonenum.errors?.['maxlength'] ) {
@@ -216,7 +216,7 @@
           #selectedGen="ngModel"
         />
         <div>
-          @if(selectedGen.errors?.['required']){
+          @if(selectedGen.errors?.['required'] && selectedGen.touched){
           <span class="text-red-700">* required</span>
           }
         </div>
@@ -236,7 +236,7 @@
           #dob="ngModel"
         />
         <div>
-          @if(dob.errors?.['required']){
+          @if(dob.errors?.['required'] && dob.touched){
           <span class="text-red-700">* required</span>
           }
         </div>
@@ -256,7 +256,7 @@
           #joindate="ngModel"
         />
         <div>
-          @if(joindate.errors?.['required']){
+          @if(joindate.errors?.['required'] && joindate.touched){
           <span class="text-red-700">* required</span>
           }
         </div>
@@ -276,7 +276,7 @@
           #nid="ngModel"
         />
         <div>
-          @if(nid.errors?.['required']){
+          @if(nid.errors?.['required'] && nid.touched){
           <span class="text-red-700">* required</span>
           }
         </div>

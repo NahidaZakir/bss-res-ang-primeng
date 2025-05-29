@@ -1,55 +1,65 @@
-
-<div class="card flex ">
-  <p-button
+<div class="card flex">
+  <i
+    class="pi pi-plus-circle text-emerald-300 mx-[10px]"
+    style="font-size: 20px"
     (click)="showDialog()"
-    styleClass="modalButton p-button-icon-only"
-    icon="pi pi-plus-circle"
-  />
+  ></i>
   <div class="flex justify-center items-center">
-  <p-dialog
-    header="Assign Employee to a table"
-    [modal]="true"
-    [(visible)]="visible"
-    [style]="{ width: '35rem' }"
-  >
-    <div class="flex h-[300px]">
-      <img
-        [src]="'https://restaurantapi.bssoln.com/images/table/' + tableImage()"
-        alt=""
-        class="w-50 h-36 mx-8"
-      />
-      <div>
-        <h1>Table ID: {{ tableNumber() }}</h1>
-        <h1>Number of Seats: {{ seatNumber() }}</h1>
+    <p-dialog
+      header="Assign Employee to a table"
+      [modal]="true"
+      [(visible)]="visible"
+      [style]="{ width: '35rem' }"
+      position="center"
+      [appendTo]="'body'"
+    >
+      <div class="flex">
+        <img
+          [src]="
+            'https://restaurantapi.bssoln.com/images/table/' + tableImage()
+          "
+          alt=""
+          class="w-50 h-36 mx-8"
+        />
         <div>
-          <div class="card flex justify-center">
-            <p-multiselect
-              [options]="employees"
-              [(ngModel)]="selectedEmployee"
-              name="selectedEmployee"
-              optionLabel="name"
-              placeholder="Select Employee"
-              [maxSelectedLabels]="10"
-              styleClass="w-50"
-            />
+          <h1>Table ID: {{ tableNumber() }}</h1>
+          <h1>Number of Seats: {{ seatNumber() }}</h1>
+          <div>
+            <div class="card flex justify-center">
+              <p-multiselect
+                [options]="employees"
+                [(ngModel)]="selectedEmployee"
+                name="selectedEmployee"
+                optionLabel="name"
+                placeholder="Select Employee"
+                [maxSelectedLabels]="10"
+                [appendTo]="'body'"
+                display="chip"
+                [filter]="false"
+                  [showHeader]="false"
+                panelStyleClass="custom-multiselect-panel"
+                [style]="{ width: '250px' }"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="flex justify-end gap-2">
-      <p-button
-        label="ASSIGN"
-        severity="secondary"
-        (click)="visible = false"
-        styleClass="assignbtn"
-        (onClick)="onAddEmployee()"
-        
-      />
-      <p-button label="CLOSE" (click)="visible = false" styleClass="closebtn" />
-    </div>
-  </p-dialog> 
+      <div class="flex justify-end gap-2">
+        <p-button
+          label="ASSIGN"
+          severity="secondary"
+          (click)="visible = false"
+          styleClass="assignbtn"
+          (onClick)="onAddEmployee()"
+        />
+        <p-button
+          label="CLOSE"
+          (click)="visible = false"
+          styleClass="closebtn"
+          (onClick)="onCloseModal()"
+        />
+      </div>
+    </p-dialog>
   </div>
-
 </div>
-

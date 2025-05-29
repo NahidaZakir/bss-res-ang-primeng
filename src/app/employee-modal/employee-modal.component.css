@@ -1,17 +1,3 @@
-::ng-deep .modalButton {
-  border: none;
-  background-color: white;
-  color: #90ce93;
-  transition: none; 
-}
-::ng-deep .modalButton .pi{
-    font-size: 1.3rem;
-}
-::ng-deep .modalButton:hover {
-  border: none !important;
-  background-color: white !important;
-  color: #90ce93 !important;
-}
 
 ::ng-deep .assignbtn{
     background-color: white;
@@ -33,4 +19,7 @@
 ::ng-deep .closebtn:hover{
     background-color: white !important;
     border: none;
+}
+::ng-deep .custom-multiselect-panel {
+  width: 250px !important;
 }

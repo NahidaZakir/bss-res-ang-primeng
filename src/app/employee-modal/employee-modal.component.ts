@@ -3,7 +3,7 @@ import { AllemployeeinfoService } from '../services/allemployeeinfo.service';
 import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { Component, inject, Input, input, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, Input, input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Select } from 'primeng/select';
 import { getAllEmployees } from '../model/employee.model';
@@ -24,6 +24,7 @@ export interface Employee {
     InputTextModule,
     FormsModule,
     MultiSelectModule,
+    SpinnerComponent
 ],
   templateUrl: './employee-modal.component.html',
   styleUrl: './employee-modal.component.css',
@@ -33,13 +34,14 @@ export class EmployeeModalComponent {
   @Input() tableId!: number;
   tableNumber = input<string>();
   tableImage = input<string>();
+  @Output() loadingNewAssignedEmployee = new EventEmitter<boolean>();
 
   router = inject(Router);
   visible: boolean = false;
   employees!: Employee[];
   selectedEmployee!: Employee[];
   addemployeetotable: addEmployeeToTableReqBody = new addEmployeeToTableReqBody();
-  isLoading = false;
+  isLoading = true;
 
   constructor(
     private tableinfo: TableInfoService,
@@ -51,10 +53,8 @@ export class EmployeeModalComponent {
   }
 
   getAll() {
-    this.tableinfo.getAllEmployee().subscribe((res: any) => {
-      this.employees = this.allemployeeinfo.getAllEmployees();
-      //console.log(this.employees, 'employeedetails');
-      //console.log(this.employees, 'fromm');
+    this.tableinfo.getAssignedEmployee(this.tableId).subscribe((res: any) => {
+      this.employees = res;
     });
   }
 
@@ -63,7 +63,7 @@ export class EmployeeModalComponent {
   }
 
   onAddEmployee() {
-    this.isLoading=true;
+
     console.log(this.selectedEmployee);
     for (let i = 0; i < this.selectedEmployee.length; i++) {
       this.addemployeetotable.tableId = this.tableId;
@@ -71,12 +71,14 @@ export class EmployeeModalComponent {
       console.log(this.addemployeetotable);
       this.uploadEmp(this.addemployeetotable);
     }
-    this.isLoading=false;
-    alert('Added Employees');
-    this.getAll();
+    this.loadingNewAssignedEmployee.emit(this.isLoading);
   }
 
   uploadEmp(obj: addEmployeeToTableReqBody) {
     this.tableinfo.addEmployeeToTable(obj).subscribe((res: any) => {});
+  }
+
+  onCloseModal(){
+    this.selectedEmployee = [];
   }
 }

@@ -9,6 +9,7 @@ import { NeworderComponent } from './neworder/neworder.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddemployeeComponent } from './addemployee/addemployee.component';
 import { AddtableComponent } from './addtable/addtable.component';
+import { AddfoodComponent } from './addfood/addfood.component';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,10 @@ export const routes: Routes = [
             {
                 path: 'foods',
                 component: FoodsComponent
+            },
+            {
+                path:'add-food',
+                component: AddfoodComponent
             },
             {
                 path:'order',

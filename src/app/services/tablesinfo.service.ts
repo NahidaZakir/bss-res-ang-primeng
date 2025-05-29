@@ -8,8 +8,6 @@ import { addEmployeeToTableReqBody, createTableReqBody } from '../model/table.mo
 })
 export class TableInfoService {
 
-  tokenExpired$: Subject<boolean> = new Subject<boolean>();
-  tokenReceived$: Subject<boolean> = new Subject<boolean>();
  
   constructor(private http: HttpClient) { }
 
@@ -45,5 +43,9 @@ export class TableInfoService {
 
   addEmployeeToTable(obj: addEmployeeToTableReqBody){
     return this.http.post("https://restaurantapi.bssoln.com/api/EmployeeTable/create",obj);
+  }
+
+  getAssignedEmployee(tableid:number){
+    return this.http.get(`https://restaurantapi.bssoln.com/api/Employee/non-assigned-employees/${tableid}`);
   }
 }

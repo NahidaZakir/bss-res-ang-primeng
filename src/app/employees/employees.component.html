@@ -17,7 +17,7 @@
   <div class="card">
     <p-table
       [value]="allemployees"
-      [tableStyle]="{ 'min-width': '50rem' }"
+      [tableStyle]="{ 'min-width': '40rem' }"
       [lazy]="true"
       (onLazyLoad)="onNextPage($event)"
       [paginator]="true"
@@ -40,15 +40,17 @@
       </ng-template>
 
       <ng-template #body let-employee>
-        <tr class="hover:bg-base-300">
+        <tr >
           <td>
-            <div class="flex items-center gap-3">
-              <img
-                class="rounded-full w-[50px] h-[50px]"
-                [src]="
+            <div class=" flex justify-start items-center">
+              <p-avatar
+                [image]="
                   'https://restaurantapi.bssoln.com/images/user/' +
                   employee.user.existingImage
                 "
+          
+                shape="circle"
+              
               />
             </div>
           </td>
@@ -57,21 +59,18 @@
           <td>{{ employee.designation }}</td>
           <td>{{ employee.joinDate }}</td>
           <td>{{ employee.user.phoneNumber }}</td>
-          <td class=" ">
-            <div class="flex justify-between w-full">
-              <div>
-                <button (click)="onUpdate(employee.id)">
-                  <button>
-                    <i
-                      class="pi pi-user-edit text-green-300"
-                      style="font-size: 30px"
-                    ></i>
-                  </button>
-                </button>
-              </div>
-              <button (click)="onDelete(employee.id)">
-                <i class="pi pi-trash text-red-300" style="font-size: 20px"></i>
-              </button>
+          <td >
+            <div class="flex" >
+              <i
+                (click)="onUpdate(employee.id)"
+                class="pi pi-user-edit text-green-300 mr-5"
+                style="font-size: 20px"
+              ></i>
+              <i
+                (click)="onDelete(employee.id)"
+                class="pi pi-trash text-red-300"
+                style="font-size: 20px"
+              ></i>
             </div>
           </td>
         </tr>
