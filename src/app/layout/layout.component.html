@@ -1,12 +1,11 @@
-<div class="flex  ">
-  <div class="w-[290px]  hidden  lg:block">
+<div class="flex">
+  <div class="w-[290px] hidden lg:block">
     <app-navbar></app-navbar>
   </div>
-  <div class="w-full ">
+  <div class="w-full">
     <div class="bgimage dashboard-container h-screen">
-              <!--TopBar-->
+      <!--TopBar-->
       <div class="w-full red-bg h-[65px]">
-
         <div class="flex justify-between">
           <div class="logo-container flex ml-[50px] items-center">
             <img class="w-[50px] h-[50px] mt-[7px]" src="/logo.png" alt="" />
@@ -24,29 +23,55 @@
                   {{ userFullName() }}
                 </h1>
               </div>
-              <div>
-                <i
-                  class="pi pi-shopping-cart"
-                  style="font-size: 20px; color: white; margin: auto 20px"
-                ></i>
-              </div>
-              <div class="card flex justify-center md:inline lg:hidden">
-                <p-drawer [(visible)]="visible" [closable]="false">
-                  <app-navbar></app-navbar>
-                </p-drawer>
-                <button
-                  pButton
-                  (click)="visible = true"
-                  icon="pi pi-bars"
-                  style="color: white; background-color: #cc080b; width: 30px"
-                ></button>
+              <div class="flex h-full ml-6 mr-10">
+                <div class="card bg-red-700 h-[60px]">
+                  <div class="flex h-full">
+                    <div class="flex items-center justify-center">
+                      <p-button
+                        (click)="showDialog()"
+                        icon="pi pi-shopping-cart"
+                        class="cartbtn"
+                      />
+                    </div>
+
+                    <div
+                      class="w-[20px] h-[20px] rounded-full bg-white bg-red-800 flex justify-center items-center mt-2"
+                    >
+                      <p>{{ foodCart }}</p>
+                    </div>
+                  </div>
+
+                  <p-dialog
+                    header="Cart"
+                    [modal]="true"
+                    [(visible)]="isCartVisible"
+                    [position]="'right'"
+                    [style]="{ width: '25rem' }"
+                    class="cartdialog"
+                  >
+                    <app-cartfood></app-cartfood>
+                  </p-dialog>
+                </div>
+
+                <!--MenuBar logo on small devices-->
+                <div class="card flex justify-center md:inline lg:hidden">
+                  <p-drawer [(visible)]="visible" [closable]="false">
+                    <app-navbar></app-navbar>
+                  </p-drawer>
+                  <button
+                    pButton
+                    (click)="visible = true"
+                    icon="pi pi-bars"
+                    style="color: white; background-color: #cc080b; width: 30px"
+                  ></button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="px-[60px] py-[40px] ">
-        <router-outlet ></router-outlet>
+        <div class="px-[60px] py-[40px]">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>
   </div>

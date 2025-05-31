@@ -53,7 +53,12 @@ export class AddfoodComponent {
   discountTypeInput!: Discount;
   showDiscountedPrice: number = 0;
   getInputs: number = 0;
-  constructor(private foodService: FoodService, private imageService: ImageService) {}
+
+  discountTypeLabel: string = 'Discount in (%)';
+  constructor(
+    private foodService: FoodService,
+    private imageService: ImageService
+  ) {}
 
   ngOnInit() {
     this.discounts = [
@@ -73,6 +78,7 @@ export class AddfoodComponent {
 
   getSelectedDiscount(selectedDis: Discount) {
     this.discountTypeInput = selectedDis;
+    this.onShowDiscountLabel();
     this.onShowField();
     if (this.discountInput !== 0) {
       this.onTypeOfDiscount();
@@ -106,6 +112,17 @@ export class AddfoodComponent {
       this.disabledField = false;
     }
   }
+  onShowDiscountLabel() {
+    if (this.discountTypeInput.code === 1) {
+      this.discountTypeLabel = 'Discount in (৳) ';
+    }
+    if (
+      this.discountTypeInput.code === 2 ||
+      this.discountTypeInput.code === 0
+    ) {
+      this.discountTypeLabel = 'Discount in (%)';
+    }
+  }
 
   onAddFood() {
     this.setDiscount();
@@ -114,10 +131,9 @@ export class AddfoodComponent {
     this.addFood.discountPrice = +this.showDiscountedPrice;
     this.addFood.price = +this.priceInput;
     console.log(this.addFood);
-    this.foodService.createFood(this.addFood).subscribe((res:any)=>{
+    this.foodService.createFood(this.addFood).subscribe((res: any) => {
       this.router.navigateByUrl('/foods');
-    })
-
+    });
   }
 
   setDiscount() {

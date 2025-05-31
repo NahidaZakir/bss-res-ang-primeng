@@ -1,0 +1,192 @@
+  <p-toast [position]="'bottom-right'" />
+<div class="">
+  <div class="flex justify-between">
+    <div class="border-b-1 border-red-700 mb-7 w-[250px]">
+      <h1 class="heading-font">Order Food</h1>
+    </div>
+    <div>
+      <p-iftalabel>
+        <input
+          pInputText
+          id="username"
+          [(ngModel)]="searchFoodName"
+          name="searchFoodName"
+          autocomplete="off"
+          (input)="onSearch(searchFoodName)"
+          class="w-[300px]"
+        />
+        <label for="username">Search Food</label>
+      </p-iftalabel>
+    </div>
+  </div>
+
+  <div class="lg:grid lg:grid-cols-12 gap-5">
+    <div class="col-span-3 bg-white p-[20px]">
+      <h1 class="text-center font-bold text-[14px]">
+        SELECT A TABLE : ({{ showTotalTable }})
+      </h1>
+      <p-virtualscroller
+        [items]="tables"
+        [itemSize]="50"
+        [lazy]="true"
+        [loading]="lazyLoadingTable"
+        (onLazyLoad)="onLazyLoadTable($event)"
+        styleClass="tablescroller"
+        [style]="{ width: '100%', height: '430px', }"
+      >
+        <ng-template let-table let-options="options" #item>
+          <div
+            class="flex flex-col items-center my-5 rounded-md tableSelect"
+            style="height: 180px"
+            (click)="onTableSelected(table.id)"
+          >
+            <img
+              [src]="
+                'https://restaurantapi.bssoln.com/images/Table/' + table.image
+              "
+              class="w-[130px] h-[130px] rounded-full p-[10px]"
+            />
+
+            <p class="text-[18px]">{{ table.tableNumber }}</p>
+          </div>
+        </ng-template>
+      </p-virtualscroller>
+    </div>
+
+    @if(!isTableSelected){
+    <div class="col-span-9 h-full bg-white text-center">
+      <div class="flex justify-center items-center h-full">
+        <h1 class="text-4xl text-red-700 font-bold">
+          Select A table at First!
+        </h1>
+      </div>
+    </div>
+    } @if(isTableSelected){
+    <div class="col-span-9 bg-white p-[20px] w-full">
+      <h1 class="font-bold text-[14px]">
+        SELECT FOODS : ({{ showTotalFood }})
+      </h1>
+      @if(!showSearchedFood){
+      <p-virtualscroller
+        [items]="foods"
+        [itemSize]="50"
+        [lazy]="true"
+        [delay]="250"
+        [loading]="lazyLoadingFood"
+        (onLazyLoad)="onLazyLoadFood($event)"
+        class="showfood"
+        [style]="{ width: '100%', height: '430px' }"
+      >
+        <ng-template let-food let-options="options" #item>
+          <div class="mb-4">
+            <p-card>
+              <div class="flex justify-around">
+                <div class="w-[30%]">
+                  <img
+                    [src]="
+                      'https://restaurantapi.bssoln.com/images/Food/' +
+                      food.image
+                    "
+                    alt=""
+                    class="w-[190px] h-[190px] rounded-full"
+                  />
+                </div>
+                <div class="flex flex-col justify-center w-[70%]">
+                  <h1 class="text-[24px] font-bold">{{ food.name }}</h1>
+                  <p>{{ food.description }}</p>
+                  <div class="flex justify-between items-center">
+                    <div>
+                      @if(food.discountPrice){
+                      <p class="line-through textPrice text-red-700">
+                        Price:<span class="font-bold"> {{ food.price }} ৳</span>
+                      </p>
+                      <p class="text-lime-600 textPrice">
+                        Discounted Price:<span class="font-bold">
+                          {{ food.discountPrice }} ৳</span
+                        >
+                      </p>
+                      } @if(!food.discountPrice){
+                      <p class="textPrice">
+                        Price:<span class="font-bold"> {{ food.price }} ৳</span>
+                      </p>
+                      }
+                    </div>
+                    <div>
+                    
+                      <p-button
+                        (onClick)="showSuccess(food)"
+                        pRipple
+                        label="Add To Cart"
+                        class="addtocartbtn"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-card>
+          </div>
+        </ng-template>
+      </p-virtualscroller>
+      } @if(showSearchedFood){
+      <p-virtualscroller
+        [items]="searchedFoodList"
+        [itemSize]="50"
+        [lazy]="true"
+        [loading]="lazyLoadingFood"
+        (onLazyLoad)="onLazyLoadFood($event)"
+        [style]="{ width: '100%', height: '430px' }"
+      >
+        <ng-template let-searchedfood let-options="options" #item>
+          <div class="mb-4">
+            <p-card>
+              <div class="flex justify-around">
+                <div class="w-[30%]">
+                  <img
+                    [src]="
+                      'https://restaurantapi.bssoln.com/images/Food/' +
+                      searchedfood.image
+                    "
+                    alt=""
+                    class="w-[190px] h-[190px] rounded-full"
+                  />
+                </div>
+                <div class="flex flex-col justify-center w-[70%]">
+                  <h1 class="text-[24px] font-bold">{{ searchedfood.name }}</h1>
+                  <p>{{ searchedfood.description }}</p>
+                  <div class="flex justify-between items-center">
+                    <div>
+                      @if(searchedfood.discountPrice){
+                      <p class="line-through textPrice text-red-700">
+                        Price:<span class="font-bold">
+                          {{ searchedfood.price }} ৳</span
+                        >
+                      </p>
+                      <p class="text-lime-600 textPrice">
+                        Discounted Price:<span class="font-bold">
+                          {{ searchedfood.discountPrice }} ৳</span
+                        >
+                      </p>
+                      } @if(!searchedfood.discountPrice){
+                      <p class="textPrice">
+                        Price:<span class="font-bold">
+                          {{ searchedfood.price }} ৳</span
+                        >
+                      </p>
+                      }
+                    </div>
+
+                    <button class="bg-red-700 p-2 text-white addtocartbtn">
+                      Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </p-card>
+          </div>
+        </ng-template>
+      </p-virtualscroller>
+      }
+    </div>
+    }
+  </div>
+</div>

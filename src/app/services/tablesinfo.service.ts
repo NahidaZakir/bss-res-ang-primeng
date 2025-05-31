@@ -11,9 +11,9 @@ export class TableInfoService {
  
   constructor(private http: HttpClient) { }
 
-  getAllTable(){
-    return this.http.get("https://restaurantapi.bssoln.com/api/EmployeeTable/get");
-  }
+  // getAllTable(){
+  //   return this.http.get("https://restaurantapi.bssoln.com/api/EmployeeTable/get");
+  // }
 
   getTables(){
     return this.http.get("https://restaurantapi.bssoln.com/api/Table/datatable");

@@ -1,0 +1,15 @@
+.toaststyle{
+    background-color: red;
+}
+::ng-deep .cartbtn .p-button{
+    width: 25px;
+    height: 25px;
+    background-color: #cc080b;
+    border: #cc080b;
+}
+::ng-deep .cartbtn .p-button:hover{
+    width: 25px;
+    height: 25px;
+    background-color: #cc080b;
+    border: #cc080b;
+}

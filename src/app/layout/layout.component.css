@@ -70,3 +70,23 @@ ul li a:hover {
 .selected {
   background-color: #f8e1e1;
 }
+
+::ng-deep .cartbtn .p-button{
+    width: 25px;
+    height: 25px;
+    background-color: #cc080b;
+    border: #cc080b;
+}
+::ng-deep .cartbtn .p-button:hover{
+    width: 25px !important;
+    height: 25px  !important;
+    background-color: #cc080b !important;
+    border: #cc080b !important;
+}
+
+::ng-deep .cartdialog .p-dialog{
+  background-color:white;
+  border-radius: 0px;
+  height: 80%;
+  padding: 0px;
+}

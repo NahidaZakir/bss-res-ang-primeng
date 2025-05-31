@@ -55,3 +55,16 @@ background-repeat: no-repeat;
 .bg-color{
     background-color: #f1f1f1;
 }
+
+::ng-deep .loginBtn .p-button{
+  background-color: #cc080b !important;
+  border: none;
+  width: 100%;
+  height: 50px;
+}
+::ng-deep .loginBtn .p-button:hover{
+  background-color: #8f0709 !important;
+  border: none !important;
+  width: 100% !important;
+  height: 50px;
+}

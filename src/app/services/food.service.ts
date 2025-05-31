@@ -28,4 +28,9 @@ export class FoodService {
     return this.http.post("https://restaurantapi.bssoln.com/api/Food/create", obj);
   }
 
+  getSearchedFood(pageNum: number, perPageNum: number,food:string){
+  return this.http.get(
+      `https://restaurantapi.bssoln.com/api/Food/datatable?sort=&page=${pageNum}&per_page=${perPageNum}&search=${food}`
+    );
+  }
 }

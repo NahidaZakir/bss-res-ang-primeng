@@ -1,34 +1,45 @@
-export interface getFoodDatatable{
+export interface getFoodDatatable {
   data: [
     {
-      id: number,
-      name: "string",
-      description: "string",
-      price: number,
-      discountType: "string",
-      discount: number,
-      discountPrice: number,
-      image: "string"
+      id: number;
+      name: 'string';
+      description: 'string';
+      price: number;
+      discountType: 'string';
+      discount: number;
+      discountPrice: number;
+      image: 'string';
     }
-  ],
-  pageNumber: number,
-  current_page: number,
-  per_page: number,
-  pageSize: number,
-  firstPage: "string",
-  lastPage: "string",
-  last_page: number,
-  totalPages: number,
-  totalRecords: number,
-  total: number,
-  from: number,
-  to: number,
-  next_page_url: "string",
-  prev_page_url: "string"
+  ];
+  pageNumber: number;
+  current_page: number;
+  per_page: number;
+  pageSize: number;
+  firstPage: 'string';
+  lastPage: 'string';
+  last_page: number;
+  totalPages: number;
+  totalRecords: number;
+  total: number;
+  from: number;
+  to: number;
+  next_page_url: 'string';
+  prev_page_url: 'string';
+}
+export interface showAllFood {
+  id: number;
+  name: 'string';
+  description: 'string';
+  price: number;
+  discountType: 'string';
+  discount: number;
+  discountPrice: number;
+  image: 'string';
+  count?: number | undefined;
+  countPrice?: number | undefined;
 }
 
-
-export class addFoodReqBody{
+export class addFoodReqBody {
   name: string;
   description: string;
   price: number;
@@ -43,7 +54,7 @@ export class addFoodReqBody{
     this.price = 0;
     this.discountType = 0;
     this.discount = 0;
-    this.discountPrice = 0 ;
+    this.discountPrice = 0;
     this.image = '';
     this.base64 = '';
   }
