@@ -1,15 +1,47 @@
-.toaststyle{
-    background-color: red;
+.toaststyle {
+  background-color: red;
 }
-::ng-deep .cartbtn .p-button{
-    width: 25px;
-    height: 25px;
-    background-color: #cc080b;
-    border: #cc080b;
+::ng-deep .cartbtn .p-button {
+  width: 25px;
+  height: 25px;
+  background-color: #cc080b;
+  border: #cc080b;
 }
-::ng-deep .cartbtn .p-button:hover{
-    width: 25px;
-    height: 25px;
-    background-color: #cc080b;
-    border: #cc080b;
+::ng-deep .cartbtn .p-button:hover {
+  width: 25px;
+  height: 25px;
+  background-color: #cc080b;
+  border: #cc080b;
+}
+
+.deletebg:hover {
+  background-color: #cc080b;
+  color: white;
+}
+.deletebtn {
+  color: #cc080b;
+}
+
+.deletebtn:hover {
+  color: white;
+}
+.foodItems {
+  height: 200px;
+  overflow-y: scroll;
+
+}
+.editstatus{
+    color: lightgray !important;
+    font-weight: 700 !important;
+
+}
+.editstatus:hover{
+    color: #6cb150  !important;
+}
+::ng-deep .statusfield {
+  border-radius: 0px;
+  /* background-color: green;
+  padding: 0px;
+  margin:0px; */
+  border-bottom: 1px solid black !important;
 }

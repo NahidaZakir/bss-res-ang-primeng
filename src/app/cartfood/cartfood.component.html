@@ -1,52 +1,97 @@
-<div class=" ">
-  @if(isAnythingAdded){ @for(item of cartFoodItems; track item.id ){
-  <div class="flex justify-between border-b-2 border-gray-300 p-2">
-    <div class="flex justify-center items-center">
-      <div class="flex justify-start items-center mr-2">
-        <p-avatar
-          [image]="'https://restaurantapi.bssoln.com/images/food/' + item.image"
-          shape="circle"
-        />
-      </div>
-      <div>
-        <h1>{{ item.name }}</h1>
-        <div class="flex">
+<div class="h-[100%] max-w-[100%] border-t-4 pt-2 border-red-700">
+  @if(isAnythingAdded){
+  <div class="card">
+    <div class="">
+      <p-scrollpanel [style]="{ width: '100%' }" styleClass="cartpanel">
+        <div class="">
+          @for(item of cartFoodItems; track item.id ){
           <div
-            class="border-1 border-gray-300 w-[20px] flex justify-center items-center"
-            (click)="decCount(item.id, item.count, item.price)"
+            class="flex justify-between border-b-2 border-gray-300 py-[12px]"
           >
-            <i class="pi pi-minus" style="font-size: 0.8rem"></i>
-          </div>
+            <div class="flex justify-center items-center">
+              <div class="flex justify-start items-center mr-2">
+                <img
+                  [src]="
+                    'https://restaurantapi.bssoln.com/images/food/' + item.image
+                  "
+                  class="rounded-full w-[70px] h-[70px]"
+                />
+              </div>
+              <div class="flex flex-col h-full">
+                <div class="flex justify-start">
+                  <h1 class="font-[700] text-[18px]">
+                    {{ item.name }}
+                  </h1>
+                </div>
+                <div class="flex justify-start items-end h-full">
+                  <div class="flex">
+                    <div
+                      class="border-1 border-gray-300 w-[20px] flex justify-center items-center px-[12px]"
+                      (click)="decCount(item.id, item.count, item.price)"
+                    >
+                      <i class="pi pi-minus" style="font-size: 10px"></i>
+                    </div>
 
-          <div
-            class="border-1 border-gray-300 w-[20px] flex justify-center items-center"
-          >
-            <h1>{{ item.count }}</h1>
+                    <div
+                      class="border-1 border-gray-300 flex justify-center items-center w-[50px]"
+                    >
+                      <h1>{{ item.count }}</h1>
+                    </div>
+                    <div
+                      class="border-1 border-gray-300 w-[20px] flex justify-center items-center px-[12px]"
+                      (click)="incCount(item.id, item.count, item.price)"
+                    >
+                      <i class="pi pi-plus" style="font-size: 10px"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col">
+              <div class="flex justify-end m-1">
+                <i
+                  class="pi pi-trash"
+                  style="font-size: 1.3rem"
+                  (click)="onDelete(item.id)"
+                ></i>
+              </div>
+              <div class="flex justify-end items-end h-full">
+                <h1>Price: {{ item.countPrice }} ৳</h1>
+              </div>
+            </div>
           </div>
-          <div
-            class="border-1 border-gray-300 w-[20px] flex justify-center items-center"
-            (click)="incCount(item.id, item.count, item.price)"
-          >
-            <i class="pi pi-plus" style="font-size: 0.8rem"></i>
-          </div>
+          }
         </div>
-      </div>
+      </p-scrollpanel>
+    </div>
+  </div>
+
+  <div class="">
+    <div
+      class="border-b-2 border-gray-300 flex justify-between items-center w-full py-[12px]"
+    >
+      <h1>Subtotal</h1>
+      <p class="font-bold">{{ subTotal }} ৳</p>
     </div>
 
-    <div class="flex flex-col">
-      <div class="flex justify-end m-1">
-        <i
-          class="pi pi-trash"
-          style="font-size: 1.3rem"
-          (click)="onDelete(item.id)"
-        ></i>
-      </div>
-      <div>
-        <h1>Price: {{ item.countPrice}} ৳</h1>
+    <div class="card flex justify-center">
+      <p-toast />
+      <p-confirmdialog [style]="{ width: '500px' }">
+        <ng-template #message let-message>
+          <div class="flex flex-col items-center w-full">
+            <i [ngClass]="message.icon" class="!text-8xl text-green-500"></i>
+            <p class="text-3xl pt-8">Order Placed</p>
+            <p class="text-gray-500 py-3">{{ message.message }}</p>
+          </div>
+        </ng-template>
+      </p-confirmdialog>
+      <div class="w-full">
+        <p-button label="Confirm Order" (click)="confirm()" class="orderBtn" />
       </div>
     </div>
   </div>
-  } } @if(!isAnythingAdded){
+  } @if(!isAnythingAdded){
   <div
     class="h-[400px] text-[25px] text-black flex justify-center items-center"
   >

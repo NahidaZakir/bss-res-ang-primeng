@@ -1,23 +1,45 @@
-import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
-
-import { Dialog } from 'primeng/dialog';
+import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+import { OrderService } from '../services/order.service';
+import { allOrders, allOrdersRespBody } from '../model/order.model';
+import { FormsModule } from '@angular/forms';
+import { Select } from 'primeng/select';
+interface City {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-orders',
-    imports: [Dialog, ButtonModule, InputTextModule],
-    providers: [MessageService],
+  imports: [ButtonModule, CardModule,FormsModule, Select],
+  providers: [],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
-export class OrdersComponent {
- visible: boolean = false;
+export class OrdersComponent implements OnInit {
+  constructor(private orderService: OrderService) {}
+  allorders: allOrders[] = [];
+  showStatusOption: boolean = false;
+  cities: City[] | undefined;
 
-    position: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
+  selectedCity: City | undefined;
 
-    showDialog(position: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright') {
-        this.position = position;
-        this.visible = true;
-    }
+ 
+  ngOnInit() {
+    this.orderService.getRequiredOrder(1, 10).subscribe((res: any) => {
+      this.allorders = res.data;
+      console.log(this.allorders);
+    });
+     this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' },
+    ];
+  }
+
+  onEditStatus(value:string) {
+    this.showStatusOption = true;
+  }
 }

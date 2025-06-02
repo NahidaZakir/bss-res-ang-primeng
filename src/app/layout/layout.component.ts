@@ -8,7 +8,7 @@ import { CartFoodService } from '../services/cartfood.service';
 
 import { Dialog } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { CartfoodComponent } from "../cartfood/cartfood.component";
+import { CartfoodComponent } from '../cartfood/cartfood.component';
 @Component({
   selector: 'app-layout',
   imports: [
@@ -17,15 +17,15 @@ import { CartfoodComponent } from "../cartfood/cartfood.component";
     SplitterModule,
     NavbarComponent,
     RouterOutlet,
-    Dialog, InputTextModule,
-    CartfoodComponent
-],
+    Dialog,
+    InputTextModule,
+    CartfoodComponent,
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
-
-
+  isCartVisible: boolean = false;
   visible: boolean = false;
   userEmail = signal('');
   userFullName = signal('');
@@ -36,9 +36,9 @@ export class LayoutComponent {
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.cartFoodService.numInCartObservable$.subscribe((res:any)=>{
+    this.cartFoodService.numInCartObservable$.subscribe((res: any) => {
       this.foodCart = res;
-    })
+    });
   }
 
   getUserInfo() {
@@ -50,16 +50,25 @@ export class LayoutComponent {
       this.userEmail.set(email);
       this.userFullName.set(name);
     }
-
   }
 
-    isCartVisible: boolean = false;
+  position:
+    | 'left'
+    | 'right'
+    | 'top'
+    | 'bottom'
+    | 'center'
+    | 'topleft'
+    | 'topright'
+    | 'bottomleft'
+    | 'bottomright' = 'center';
 
-    position: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
-
-    showDialog() {
-      console.log('clicked');
-        this.position = 'right';
-        this.isCartVisible = true;
-    }
+  setCartVisible(value: boolean) {
+    this.isCartVisible = value;
+  }
+  showDialog() {
+    console.log('clicked');
+    this.position = 'right';
+    this.isCartVisible = true;
+  }
 }

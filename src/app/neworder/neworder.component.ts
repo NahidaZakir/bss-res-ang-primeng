@@ -180,7 +180,7 @@ export class NeworderComponent implements OnInit {
   }
 
   onTableSelected(id: number) {
-    console.log(id);
+    this.cartfoodService.setTableID(id);
     this.isTableSelected = true;
   }
 }

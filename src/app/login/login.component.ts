@@ -29,11 +29,11 @@ export class LoginComponent {
       (res: loginRespBody) => {
         //alert('user login success');
         localStorage.setItem('loginUserData', JSON.stringify(res))
-        // localStorage.setItem('email', JSON.stringify(res.user.email))
-        // localStorage.setItem('fullname', JSON.stringify(res.user.fullName))
-        // localStorage.setItem('accesstoken', JSON.stringify(res.token))
-        // localStorage.setItem('refreshtoken', JSON.stringify(res.refreshToken))
-        // localStorage.setItem('refreshtokenexpiry', JSON.stringify(res.refreshTokenExpiryTime))
+        localStorage.setItem('email', JSON.stringify(res.user.email))
+        localStorage.setItem('fullname', JSON.stringify(res.user.fullName))
+        localStorage.setItem('accesstoken', JSON.stringify(res.token))
+        localStorage.setItem('refreshtoken', JSON.stringify(res.refreshToken))
+        localStorage.setItem('refreshtokenexpiry', JSON.stringify(res.refreshTokenExpiryTime))
         this.router.navigateByUrl("/admin")
       },
       (error) => {

@@ -1,0 +1,32 @@
+::ng-deep .orderBtn .p-button {
+  background-color: #cc080b !important;
+  border: none;
+  border-radius: 0px !important;
+  width: 100% !important;
+  height: 50px !important;
+}
+::ng-deep .orderBtn .p-button:hover {
+  background-color: #8f0709 !important;
+  border: none !important;
+  border-radius: 0px !important;
+  width: 100% !important;
+  height: 50px !important;
+}
+
+::ng-deep.p-confirm-dialog .p-dialog-content {
+  text-align: center !important;
+}
+
+::ng-deep .okaybtn {
+  background-color: #7066e0 !important;  /* Green */
+  border: none !important;
+  color: white !important;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+::ng-deep .p-confirm-dialog .p-dialog .p-dialog-footer {
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
