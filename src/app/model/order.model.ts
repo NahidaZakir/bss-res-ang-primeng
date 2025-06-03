@@ -259,3 +259,10 @@ export interface allOrders {
     }
   ];
 }
+
+export class OrderStatusReqBody{
+    status: number | undefined;
+    constructor(){
+        this.status= 0;
+    }
+}

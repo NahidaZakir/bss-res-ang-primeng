@@ -24,7 +24,7 @@
                 </h1>
               </div>
               <div class="flex h-full ml-6 mr-10">
-                <div class="card bg-red-700 h-[60px]">
+                <div class="card h-[60px]">
                   <div class="flex h-full">
                     <div class="flex items-center justify-center">
                       <p-button
@@ -33,12 +33,13 @@
                         class="cartbtn"
                       />
                     </div>
-
+                    @if(foodCart>0){
                     <div
                       class="w-[20px] h-[20px] rounded-full bg-white bg-red-800 flex justify-center items-center mt-2"
                     >
                       <p>{{ foodCart }}</p>
                     </div>
+                    }
                   </div>
 
                   <p-dialog
@@ -50,7 +51,7 @@
                     class="cartdialog"
                     closeIcon="pi pi-times-circle"
                   >
-                    <app-cartfood ></app-cartfood>
+                    <app-cartfood (toShowCart)="setCartVisible($event)"></app-cartfood>
                   </p-dialog>
                 </div>
 
@@ -70,7 +71,7 @@
             </div>
           </div>
         </div>
-        <div class="px-[60px] py-[40px] ">
+        <div class="px-[60px] py-[40px]">
           <router-outlet></router-outlet>
         </div>
       </div>

@@ -32,6 +32,7 @@ import { CommonModule } from '@angular/common';
   providers: [ConfirmationService, MessageService],
 })
 export class CartfoodComponent implements OnInit {
+@Output() toShowCart= new EventEmitter<boolean>();
   isAnythingAdded: boolean = false;
   cartItems: number = 0;
   cartFoodItems: showAllFood[] = [];
@@ -42,7 +43,6 @@ export class CartfoodComponent implements OnInit {
   subTotal = 0;
   visible: boolean = false;
 
-
   constructor(
     private cartFoodService: CartFoodService,
     private orderService: OrderService,
@@ -50,11 +50,6 @@ export class CartfoodComponent implements OnInit {
     private messageService: MessageService
   ) {}
   newOrder: OrderReqBody = new OrderReqBody();
-  // allFoodsArray: Item[] = [];
-
-  // ordersArray: OrderReqBody = new OrderReqBody();
-
-  // foodItem: Item = new Item();
   foodArray: Item[] = [];
 
   ngOnInit() {
@@ -99,14 +94,17 @@ export class CartfoodComponent implements OnInit {
   }
 
   confirm() {
+    this.toShowCart.emit(false);
     this.confirmationService.confirm({
       message: 'Order has been placed successfully',
       icon: 'pi pi-check-circle',
-      closable:false,
+      closable: false,
       rejectVisible: false, // Hides the "No" button
       acceptLabel: 'OK',
       acceptButtonStyleClass: 'okaybtn',
-      accept: () => {},
+      accept: () => {
+        this.cartFoodService.reset();
+      },
     });
 
     const now = new Date();

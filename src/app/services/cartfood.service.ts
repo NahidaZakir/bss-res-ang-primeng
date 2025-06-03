@@ -88,5 +88,9 @@ export class CartFoodService {
 
     return this.tableID.getValue();
   }
+  reset(){
+    this.inCart.next([]);
+    this.numInCart.next(0);
+  }
   constructor() {}
 }
