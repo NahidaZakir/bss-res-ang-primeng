@@ -1,5 +1,5 @@
-<div class="relative h-screen sticky top-0">
-  <div >
+<div class="h-screen sticky top-0">
+  <div>
     <div class="border-b-1 border-gray-200 mb-2">
       <div class="flex p-1">
         <img
@@ -18,16 +18,17 @@
       <p-menu [model]="items" />
     </div>
   </div>
-  <div class="absolute bottom-5 left-1">
-    <p-button
-    class="navbar-btn"
-    icon="pi pi-sign-out"
-      label="Log Out"
-      variant="outlined"
-      severity="danger"
-      [rounded]="true"
-      (click)="onLogOut()"
-    />
+  <div class="absolute w-full bottom-5">
+    <div class="flex items-center justify-center">
+      <p-button
+        class="navbar-btn"
+        icon="pi pi-sign-out"
+        label="Log Out"
+        variant="outlined"
+        severity="danger"
+        [rounded]="true"
+        (click)="onLogOut()"
+      />
+    </div>
   </div>
-
 </div>

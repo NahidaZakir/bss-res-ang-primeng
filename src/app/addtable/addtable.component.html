@@ -1,54 +1,56 @@
-<div class="border-b-1 border-red-700 mb-7 text-4xl font-bold">
-  <h1 class="heading-font">Add Employee</h1>
-</div>
+<div class="px-[60px] py-[40px]">
+  <div class="border-b-1 border-red-700 mb-7 text-4xl font-bold">
+    <h1 class="heading-font">Add Table</h1>
+  </div>
 
-<form action="" #addEmployeeForm="ngForm" class="bg-white p-[40px]">
-  <!--Name And Image-->
+  <form action="" #addEmployeeForm="ngForm" class="bg-white p-[40px]">
+    <!--Name And Image-->
 
-  <div class="flex flex-col-reverse lg:grid lg:grid-cols-12">
-    <div class="col-span-8">
-      <div class="flex flex-col ">
-        <div class="py-[20px]">
-          <p-floatlabel variant="on">
-            <input
-              pInputText
-              [(ngModel)]="createTable.tableNumber"
-              name="tableNumber"
-              id="on_label"
-              autocomplete="off"
-              class="w-full h-[56px] py-[16px] px-[15px]"
-            />
-            <label for="on_label">Table Number</label>
-          </p-floatlabel>
-        </div>
+    <div class="flex flex-col-reverse lg:grid lg:grid-cols-12">
+      <div class="col-span-8">
+        <div class="flex flex-col">
+          <div class="py-[20px]">
+            <p-floatlabel variant="on">
+              <input
+                pInputText
+                [(ngModel)]="createTable.tableNumber"
+                name="tableNumber"
+                id="on_label"
+                autocomplete="off"
+                class="w-full h-[56px] py-[16px] px-[15px]"
+              />
+              <label for="on_label">Table Number</label>
+            </p-floatlabel>
+          </div>
 
-        <div class="py-[20px]">
-          <p-iftalabel class="">
-            <p-select
-              [(ngModel)]="selectedSeats"
-              name="selectedGender"
-              inputId="dd-city"
-              [options]="seats"
-              optionLabel="name"
-              styleClass="w-full"
-            />
-            <label for="dd-city">Select Seats</label>
-          </p-iftalabel>
-        </div>
+          <div class="py-[20px]">
+            <p-iftalabel class="">
+              <p-select
+                [(ngModel)]="selectedSeats"
+                name="selectedGender"
+                inputId="dd-city"
+                [options]="seats"
+                optionLabel="name"
+                styleClass="w-full"
+              />
+              <label for="dd-city">Select Seats</label>
+            </p-iftalabel>
+          </div>
 
-        <div class="pt-[20px] ">
-          <p-button label="SUBMIT" (onClick)="onAddTable()" class="" />
+          <div class="pt-[20px]">
+            <p-button label="SUBMIT" (onClick)="onAddTable()" class="" />
+          </div>
         </div>
       </div>
+      <div class="col-span-4 p-[12px]">
+        <app-imagepreview></app-imagepreview>
+      </div>
     </div>
-    <div class="col-span-4 p-[12px]">
-      <app-imagepreview></app-imagepreview>
-    </div>
-  </div>
-</form>
+  </form>
 
-@if (isLoading){
-<div class="flex justify-center items-center ">
-  <app-spinner></app-spinner>
+  @if (isLoading){
+  <div class="flex justify-center items-center">
+    <app-spinner></app-spinner>
+  </div>
+  }
 </div>
-}

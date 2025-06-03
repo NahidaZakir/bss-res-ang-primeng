@@ -45,3 +45,9 @@
   font-family: Roboto, sans-serif !important;
   text-transform: none !important;
 }
+
+.tableMessageBorder{
+  border:2px dotted #8f0709;
+  background-color: transparent;
+  color:black
+}

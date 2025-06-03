@@ -3,7 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { OrderService } from '../services/order.service';
 import { IftaLabelModule } from 'primeng/iftalabel';
-
+import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { SelectModule } from 'primeng/select';
 import {
   allOrders,
@@ -29,6 +29,7 @@ interface search {
     FormsModule,
     SelectModule,
     IftaLabelModule,
+    PaginatorModule,
   ],
   providers: [],
   templateUrl: './orders.component.html',
@@ -55,6 +56,7 @@ export class OrdersComponent implements OnInit {
   otherShow: boolean = true;
   showAllOrdersByDefault: boolean = true;
   searchedOrder: allOrders[] = [];
+  totalOrders: number = 0;
   ngOnInit() {
     this.searchType = [
       { name: 'All', code: 6 },
@@ -78,6 +80,14 @@ export class OrdersComponent implements OnInit {
   }
   getOrders() {
     this.orderService.getRequiredOrder(1, 10).subscribe((res: any) => {
+      this.allorders = res.data;
+      console.log(res);
+      this.totalOrders = res.totalRecords;
+      console.log(this.totalOrders);
+    });
+  }
+  getMoreOrders(pageNum: number) {
+    this.orderService.getRequiredOrder(pageNum, 10).subscribe((res: any) => {
       this.allorders = res.data;
     });
   }
@@ -114,5 +124,22 @@ export class OrdersComponent implements OnInit {
       console.log('deleted');
       this.getOrders();
     });
+  }
+
+  first: number = 0;
+
+  rows: number = 10;
+
+  onPageChange(event: PaginatorState) {
+    console.log(event.first, event.rows);
+    // this.first = event.first ?? 0;
+    // this.rows = event.rows ?? 10;
+    if(event.first && event.rows){
+    const page = Math.floor(event.first / event.rows) + 1; // calculate page number (1-based)
+      this.orderService.getRequiredOrder(page,10).subscribe((res:any)=>{
+        console.log(res);
+        this.allorders = res.data;
+      })
+    }
   }
 }

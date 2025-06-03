@@ -62,6 +62,8 @@ export class EmployeesComponent implements OnInit {
         this.totalRecord = response.total;
       });
   }
+
+  
   onDelete(employeeid: string) {
     this.userService.delEmployee(employeeid).subscribe(
       (res: any) => {

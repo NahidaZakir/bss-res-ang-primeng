@@ -90,3 +90,9 @@ ul li a:hover {
   height: 80%;
   padding: 0px;
 }
+.menubarbtn{
+  border:0px;
+}
+.menubarbtn:hover{
+  border:0px !important;
+}

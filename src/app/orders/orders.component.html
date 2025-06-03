@@ -1,8 +1,11 @@
-<div class="">
-  <div class="flex justify-between">
+
+<div class="px-[60px] py-[40px]">
+<div >
+  <div class="flex flex-col mb-5 lg:flex-row lg:justify-between">
     <div class="border-b-1 border-red-700 mb-7 w-[250px]">
       <h1 class="heading-font">All Orders</h1>
     </div>
+
     <div>
       <div class="card flex flex-col items-center gap-4">
         <p-iftalabel class="w-full md:w-56">
@@ -26,7 +29,7 @@
 
 <!--Orders-->
 
-<div class="flex flex-col md:grid md:grid-cols-12 gap-10">
+<div class="flex flex-col md:grid md:grid-cols-12 gap-5">
   @if(showAllOrdersByDefault){ @for(order of allorders; track order.id ){
   <div class="md:col-span-6 lg:col-span-4">
     <div class=" ">
@@ -315,4 +318,8 @@
     </div>
   </div>
   } }
+</div>
+<div class="card flex justify-center">
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalOrders" showFirstLastIcon="false" class="orderpaginator"  />
+</div>
 </div>
