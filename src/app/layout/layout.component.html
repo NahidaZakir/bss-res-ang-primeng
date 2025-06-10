@@ -1,5 +1,5 @@
 <div class="flex">
-  <div class="hidden lg:block">
+  <div class="navbar-container">
     <app-navbar></app-navbar>
   </div>
 
@@ -7,32 +7,32 @@
     <div class="bgimage dashboard-container h-screen">
       <!--Topbar -->
       <div
-        class="flex justify-between items-center w-full red-bg h-[65px] sticky top-0 z-40 topbar-shadow"
+        class="flex justify-between items-center w-full red-bg topbar-height sticky top-0 z-40 topbar-shadow"
       >
-        <div class="logo-container flex ml-[50px] items-center">
-          <img class="w-[50px] h-[50px] mt-[7px]" src="/logo.png" alt="" />
+        <div class="logo-container flex items-center">
+          <img class="w-[50px] h-[50px]" src="/logo.png" alt="" />
           <div>
-            <h1 class="res-name">BSS RESTAURANT</h1>
+            <h1 class="rest-name-layout rest-name-size">BSS RESTAURANT</h1>
           </div>
         </div>
 
-        <div class="flex">
+        <div class="flex h-full">
           <div class="flex justify-between items-center">
             <div
-              class="hidden lg:block bg-red-800 h-[64px] flex justify-center items-center sm:hidden md:inline"
+              class="username-container bg-red-800 h-full flex justify-center items-center"
             >
-              <h1 class="text-white px-[36px] py-[21px]">
-                {{ userFullName() }}
-              </h1>
+              <div class="flex justify-center items-center h-full px-[36px]">
+                <h1 class="text-white">
+                  {{ userFullName() }}
+                </h1>
+              </div>
             </div>
-            <div class="flex h-full ml-6 mr-10">
-              <div class="card h-[60px]">
+            <div class="flex h-full">
+              <div class="card">
                 <div class="flex h-full">
-                  <div class="flex items-center justify-center">
-                    <!-- <i
-                      class="pi pi-shopping-cart cartbtn"
-                      (click)="showDialog()"
-                    ></i> -->
+                  <div
+                    class="flex items-center justify-center h-full items-center px-[36px]"
+                  >
                     <i
                       class="pi pi-shopping-cart cartbtn"
                       (click)="cartDrawervisible = true"
@@ -50,35 +50,35 @@
                   }
                 </div>
 
-                <div class="card flex justify-center ">
+                <div class="card flex justify-center">
                   <p-drawer
                     [(visible)]="cartDrawervisible"
                     position="right"
                     header="Cart"
                     styleClass="mt-[65px]"
                     class="cartdesign"
-                  >                  
+                  >
                     <app-cartfood
-                      (toShowCart)="setCartVisible($event)" 
+                      (toShowCart)="setCartVisible($event)"
                     ></app-cartfood>
                   </p-drawer>
                 </div>
               </div>
 
               <!--MenuBar logo on small devices-->
-              <div class="card flex justify-center block lg:hidden">
-                <p-drawer [(visible)]="visible" [closable]="false">
-                  <div class="h-screen sticky top-0">
-                    <app-navbar></app-navbar>
-                  </div>
-                </p-drawer>
-                <button
-                  pButton
-                  (click)="visible = true"
-                  icon="pi pi-bars"
-                  style="color: white; background-color: #cc080b; width: 30px"
-                  class="menubarbtn"
-                ></button>
+              <div class="hamburger-menu mr-[10px]">
+                <div class="flex justify-center items-center h-full">
+                  <p-drawer [(visible)]="menudrawerVisible" [closable]="false">
+                    <app-navbar
+                      (menuClicked)="closeSidebar($event)"
+                    ></app-navbar>
+                  </p-drawer>
+                  <i
+                    class="pi pi-bars"
+                    (click)="setMenuDrawerVisible(true)"
+                    style="font-size: 19px; color: white"
+                  ></i>
+                </div>
               </div>
             </div>
           </div>

@@ -25,10 +25,10 @@ import { CartfoodComponent } from '../cartfood/cartfood.component';
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
-  visible: boolean = false;
+  menudrawerVisible: boolean = false;
   userEmail = signal('');
   userFullName = signal('');
-   cartDrawervisible: boolean = false;
+  cartDrawervisible: boolean = false;
   show: boolean = true;
   foodCart = 0;
   constructor(private cartFoodService: CartFoodService) {}
@@ -38,6 +38,11 @@ export class LayoutComponent {
     this.cartFoodService.numInCartObservable$.subscribe((res: any) => {
       this.foodCart = res;
     });
+  }
+
+  closeSidebar(event: any) {
+    this.menudrawerVisible = false;
+    console.log(event, 'closing side bar');
   }
 
   getUserInfo() {
@@ -65,5 +70,7 @@ export class LayoutComponent {
   setCartVisible(value: boolean) {
     this.cartDrawervisible = value;
   }
-
+  setMenuDrawerVisible(value: boolean) {
+    this.menudrawerVisible = true;
+  }
 }

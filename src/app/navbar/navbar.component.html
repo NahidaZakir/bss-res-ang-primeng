@@ -1,8 +1,9 @@
-<div class="h-screen sticky top-0 ">
-
+<div class="h-screen sticky top-0">
   <div>
-    <div class="border-b-1 border-gray-200 mb-2 h-[65px]  flex justify-start items-center pl-4">
-      <div class="flex items-center ">
+    <div
+      class="border-b-1 border-gray-200 mb-2 h-[65px] flex justify-start items-center pl-4"
+    >
+      <div class="flex items-center">
         <img
           class="w-[40px] h-[40px] rounded-full mr-4"
           src="rifat-5033ad07.jpg"
@@ -15,7 +16,7 @@
       </div>
     </div>
 
-    <div class="border-0">
+    <div class="border-0" (click)="onMenuClicked()">
       <p-menu [model]="items" [style]="{ width: '230px' }" />
     </div>
   </div>

@@ -1,0 +1,30 @@
+/* Media Queries  */
+@media (min-width: 200px) and (max-width: 575.98px) {
+  /* mobile-max styles here */
+
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* tablet-max styles here */
+
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* laptop-max styles here */
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* desktop-max styles here */
+
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* large-screen-max styles here */
+
+}
+
+@media (min-width: 1400px) {
+  /* large-screen styles here */
+  
+}

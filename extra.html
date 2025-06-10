@@ -1,72 +1,92 @@
-
-
-<!-- Login Page -->
-@if(!isLoading){
-<div class="w-screen h-screen flex bgimage">
-  <div class="hidden lg:block lg:w-1/2 h-screen self-center">
-    <div class="shapeimage">
-      <img class="rotateimage" src="/spin-image.png" alt="" />
-    </div>
+<div class="flex">
+  <div class="hidden lg:block">
+    <app-navbar></app-navbar>
   </div>
-<!--<div class="w-full flex justify-center items-center lg:w-1/2 my-auto mx-10">  -->  
-  <div class="w-full flex justify-center items-center lg:w-1/2 my-auto mx-10">
-    <!--<div class=" my-auto login-section"> -->
-    <div class="login-section my-auto">
-      <div class="flex flex-col mx-auto">
-        <div class="w-[110px] h-[110px] mx-auto">
-          <img src="/logo.png" alt="" />
+
+  <div class="w-full">
+    <div class="bgimage dashboard-container h-screen">
+      <!--Topbar -->
+      <div
+        class="flex justify-between items-center w-full red-bg h-[65px] sticky top-0 z-40 topbar-shadow"
+      >
+        <div class="logo-container flex items-center ml-[50px]">
+          <img class="w-[50px] h-[50px] mt-[7px]" src="/logo.png" alt="" />
+          <div>
+            <h1 class="rest-name-layout  rest-name-size">BSS RESTAURANT</h1>
+          </div>
         </div>
-        <div class="text-center">
-          <h1 class="res-name">BSS RESTAURANT</h1>
-        </div>
-      </div>
-      <form action="" class="" #loginform="ngForm">
-        <div class="card flex justify-center flex-col">
-          <div class="flex flex-col gap-2 my-2">
-            <label
-              for="username"
-              class="label text-[18px] mb-[8px] text-black font-semibold"
-              >Username:</label
+
+        <div class="flex">
+          <div class="flex justify-between items-center">
+            <div
+              class="hidden lg:block bg-red-800 h-[64px] flex justify-center items-center sm:hidden md:inline"
             >
-            <input
-              class="w-[450px] bg-white-300 h-[50px]"
-              pInputText
-              id="username"
-              aria-describedby="username-help"
-              [(ngModel)]="loginObj.userName"
-              required
-              email
-              name="userName"
-              pSize="large"
-            />
-           
-          </div>
-          <div class="card flex justify-center flex-col my-2">
-            <label for="Password">Password</label>
-            <p-password
-              [(ngModel)]="loginObj.password"
-              name="password"
-              [feedback]="false"
-              inputId="Password"
-              [inputStyle]="{ width: '450px', height: '50px' }"
-            />
-            
+              <h1 class="text-white px-[36px] py-[21px]">
+                {{ userFullName() }}
+              </h1>
+            </div>
+            <div class="flex h-full ml-6 mr-10">
+              <div class="card h-[60px]">
+                <div class="flex h-full">
+                  <div class="flex items-center justify-center">
+                    <!-- <i
+                      class="pi pi-shopping-cart cartbtn"
+                      (click)="showDialog()"
+                    ></i> -->
+                    <i
+                      class="pi pi-shopping-cart cartbtn"
+                      (click)="cartDrawervisible = true"
+                    >
+                    </i>
+                  </div>
+                  @if(foodCart>0){
+                  <div
+                    class="w-[18px] h-[18px] font-bold text-sm mt-3 ml-1 rounded-full bg-white"
+                  >
+                    <p class="flex justify-center items-center">
+                      {{ foodCart }}
+                    </p>
+                  </div>
+                  }
+                </div>
+
+                <div class="card flex justify-center ">
+                  <p-drawer
+                    [(visible)]="cartDrawervisible"
+                    position="right"
+                    header="Cart"
+                    styleClass="mt-[65px]"
+                    class="cartdesign"
+                  >                  
+                    <app-cartfood
+                      (toShowCart)="setCartVisible($event)" 
+                    ></app-cartfood>
+                  </p-drawer>
+                </div>
+              </div>
+
+              <!--MenuBar logo on small devices-->
+              <div class="card flex justify-center block lg:hidden">
+                <p-drawer [(visible)]="visible" [closable]="false">
+                  <div class="h-screen sticky top-0">
+                    <app-navbar></app-navbar>
+                  </div>
+                </p-drawer>
+                <button
+                  pButton
+                  (click)="visible = true"
+                  icon="pi pi-bars"
+                  style="color: white; background-color: #cc080b; width: 30px"
+                  class="menubarbtn"
+                ></button>
+              </div>
+            </div>
           </div>
         </div>
-      </form>
-      <p-button label="Login" [raised]="true"  routerLink="/admin"
-        routerLinkActive="router-link-active"  
-        (click)="onLogin()" class="loginBtn"/>
-      <div class="text-center my-2">
-        <a class="link text-red link-hover">Back to Home</a>
+      </div>
+      <div class="">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
 </div>
-}
-
-@if (isLoading){
-<div class="flex h-screen justify-center items-center">
-  <app-spinner></app-spinner>
-</div>
-}

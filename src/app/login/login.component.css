@@ -108,12 +108,11 @@
   .form-size {
     width: 50%;
   }
-
   .showrotate-image {
     width: 50%;
     display: block;
   }
-   .login-form {
+  .login-form {
     width: 540px;
     padding: 30px 45px;
     background-color: #f1f1f1;

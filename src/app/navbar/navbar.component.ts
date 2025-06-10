@@ -1,6 +1,6 @@
 import { MenuModule } from 'primeng/menu';
 
-import { Component, inject, OnInit,signal } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit,Output,signal } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
@@ -15,6 +15,9 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
       userEmail = signal('');
   userFullName = signal('');
+
+  @Output() menuClicked  = new EventEmitter<boolean>();
+
   router = inject(Router);
    items: MenuItem[] | undefined;
   ngOnInit() {
@@ -27,6 +30,10 @@ export class NavbarComponent implements OnInit {
             { label: 'New Order', icon: 'pi pi-receipt red-icon', routerLink:['/order'] },
             { label: 'Orders', icon: 'pi pi-sort-amount-down red-icon', routerLink:['/orders'] },
         ];
+    }
+
+    onMenuClicked(){
+      this.menuClicked.emit(false);
     }
 
 getUserInfo() {
