@@ -10,7 +10,9 @@ import { getAllEmployees } from '../model/employee.model';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { addEmployeeToTableReqBody } from '../model/table.model';
 import { Router } from '@angular/router';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { SpinnerComponent } from "../spinner/spinner.component";
+import { FloatLabel } from 'primeng/floatlabel';
 export interface Employee {
   employeeId: string;
   name: string;
@@ -24,7 +26,8 @@ export interface Employee {
     InputTextModule,
     FormsModule,
     MultiSelectModule,
-    SpinnerComponent
+    SpinnerComponent,
+    CommonModule, NgFor, NgIf, FloatLabel
 ],
   templateUrl: './employee-modal.component.html',
   styleUrl: './employee-modal.component.css',

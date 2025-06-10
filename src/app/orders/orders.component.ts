@@ -12,6 +12,7 @@ import {
 } from '../model/order.model';
 import { FormsModule } from '@angular/forms';
 import { Select } from 'primeng/select';
+import { SpinnerComponent } from "../spinner/spinner.component";
 interface OrderStatus {
   name: string;
   code: number;
@@ -30,14 +31,15 @@ interface search {
     SelectModule,
     IftaLabelModule,
     PaginatorModule,
-  ],
+    SpinnerComponent
+],
   providers: [],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
 export class OrdersComponent implements OnInit {
   constructor(private orderService: OrderService) {}
-
+  isloading:boolean= false;
   searchType: search[] | undefined;
 
   selectedSearch: search | undefined;
@@ -80,6 +82,7 @@ export class OrdersComponent implements OnInit {
   }
   getOrders() {
     this.orderService.getRequiredOrder(1, 10).subscribe((res: any) => {
+      this.isloading = true;
       this.allorders = res.data;
       console.log(res);
       this.totalOrders = res.totalRecords;
@@ -131,15 +134,17 @@ export class OrdersComponent implements OnInit {
   rows: number = 10;
 
   onPageChange(event: PaginatorState) {
+    console.log(event);
     console.log(event.first, event.rows);
-    // this.first = event.first ?? 0;
-    // this.rows = event.rows ?? 10;
-    if(event.first && event.rows){
-    const page = Math.floor(event.first / event.rows) + 1; // calculate page number (1-based)
-      this.orderService.getRequiredOrder(page,10).subscribe((res:any)=>{
+    this.first = event.first ?? 0;
+    this.rows = event.rows ?? 10;
+      const page = Math.floor(this.first / this.rows) + 1; // calculate page number (1-based)
+      const perPage = this.rows;
+      console.log(page, 'page', perPage, 'perPage');
+      this.orderService.getRequiredOrder(page,perPage).subscribe((res: any) => {
         console.log(res);
         this.allorders = res.data;
-      })
-    }
+      });
+
   }
 }

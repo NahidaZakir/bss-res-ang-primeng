@@ -1,6 +1,6 @@
 <div class="px-[60px] py-[40px]">
   <div class="flex justify-between">
-    <div class="border-b-1 border-red-700 mb-7 w-[250px]">
+    <div class="border-b-1 border-red-700 mb-7 ">
       <h1 class="heading-font">All Food</h1>
     </div>
     <div>
@@ -59,10 +59,10 @@
           <td>
             <div class="flex">
               <i (click)="onEditFood()"
-                class="pi pi-pen-to-square text-green-300 mr-3"
+                class="pi pi-pen-to-square text-green-300 mr-3 cursor-pointer"
                 style="font-size: 20px"
               ></i>
-              <i (click)="onDeleteFood(food.id)" class="pi pi-trash text-red-300" style="font-size: 20px"></i>
+              <i (click)="onDeleteFood(food.id)" class="pi pi-trash text-red-300 cursor-pointer" style="font-size: 20px"></i>
             </div>
           </td>
         </tr>
@@ -70,7 +70,7 @@
     </p-table>
   </div>
   } @if (!isLoading){
-  <div class="flex justify-center items-center">
+    <div class="fixed inset-0 flex items-center justify-center ">
     <app-spinner></app-spinner>
   </div>
   }

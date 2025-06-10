@@ -16,3 +16,7 @@
 ::ng-deep .p-datatable .p-datatable-thead .p-datatable-column-header-content {
   color: red !important;
 }
+
+.employeeName{
+  background-color: #dfdfdf;
+}

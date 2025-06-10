@@ -16,6 +16,7 @@ import { Toast } from 'primeng/toast';
 
 import { Ripple } from 'primeng/ripple';
 import { CartFoodService } from '../services/cartfood.service';
+import { SpinnerComponent } from '../spinner/spinner.component';
 interface LazyEvent {
   first: number;
   last: number;
@@ -37,6 +38,7 @@ interface LazyEvent {
     Toast,
     ButtonModule,
     Ripple,
+    SpinnerComponent,
   ],
   providers: [MessageService],
 })
@@ -45,7 +47,7 @@ export class NeworderComponent implements OnInit {
   searchedFoodList: showAllFood[] = [];
   tables: showAllTable[] = [];
   foods: showAllFood[] = [];
-
+  isloading: boolean = false;
   lazyLoadingTable: boolean = false;
   lastFirstIndexTable: number | null = null;
 
@@ -63,8 +65,11 @@ export class NeworderComponent implements OnInit {
   showSearchedFood: boolean = false;
   isTableSelected: boolean = false;
   startIndexFood = 0;
-
+  foodAddedinCart: number = 0;
   foodNum = output<number>();
+
+  initialTableLoadDone: boolean = false;
+  initialFoodLoadDone: boolean = false;
   constructor(
     private tablesService: TableInfoService,
     private foodService: FoodService,
@@ -91,11 +96,13 @@ export class NeworderComponent implements OnInit {
     this.getTotalFoodNum();
     this.getTables(1);
     this.getFoods(1);
+    this.foodAddedinCart = this.cartfoodService.getItems();
   }
 
   getTotalFoodNum() {
     this.foodService.getFood().subscribe((res: any) => {
       this.totalFoodNum = res.totalRecords;
+      this.isloading = true;
     });
   }
 
@@ -106,7 +113,8 @@ export class NeworderComponent implements OnInit {
         this.tables = [...this.tables, ...res.data];
         this.totalTablepages = res.totalPages;
         this.showTotalTable = this.tables.length;
-        this.lazyLoadingTable = false;
+        console.log('inside get tables');
+        // this.lazyLoadingTable = false;
       });
   }
 
@@ -117,11 +125,12 @@ export class NeworderComponent implements OnInit {
         this.foods = [...this.foods, ...res.data];
         this.totalFoodPages = res.totalPages;
         this.showTotalFood = this.foods.length;
-        this.lazyLoadingTable = false;
+        this.lazyLoadingFood = false;
       });
   }
 
   getMoreTables() {
+    console.log('inside get More  tables');
     this.currentTablePage++;
     this.lazyLoadingTable = true;
     this.getTables(this.currentTablePage);
@@ -132,7 +141,6 @@ export class NeworderComponent implements OnInit {
     this.currentFoodPage++;
     this.lazyLoadingFood = true;
     this.getFoods(this.currentFoodPage);
-    console.log('error for getting more food');
     this.lazyLoadingFood = false;
   }
 
@@ -144,7 +152,10 @@ export class NeworderComponent implements OnInit {
       return;
     }
     this.lastFirstIndexTable = event.first;
-
+    if (!this.initialTableLoadDone) {
+      this.initialTableLoadDone = true;
+      return;
+    }
     if (this.currentTablePage < this.totalTablepages) {
       this.getMoreTables();
     }
@@ -154,7 +165,6 @@ export class NeworderComponent implements OnInit {
     if (this.currentFoodPage === this.totalFoodPages) {
       return;
     }
-
     if (
       this.lastFirstIndexFood !== null &&
       event.first <= this.lastFirstIndexFood
@@ -162,7 +172,10 @@ export class NeworderComponent implements OnInit {
       return;
     }
     this.lastFirstIndexFood = event.first;
-
+    if (!this.initialFoodLoadDone) {
+      this.initialFoodLoadDone = true;
+      return;
+    }
     if (this.currentFoodPage < this.totalFoodPages) {
       this.getMoreFoods();
     }

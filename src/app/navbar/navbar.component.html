@@ -1,13 +1,14 @@
-<div class="h-screen sticky top-0">
+<div class="h-screen sticky top-0 ">
+
   <div>
-    <div class="border-b-1 border-gray-200 mb-2">
-      <div class="flex p-1">
+    <div class="border-b-1 border-gray-200 mb-2 h-[65px]  flex justify-start items-center pl-4">
+      <div class="flex items-center ">
         <img
           class="w-[40px] h-[40px] rounded-full mr-4"
           src="rifat-5033ad07.jpg"
           alt=""
         />
-        <div>
+        <div class="">
           <p>{{ userFullName() }}</p>
           <p class="text-[14px] text-gray-500 mb-1">{{ userEmail() }}</p>
         </div>
@@ -15,7 +16,7 @@
     </div>
 
     <div class="border-0">
-      <p-menu [model]="items" />
+      <p-menu [model]="items" [style]="{ width: '230px' }" />
     </div>
   </div>
   <div class="absolute w-full bottom-5">

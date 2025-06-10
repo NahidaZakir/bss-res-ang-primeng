@@ -1,6 +1,6 @@
 <div class="px-[60px] py-[40px]">
   <div class="flex justify-between">
-    <div class="border-b-1 border-red-700 mb-7 w-[250px]">
+    <div class="border-b-1 border-red-700 mb-7">
       <h1 class="heading-font">All Employee</h1>
     </div>
     <div>
@@ -40,17 +40,15 @@
       </ng-template>
 
       <ng-template #body let-employee>
-        <tr >
+        <tr>
           <td>
-            <div class=" flex justify-start items-center">
+            <div class="flex justify-start items-center">
               <p-avatar
                 [image]="
                   'https://restaurantapi.bssoln.com/images/user/' +
                   employee.user.existingImage
                 "
-          
                 shape="circle"
-              
               />
             </div>
           </td>
@@ -59,16 +57,16 @@
           <td>{{ employee.designation }}</td>
           <td>{{ employee.joinDate }}</td>
           <td>{{ employee.user.phoneNumber }}</td>
-          <td >
-            <div class="flex" >
+          <td>
+            <div class="flex">
               <i
                 (click)="onUpdate(employee.id)"
-                class="pi pi-user-edit text-green-300 mr-5"
+                class="pi pi-user-edit text-green-300 mr-5 cursor-pointer"
                 style="font-size: 20px"
               ></i>
               <i
                 (click)="onDelete(employee.id)"
-                class="pi pi-trash text-red-300"
+                class="pi pi-trash text-red-300 cursor-pointer"
                 style="font-size: 20px"
               ></i>
             </div>
@@ -78,7 +76,8 @@
     </p-table>
   </div>
   } @if (!isLoading){
-  <div class="flex justify-center items-center">
+
+  <div class="fixed inset-0 flex items-center justify-center ">
     <app-spinner></app-spinner>
   </div>
   }

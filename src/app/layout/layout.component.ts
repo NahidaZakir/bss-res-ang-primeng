@@ -25,11 +25,10 @@ import { CartfoodComponent } from '../cartfood/cartfood.component';
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
-  isCartVisible: boolean = false;
   visible: boolean = false;
   userEmail = signal('');
   userFullName = signal('');
-
+   cartDrawervisible: boolean = false;
   show: boolean = true;
   foodCart = 0;
   constructor(private cartFoodService: CartFoodService) {}
@@ -64,11 +63,7 @@ export class LayoutComponent {
     | 'bottomright' = 'center';
 
   setCartVisible(value: boolean) {
-    this.isCartVisible = value;
+    this.cartDrawervisible = value;
   }
-  showDialog() {
-    console.log('clicked');
-    this.position = 'right';
-    this.isCartVisible = true;
-  }
+
 }

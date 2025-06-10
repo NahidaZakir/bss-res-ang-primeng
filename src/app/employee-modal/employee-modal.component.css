@@ -23,3 +23,14 @@
 ::ng-deep .custom-multiselect-panel {
   width: 250px !important;
 }
+
+.addicon{
+    color:#9ad29c;
+}
+
+
+.selected-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

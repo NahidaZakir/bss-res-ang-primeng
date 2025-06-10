@@ -1,11 +1,15 @@
-.bgimage{   
-background: linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgb(255, 255, 255)), url(/background.png);
-background-position: center ;
-background-size: cover;
-background-repeat: no-repeat;
+.bgimage {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.6),
+      rgb(255, 255, 255)
+    ),
+    url(/background.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
-.shapeimage{   
+.shapeimage {
   background: url(/shape1.png) center center / 1000px no-repeat;
   width: 100%;
   height: 100%;
@@ -14,57 +18,122 @@ background-repeat: no-repeat;
   align-items: center;
   filter: drop-shadow(rgba(0, 0, 0, 0.25) 8px 8px 10px);
 }
-
 .rotateimage {
-    width: 480px;
-    height: 480px;
-    padding: 0px;
-    margin: 0px;
-    animation: rotate 15s linear infinite;
+  width: 480px;
+  height: 480px;
+  padding: 0px;
+  margin: 0px;
+  animation: rotate 15s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+::ng-deep .loginBtn .p-button {
+  background-color: #cc080b !important;
+  font-size: 18px;
+  border: none;
+  width: 100%;
+  height: 55px;
+  margin-bottom: 20px;
+}
+::ng-deep .loginBtn .p-button:hover {
+  background-color: #8f0709 !important;
+  border: none !important;
+  width: 100% !important;
+  height: 55px;
+}
+::ng-deep p-password .p-inputtext {
+  width: 100% !important;
+  height: 50px !important;
+  background-color: white;
 }
 
-@keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+.form-size {
+  width: 100%;
 }
-.login-section{
-  width: 540px;
-  padding: 30px 45px;
+.login-form {
+  width: 90%;
+  padding: 20px;
   background-color: #f1f1f1;
   border-radius: 10px;
 }
 
+/* Media Queries  */
+@media (min-width: 200px) and (max-width: 575.98px) {
+  /* mobile-max styles here */
+  .res-name-size {
+    font-size: 24px;
+  }
 
-.res-name{
-    margin-top: 10px;
-    font-size: 32px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 2px;
-    text-shadow: #cc080b 2px 0px 0px, #cc080b 1.75517px .958851px 0px, #cc080b 1.0806px 1.68294px 0px, #cc080b .141474px 1.99499px 0px, #cc080b -.832294px 1.81859px 0px, #cc080b -1.60229px 1.19694px 0px, #cc080b -1.97998px .28224px 0px, #cc080b -1.87291px -.701566px 0px, #cc080b -1.30729px -1.5136px 0px, #cc080b -.421592px -1.95506px 0px, #cc080b .567324px -1.91785px 0px, #cc080b 1.41734px -1.41108px 0px, #cc080b 1.92034px -.558831px 0px;
+  .showrotate-image {
+    display: none;
+  }
 }
-::ng-deep .fixed-password  {
-  width: 400px !important;
-  height: 50px !important;
-  background-color: green !important;
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* tablet-max styles here */
+
+  .showrotate-image {
+    display: none !important;
+  }
 }
-.bg-color{
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* laptop-max styles here */
+
+  .showrotate-image {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* desktop-max styles here */
+  .form-size {
+    width: 50%;
+  }
+
+  .showrotate-image {
+    width: 50%;
+    display: block;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* large-screen-max styles here */
+  .form-size {
+    width: 50%;
+  }
+
+  .showrotate-image {
+    width: 50%;
+    display: block;
+  }
+   .login-form {
+    width: 540px;
+    padding: 30px 45px;
     background-color: #f1f1f1;
+    border-radius: 10px;
+  }
 }
 
-::ng-deep .loginBtn .p-button{
-  background-color: #cc080b !important;
-  border: none;
-  width: 100%;
-  height: 50px;
-}
-::ng-deep .loginBtn .p-button:hover{
-  background-color: #8f0709 !important;
-  border: none !important;
-  width: 100% !important;
-  height: 50px;
+@media (min-width: 1400px) {
+  /* large-screen styles here */
+  .form-size {
+    width: 50%;
+  }
+  .showrotate-image {
+    width: 50%;
+    display: inline;
+  }
+  .login-form {
+    width: 540px;
+    padding: 30px 45px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+  }
 }

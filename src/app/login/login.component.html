@@ -1,31 +1,37 @@
-
 @if(!isLoading){
+<!-- Rotating Image  -->
 <div class="w-screen h-screen flex bgimage">
-  <div class="hidden lg:block lg:w-1/2 h-screen self-center">
+  <div class="showrotate-image h-screen self-center">
     <div class="shapeimage">
       <img class="rotateimage" src="/spin-image.png" alt="" />
     </div>
   </div>
-  <div class="w-full flex justify-center items-center lg:w-1/2 my-auto mx-10">
-    <div class="w-[500px] h-[600px] my-auto login-section">
+
+  <!-- Login Section -->
+  <div class="h-screen form-size flexing ">
+    <!-- Login Form  -->
+    <div class="login-form">
+      <!-- Logo Name  -->
       <div class="flex flex-col mx-auto">
         <div class="w-[110px] h-[110px] mx-auto">
           <img src="/logo.png" alt="" />
         </div>
         <div class="text-center">
-          <h1 class="res-name">BSS RESTAURANT</h1>
+          <h1 class="res-name res-name-size">BSS RESTAURANT</h1>
         </div>
       </div>
+
+      <!-- Form  -->
       <form action="" class="" #loginform="ngForm">
         <div class="card flex justify-center flex-col">
-          <div class="flex flex-col gap-2 my-2">
+          <div class="flex flex-col gap-2 my-[20px] ">
             <label
               for="username"
               class="label text-[18px] mb-[8px] text-black font-semibold"
               >Username:</label
             >
             <input
-              class="w-[450px] bg-white-300 h-[50px]"
+              class="bg-white-300"
               pInputText
               id="username"
               aria-describedby="username-help"
@@ -36,30 +42,33 @@
               pSize="large"
             />
           </div>
-          <div class="card flex justify-center flex-col my-2">
-            <label for="Password">Password</label>
+          <div class="card flex justify-center flex-col  mb-[20px]">
+            <label for="Password"  class="mb-[8px] text-[18px] font-semibold text-black">Password:</label>
             <p-password
               [(ngModel)]="loginObj.password"
               name="password"
               [feedback]="false"
               inputId="Password"
-              [inputStyle]="{ width: '450px', height: '50px' }"
+
             />
           </div>
         </div>
       </form>
-      <p-button label="Login" [raised]="true"  routerLink="/admin"
-        routerLinkActive="router-link-active"  
-        (click)="onLogin()" class="loginBtn"/>
-      <div class="text-center my-2">
+      <p-button
+        label="Login"
+        [raised]="true"
+        routerLink="/admin"
+        routerLinkActive="router-link-active"
+        (click)="onLogin()"
+        class="loginBtn"
+      />
+      <div class="text-center ">
         <a class="link text-red link-hover">Back to Home</a>
       </div>
     </div>
   </div>
 </div>
-}
-
-@if (isLoading){
+} @if (isLoading){
 <div class="flex h-screen justify-center items-center">
   <app-spinner></app-spinner>
 </div>

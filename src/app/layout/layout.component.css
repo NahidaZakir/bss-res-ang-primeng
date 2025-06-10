@@ -70,18 +70,11 @@ ul li a:hover {
 .selected {
   background-color: #f8e1e1;
 }
-
-::ng-deep .cartbtn .p-button{
-    width: 25px;
-    height: 25px;
+.cartbtn {
+  font-size: 20px  !important;
     background-color: #cc080b;
     border: #cc080b;
-}
-::ng-deep .cartbtn .p-button:hover{
-    width: 25px !important;
-    height: 25px  !important;
-    background-color: #cc080b !important;
-    border: #cc080b !important;
+    color:white;
 }
 
 ::ng-deep .cartdialog .p-dialog{
@@ -95,4 +88,29 @@ ul li a:hover {
 }
 .menubarbtn:hover{
   border:0px !important;
+}
+
+.topbar-shadow{
+  box-shadow: 0 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, .2)), 0 4px 5px 0 var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, .14)), 0 1px 10px 0 var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, .12));
+}
+.topbar-custom{
+    top: 0px;
+    z-index: 1006;
+    transform: translateY(0%);
+    position: fixed;
+    left: 256px;
+    width: calc(100% - 256px);
+}
+
+::ng-deep .cartdesign .p-drawer {
+  right: 0px;
+  z-index: 1004;
+  transform: translateX(0%);
+  position: fixed;
+  height: 50% !important;
+  /* height: calc(100% - 65px); */
+  top: 100px;
+  bottom: 0px;
+  width: 256px;
+  background-color: red;
 }

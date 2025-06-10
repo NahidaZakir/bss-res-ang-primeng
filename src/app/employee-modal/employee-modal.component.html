@@ -1,6 +1,6 @@
 <div class="card flex">
   <i
-    class="pi pi-plus-circle text-emerald-300 mx-[10px]"
+    class="pi pi-plus-circle addicon mx-[10px] cursor-pointer"
     style="font-size: 20px"
     (click)="showDialog()"
   ></i>
@@ -25,21 +25,36 @@
           <h1>Table ID: {{ tableNumber() }}</h1>
           <h1>Number of Seats: {{ seatNumber() }}</h1>
           <div>
-            <div class="card flex justify-center">
-              <p-multiselect
-                [options]="employees"
-                [(ngModel)]="selectedEmployee"
-                name="selectedEmployee"
-                optionLabel="name"
-                placeholder="Select Employee"
-                [maxSelectedLabels]="10"
-                [appendTo]="'body'"
-                display="chip"
-                [filter]="false"
-                [showHeader]="false"
-                panelStyleClass="custom-multiselect-panel"
-                [style]="{ width: '250px' }"
-              />
+            <div class="card flex justify-center mt-2">
+              <p-floatlabel class="w-full" variant="on">
+                <p-multiselect
+                  id="on_label"
+                  [options]="employees"
+                  [(ngModel)]="selectedEmployee"
+                  name="selectedEmployee"
+                  optionLabel="name"
+                  [appendTo]="'body'"
+                  [maxSelectedLabels]="10"
+                  [displaySelectedLabel]="true"
+                  [filter]="false"
+                  [showHeader]="false"
+                  panelStyleClass="custom-multiselect-panel"
+                  [style]="{ width: '250px' }"
+                  styleClass="custom-multiselect"
+                >
+                  <ng-template pTemplate="selectedItems" let-selectedItems>
+                    <div class="selected-chips text-sm">
+                      <span
+                        *ngFor="let item of selectedItems"
+                        class="p-multiselect-token"
+                      >
+                        {{ item.name }},
+                      </span>
+                    </div>
+                  </ng-template>
+                </p-multiselect>
+                <label for="on_label">Select Employee</label>
+              </p-floatlabel>
             </div>
           </div>
         </div>

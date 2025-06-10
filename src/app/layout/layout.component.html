@@ -1,83 +1,92 @@
 <div class="flex">
-  <div class="w-[290px] hidden lg:block">
+  <div class="hidden lg:block">
     <app-navbar></app-navbar>
   </div>
+
   <div class="w-full">
     <div class="bgimage dashboard-container h-screen">
-      <!--TopBar-->
-        <div class="flex justify-between items-center w-full red-bg  h-[65px] sticky top-0 z-40">
-          <div class="logo-container flex ml-[50px] items-center">
-            <img class="w-[50px] h-[50px] mt-[7px]" src="/logo.png" alt="" />
-            <div>
-              <h1 class="res-name">BSS RESTAURANT</h1>
-            </div>
+      <!--Topbar -->
+      <div
+        class="flex justify-between items-center w-full red-bg h-[65px] sticky top-0 z-40 topbar-shadow"
+      >
+        <div class="logo-container flex ml-[50px] items-center">
+          <img class="w-[50px] h-[50px] mt-[7px]" src="/logo.png" alt="" />
+          <div>
+            <h1 class="res-name">BSS RESTAURANT</h1>
           </div>
+        </div>
 
-          <div class="flex">
-            <div class="flex justify-between items-center">
-              <div
-                class="hidden lg:block bg-red-800 h-[64px] flex justify-center items-center sm:hidden md:inline"
-              >
-                <h1 class="text-white px-[36px] py-[21px]">
-                  {{ userFullName() }}
-                </h1>
-              </div>
-              <div class="flex h-full ml-6 mr-10">
-                <div class="card h-[60px]">
-                  <div class="flex h-full">
-                    <div class="flex items-center justify-center">
-                      <p-button
-                        (click)="showDialog()"
-                        icon="pi pi-shopping-cart"
-                        class="cartbtn"
-                      />
-                    </div>
-                    @if(foodCart>0){
-                    <div
-                      class="w-[20px] h-[20px] rounded-full bg-white bg-red-800 flex justify-center items-center mt-2"
+        <div class="flex">
+          <div class="flex justify-between items-center">
+            <div
+              class="hidden lg:block bg-red-800 h-[64px] flex justify-center items-center sm:hidden md:inline"
+            >
+              <h1 class="text-white px-[36px] py-[21px]">
+                {{ userFullName() }}
+              </h1>
+            </div>
+            <div class="flex h-full ml-6 mr-10">
+              <div class="card h-[60px]">
+                <div class="flex h-full">
+                  <div class="flex items-center justify-center">
+                    <!-- <i
+                      class="pi pi-shopping-cart cartbtn"
+                      (click)="showDialog()"
+                    ></i> -->
+                    <i
+                      class="pi pi-shopping-cart cartbtn"
+                      (click)="cartDrawervisible = true"
                     >
-                      <p>{{ foodCart }}</p>
-                    </div>
-                    }
+                    </i>
                   </div>
-
-                  <p-dialog
-                    header="Cart"
-                    [modal]="true"
-                    [(visible)]="isCartVisible"
-                    [position]="'right'"
-                    [style]="{ width: '25rem' }"
-                    class="cartdialog"
-                    closeIcon="pi pi-times-circle"
+                  @if(foodCart>0){
+                  <div
+                    class="w-[18px] h-[18px] font-bold text-sm mt-3 ml-1 rounded-full bg-white"
                   >
-                    <app-cartfood
-                      (toShowCart)="setCartVisible($event)"
-                    ></app-cartfood>
-                  </p-dialog>
+                    <p class="flex justify-center items-center">
+                      {{ foodCart }}
+                    </p>
+                  </div>
+                  }
                 </div>
 
-                <!--MenuBar logo on small devices-->
-                <div class="card flex justify-center block lg:hidden">
-                  <p-drawer [(visible)]="visible" [closable]="false">
-                    <div class="h-screen sticky top-0">
-                      <app-navbar></app-navbar>
-                    </div>
+                <div class="card flex justify-center ">
+                  <p-drawer
+                    [(visible)]="cartDrawervisible"
+                    position="right"
+                    header="Cart"
+                    styleClass="mt-[65px]"
+                    class="cartdesign"
+                  >                  
+                    <app-cartfood
+                      (toShowCart)="setCartVisible($event)" 
+                    ></app-cartfood>
                   </p-drawer>
-                  <button
-                    pButton
-                    (click)="visible = true"
-                    icon="pi pi-bars"
-                    style="color: white; background-color: #cc080b; width: 30px"
-                    class="menubarbtn"
-                  ></button>
                 </div>
+              </div>
+
+              <!--MenuBar logo on small devices-->
+              <div class="card flex justify-center block lg:hidden">
+                <p-drawer [(visible)]="visible" [closable]="false">
+                  <div class="h-screen sticky top-0">
+                    <app-navbar></app-navbar>
+                  </div>
+                </p-drawer>
+                <button
+                  pButton
+                  (click)="visible = true"
+                  icon="pi pi-bars"
+                  style="color: white; background-color: #cc080b; width: 30px"
+                  class="menubarbtn"
+                ></button>
               </div>
             </div>
           </div>
         </div>
+      </div>
       <div class="">
-          <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
   <p-toast [position]="'bottom-right'" />
 <div class="px-[60px] py-[40px]">
-  <div class="flex flex-col mb-5 lg:flex-row lg:justify-between ">
-    <div class="mb-7 w-[250px]">
+  <div class="flex flex-col  lg:flex-row lg:justify-between ">
+    <div class=" ">
       <h1 class="heading-font">Order Food</h1>
     </div>
     <div>
@@ -19,9 +19,9 @@
       </p-iftalabel>
     </div>
   </div>
-
+@if(isloading){
   <div class="lg:grid lg:grid-cols-12 gap-5">
-    <div class="col-span-3 bg-white p-[20px]">
+    <div class="col-span-3 bg-white p-[20px] ">
       <h1 class="text-center font-bold text-[14px]">
         SELECT A TABLE : ({{ showTotalTable }})
       </h1>
@@ -29,14 +29,16 @@
         [items]="tables"
         [itemSize]="50"
         [lazy]="true"
+        [delay]="300"
         [loading]="lazyLoadingTable"
         (onLazyLoad)="onLazyLoadTable($event)"
         styleClass="tablescroller"
-        [style]="{ width: '100%', height: '430px', }"
+        [style]="{ width: '100%' }"
+        class="tableheight"
       >
         <ng-template let-table let-options="options" #item>
           <div
-            class="flex flex-col items-center my-5 rounded-md tableSelect"
+            class="flex flex-col items-center my-5 rounded-md tableSelect cursor-pointer"
             style="height: 180px"
             (click)="onTableSelected(table.id)"
           >
@@ -53,7 +55,7 @@
       </p-virtualscroller>
     </div>
 
-    @if(!isTableSelected){
+    @if(!isTableSelected &&  foodAddedinCart===0){
     <div class="col-span-9 h-full  text-center  m-5">
       <div class="flex justify-center items-center h-1/2 tableMessageBorder">
         <h1 class="text-4xl  font-bold ">
@@ -64,7 +66,7 @@
 
     } 
     
-    @if(isTableSelected){
+    @if(isTableSelected || foodAddedinCart>0){
     <div class="col-span-9 bg-white p-[20px] w-full">
       <h1 class="font-bold text-[14px]">
         SELECT FOODS : ({{ showTotalFood }})
@@ -73,12 +75,13 @@
       <p-virtualscroller
         [items]="foods"
         [itemSize]="50"
+        [delay]="300"
         [lazy]="true"
-        [delay]="250"
         [loading]="lazyLoadingFood"
         (onLazyLoad)="onLazyLoadFood($event)"
-        class="showfood"
-        [style]="{ width: '100%', height: '430px' }"
+        [style]="{ width: '100%'}"
+        class="tableheight"
+
       >
         <ng-template let-food let-options="options" #item>
           <div class="mb-4">
@@ -134,10 +137,12 @@
       <p-virtualscroller
         [items]="searchedFoodList"
         [itemSize]="50"
+        [delay]="300"
         [lazy]="true"
         [loading]="lazyLoadingFood"
         (onLazyLoad)="onLazyLoadFood($event)"
-        [style]="{ width: '100%', height: '430px' }"
+        [style]="{ width: '100%'}"
+        class="tableheight"
       >
         <ng-template let-searchedfood let-options="options" #item>
           <div class="mb-4">
@@ -191,5 +196,11 @@
       }
     </div>
     }
+  </div>}
+   @if (!isloading){
+
+  <div class="fixed inset-0 flex items-center justify-center ">
+    <app-spinner></app-spinner>
   </div>
+  }
 </div>

@@ -23,6 +23,17 @@
 }
 
 ::ng-deep .navbar-btn .p-button:hover {
- background-color:#cc080b !important;
- color: white !important;
+  background-color: #cc080b !important;
+  color: white !important;
+}
+
+.navbar-custom {
+  left: 0px;
+  z-index: 1008;
+  transform: translateX(0%);
+  position: fixed;
+  height: calc(100% + 0px);
+  top: 0px;
+  bottom: 0px;
+  width: 256px;
 }

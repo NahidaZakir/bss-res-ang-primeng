@@ -52,6 +52,9 @@ export class EmployeesComponent implements OnInit {
  //when next page is clicked
   onNextPage(event: any) {
     console.log(event);
+    console.log(event.first)
+    console.log(event.rows)
+
     const page = Math.floor(event.first / event.rows) + 1; // calculate page number (1-based)
     const perPage = event.rows;
     this.userService
@@ -63,7 +66,7 @@ export class EmployeesComponent implements OnInit {
       });
   }
 
-  
+
   onDelete(employeeid: string) {
     this.userService.delEmployee(employeeid).subscribe(
       (res: any) => {
