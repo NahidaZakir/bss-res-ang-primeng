@@ -46,11 +46,14 @@ body {
 
 .heading-font {
   font-family: Quattrocento, serif;
-  font-size: 32px;
+
   font-weight: 700;
   color: primary;
   padding-bottom: 5px;
   border-bottom: 3px solid #cc080b;
+}
+.heading-font-size {
+  font-size: 32px;
 }
 .res-name {
   margin-top: 10px;
@@ -65,18 +68,69 @@ body {
     #cc080b 0.567324px -1.91785px 0px, #cc080b 1.41734px -1.41108px 0px,
     #cc080b 1.92034px -0.558831px 0px;
 }
-.res-name-size{
+.res-name-size {
   font-size: 32px;
 }
 .p-password {
   width: 100% !important;
 }
+.addbtn .p-button {
+  height: 36px !important;
+  padding-top: 12px !important;
+  padding-left:  25px !important;
+  padding-right:  25px !important;
+  color: black !important;
+  border: 2px solid #cc080b !important;
+  background-color: white;
+}
 
 
+.addbtn .p-button:hover {
+  background-color: #cc080b !important;
+  color: white !important;
+}
 
+/* -------- min-width breakpoints -------- */
+@media (min-width: 576px) {
+  /* mobile styles here */
+}
 
+@media (min-width: 768px) {
+  /* tablet styles here */
+}
 
+@media (min-width: 992px) {
+  /* laptop styles here */
+}
 
+@media (min-width: 1200px) {
+  /* desktop styles here */
+}
 
+@media (min-width: 1400px) {
+  /* large-screen styles here */
+}
 
+/* -------- max-width breakpoints -------- */
+@media (max-width: 575.98px) {
+  /* mobile-max styles here */
+}
 
+@media (max-width: 767.98px) {
+  /* tablet-max styles here */
+}
+
+@media (max-width: 991.98px) {
+  /* laptop-max styles here */
+  .heading-font-size {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  /* desktop-max styles here */
+}
+
+@media (max-width: 1399.98px) {
+  /* large-screen-max styles here */
+}

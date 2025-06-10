@@ -1,37 +1,36 @@
-<div class="px-[60px] py-[40px]">
-  <div>
-    <div class="flex flex-col mb-5 lg:flex-row lg:justify-between">
-      <div class="border-b-1 border-red-700 mb-7">
-        <h1 class="heading-font">All Orders</h1>
-      </div>
+<div>
+  <div class="ordertitle-search mb-[20px] h-full">
+    <div class="order-title">
+      <h1 class="heading-font heading-font-size mb-[10px]">All Orders</h1>
+    </div>
 
-      <div>
-        <div class="card flex flex-col items-center gap-4">
-          <p-iftalabel class="w-full md:w-56">
-            <p-select
-              [(ngModel)]="selectedSearch"
-              inputId="dd-city"
-              [options]="searchType"
-              optionLabel="name"
-              styleClass="w-full"
-              (onChange)="searchFor($event)"
-            />
-            <label for="dd-city" class="text-green-500"
-              >Filter Order by Status</label
-            >
-          </p-iftalabel>
-        </div>
-      </div>
+    <div class="">
+      <p-iftalabel >
+        <p-select
+          [(ngModel)]="selectedSearch"
+          inputId="dd-city"
+          [options]="searchType"
+          optionLabel="name"
+          class="searchField"
+          (onChange)="searchFor($event)"
+          
+        />
+        <label for="dd-city" class="text-green-500"
+          >Filter Order by Status</label
+        >
+      </p-iftalabel>
     </div>
   </div>
 
+
+
   <!--Orders-->
-@if(isloading){
+  @if(isloading){
   <div class="flex flex-col md:grid md:grid-cols-12 gap-5">
     @if(showAllOrdersByDefault){ @for(order of allorders; track order.id ){
     <div class="md:col-span-6 lg:col-span-4">
-      <div >
-        <p-card class="ordercard ">
+      <div>
+        <p-card class="ordercard">
           <ng-template #title>
             <div class="flex justify-between items-center">
               <div>
@@ -353,10 +352,9 @@
       class="orderpaginator"
     />
   </div>
-}
-@if (!isloading){
+  } @if (!isloading){
 
-  <div class="fixed inset-0 flex items-center justify-center ">
+  <div class="fixed inset-0 flex items-center justify-center">
     <app-spinner></app-spinner>
   </div>
   }

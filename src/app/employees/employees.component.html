@@ -1,17 +1,20 @@
-<div >
-  <div class="flex justify-between">
-    <div class="border-b-1 border-red-700 mb-7">
-      <h1 class="heading-font">All Employee</h1>
+<div>
+  <div class="flex justify-between items-center mb-[20px] h-full">
+    <div>
+      <h1 class="heading-font heading-font-size  mb-[10px]">All Employee</h1>
     </div>
+
     <div>
       <p-button
         label="ADD EMPLOYEE"
         variant="outlined"
         severity="danger"
         (click)="onAddEmployee()"
+        class="addbtn"
       />
     </div>
   </div>
+
   @if (isLoading){
   <!--original table-->
   <div class="card">
@@ -43,11 +46,14 @@
         <tr>
           <td>
             <div class="flex justify-start items-center">
-              <img [src]="
+              <img
+                [src]="
                   'https://restaurantapi.bssoln.com/images/user/' +
                   employee.user.existingImage
-                " alt="" class="w-[40px] h-[40px] rounded-full">
-             
+                "
+                alt=""
+                class="w-[40px] h-[40px] rounded-full"
+              />
             </div>
           </td>
           <td>{{ employee.user.fullName }}</td>
@@ -75,9 +81,8 @@
   </div>
   } @if (!isLoading){
 
-  <div class="fixed inset-0 flex items-center justify-center ">
+  <div class="fixed inset-0 flex items-center justify-center">
     <app-spinner></app-spinner>
   </div>
   }
 </div>
-  

@@ -28,61 +28,120 @@
 .foodItems {
   height: 200px;
   overflow-y: scroll;
-
 }
-.editstatus{
-    color: lightgray !important;
-    font-weight: 700 !important;
-
+.editstatus {
+  color: lightgray !important;
+  font-weight: 700 !important;
 }
-.editstatus:hover{
-    color: #6cb150  !important;
+.editstatus:hover {
+  color: #6cb150 !important;
 }
 ::ng-deep .statusfield {
   border-radius: 0px;
   /* background-color: green; */
   padding: 0px;
-  margin:0px;
+  margin: 0px;
   border-bottom: 2px solid #6cb150 !important;
-
 }
 
 ::ng-deep .custom-multiselect-panel {
   width: 160px !important;
-  scrollbar-width: none !important;  
+  scrollbar-width: none !important;
 }
 
-::ng-deep .statusText{
+::ng-deep .statusText {
   color: #6cb150 !important;
 }
 
 ::ng-deep .orderpaginator .p-paginator {
   background-color: transparent !important;
-  color:#cc080b !important;
+  color: #cc080b !important;
 }
 
-::ng-deep .p-paginator{
-  --p-paginator-nav-button-hover-color:red  !important;
- 	--p-paginator-nav-button-hover-background: #F2D8D8 !important;
-  --p-paginator-nav-button-selected-background:#ebd4d4  !important;
-  
-  	--p-paginator-nav-button-focus-ring-color: red  !important;
+::ng-deep .p-paginator {
+  --p-paginator-nav-button-hover-color: red !important;
+  --p-paginator-nav-button-hover-background: #f2d8d8 !important;
+  --p-paginator-nav-button-selected-background: #ebd4d4 !important;
+
+  --p-paginator-nav-button-focus-ring-color: red !important;
 }
-::ng-deep .p-paginator .p-paginator-page{
-  color:#cc080b  !important
+::ng-deep .p-paginator .p-paginator-page {
+  color: #cc080b !important;
 }
-::ng-deep .p-paginator-current{
+::ng-deep .p-paginator-current {
   --p-paginator-background: green !important;
 }
 
-::ng-deep .p-paginator .p-paginator-prev-icon{
+::ng-deep .p-paginator .p-paginator-prev-icon {
   color: #cc080b !important;
 }
-::ng-deep .p-paginator .p-paginator-next-icon{
+::ng-deep .p-paginator .p-paginator-next-icon {
   color: #cc080b !important;
 }
 ::ng-deep .ordercard .p-card {
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+}
+
+/* -------- min-width breakpoints -------- */
+@media (min-width: 576px) {
+  /* mobile styles here */
+}
+
+@media (min-width: 768px) {
+  /* tablet styles here */
+}
+
+@media (min-width: 992px) {
+  /* laptop styles here */
+  .ordertitle-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .order-title {
+    width: 170px;
+  }
+
+  .searchField {
+    width: 300px;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* desktop styles here */
+}
+
+@media (min-width: 1400px) {
+  /* large-screen styles here */
+}
+
+/* -------- max-width breakpoints -------- */
+@media (max-width: 575.98px) {
+  /* mobile-max styles here */
+}
+
+@media (max-width: 767.98px) {
+  /* tablet-max styles here */
+}
+
+@media (max-width: 991.98px) {
+  /* laptop-max styles here */
+  .ordertitle-search {
+    display: flex;
+    flex-direction: column;
+  }
+  .order-title {
+    width: 130px;
+  }
+  .searchField {
+    width: 100% !important;
+    background-color: transparent;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid black !important;
+  }
 }
