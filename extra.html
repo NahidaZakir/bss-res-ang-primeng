@@ -1,92 +1,85 @@
-<div class="flex">
-  <div class="hidden lg:block">
-    <app-navbar></app-navbar>
-  </div>
-
-  <div class="w-full">
-    <div class="bgimage dashboard-container h-screen">
-      <!--Topbar -->
-      <div
-        class="flex justify-between items-center w-full red-bg h-[65px] sticky top-0 z-40 topbar-shadow"
-      >
-        <div class="logo-container flex items-center ml-[50px]">
-          <img class="w-[50px] h-[50px] mt-[7px]" src="/logo.png" alt="" />
-          <div>
-            <h1 class="rest-name-layout  rest-name-size">BSS RESTAURANT</h1>
-          </div>
-        </div>
-
-        <div class="flex">
-          <div class="flex justify-between items-center">
-            <div
-              class="hidden lg:block bg-red-800 h-[64px] flex justify-center items-center sm:hidden md:inline"
-            >
-              <h1 class="text-white px-[36px] py-[21px]">
-                {{ userFullName() }}
-              </h1>
-            </div>
-            <div class="flex h-full ml-6 mr-10">
-              <div class="card h-[60px]">
-                <div class="flex h-full">
-                  <div class="flex items-center justify-center">
-                    <!-- <i
-                      class="pi pi-shopping-cart cartbtn"
-                      (click)="showDialog()"
-                    ></i> -->
-                    <i
-                      class="pi pi-shopping-cart cartbtn"
-                      (click)="cartDrawervisible = true"
-                    >
-                    </i>
-                  </div>
-                  @if(foodCart>0){
-                  <div
-                    class="w-[18px] h-[18px] font-bold text-sm mt-3 ml-1 rounded-full bg-white"
-                  >
-                    <p class="flex justify-center items-center">
-                      {{ foodCart }}
-                    </p>
-                  </div>
-                  }
-                </div>
-
-                <div class="card flex justify-center ">
-                  <p-drawer
-                    [(visible)]="cartDrawervisible"
-                    position="right"
-                    header="Cart"
-                    styleClass="mt-[65px]"
-                    class="cartdesign"
-                  >                  
-                    <app-cartfood
-                      (toShowCart)="setCartVisible($event)" 
-                    ></app-cartfood>
-                  </p-drawer>
-                </div>
-              </div>
-
-              <!--MenuBar logo on small devices-->
-              <div class="card flex justify-center block lg:hidden">
-                <p-drawer [(visible)]="visible" [closable]="false">
-                  <div class="h-screen sticky top-0">
-                    <app-navbar></app-navbar>
-                  </div>
-                </p-drawer>
-                <button
-                  pButton
-                  (click)="visible = true"
-                  icon="pi pi-bars"
-                  style="color: white; background-color: #cc080b; width: 30px"
-                  class="menubarbtn"
-                ></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="">
-        <router-outlet></router-outlet>
-      </div>
+<div class="px-[60px] py-[40px]">
+  <div class="flex justify-between">
+    <div class="border-b-1 border-red-700 mb-7">
+      <h1 class="heading-font">All Employee</h1>
+    </div>
+    <div>
+      <p-button
+        label="ADD EMPLOYEE"
+        variant="outlined"
+        severity="danger"
+        (click)="onAddEmployee()"
+      />
     </div>
   </div>
+  @if (isLoading){
+  <!--original table-->
+  <div class="card">
+    <p-table
+      [value]="allemployees"
+      [tableStyle]="{ 'min-width': '40rem' }"
+      [lazy]="true"
+      (onLazyLoad)="onNextPage($event)"
+      [paginator]="true"
+      [rows]="10"
+      [totalRecords]="totalRecord"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+      [rowsPerPageOptions]="[10, 25, 50, 100]"
+    >
+      <ng-template #header>
+        <tr>
+          <th class="text-red">Image</th>
+          <th class="text-red">Name</th>
+          <th class="text-red">Email</th>
+          <th class="text-red">Designation</th>
+          <th class="text-red">Join Date</th>
+          <th class="text-red">Phone</th>
+          <th class="text-red">Action</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-employee>
+        <tr>
+          <td>
+            <div class="flex justify-start items-center">
+              <p-avatar
+                [image]="
+                  'https://restaurantapi.bssoln.com/images/user/' +
+                  employee.user.existingImage
+                "
+                shape="circle"
+              />
+            </div>
+          </td>
+          <td>{{ employee.user.fullName }}</td>
+          <td>{{ employee.user.email }}</td>
+          <td>{{ employee.designation }}</td>
+          <td>{{ employee.joinDate }}</td>
+          <td>{{ employee.user.phoneNumber }}</td>
+          <td>
+            <div class="flex">
+              <i
+                (click)="onUpdate(employee.id)"
+                class="pi pi-user-edit text-green-300 mr-5 cursor-pointer"
+                style="font-size: 20px"
+              ></i>
+              <i
+                (click)="onDelete(employee.id)"
+                class="pi pi-trash text-red-300 cursor-pointer"
+                style="font-size: 20px"
+              ></i>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  } @if (!isLoading){
+
+  <div class="fixed inset-0 flex items-center justify-center ">
+    <app-spinner></app-spinner>
+  </div>
+  }
 </div>
+  
