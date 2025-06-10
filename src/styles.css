@@ -77,13 +77,19 @@ body {
 .addbtn .p-button {
   height: 36px !important;
   padding-top: 12px !important;
-  padding-left:  25px !important;
-  padding-right:  25px !important;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
   color: black !important;
   border: 2px solid #cc080b !important;
   background-color: white;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
 
 .addbtn .p-button:hover {
   background-color: #cc080b !important;
@@ -101,6 +107,9 @@ body {
 
 @media (min-width: 992px) {
   /* laptop styles here */
+  .ellipsis-width {
+    max-width: 100%;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -124,6 +133,9 @@ body {
   /* laptop-max styles here */
   .heading-font-size {
     font-size: 22px;
+  }
+    .ellipsis-width {
+    max-width: 50px;
   }
 }
 

@@ -156,18 +156,15 @@ ul li a:hover {
   .rest-name-size {
     font-size: 22px;
   }
-  .topbar-height {
-    height: 65px;
-    padding: 0px 40px;
-  }
-}
-
-@media (min-width: 1400px) {
   .navbar-container {
     display: inline;
   }
   .hamburger-menu {
     display: none;
+  }
+  .topbar-height {
+    height: 65px;
+    padding: 0px 40px;
   }
 }
 

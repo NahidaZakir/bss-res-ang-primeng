@@ -23,6 +23,7 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
   styleUrl: './employees.component.css',
 })
 export class EmployeesComponent implements OnInit {
+  isStarClicked:boolean = false;
   userService = inject(UserService);
   router = inject(Router);
   allemployees: getEmployeeDatatable[] = [];

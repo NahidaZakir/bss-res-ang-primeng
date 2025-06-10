@@ -1,10 +1,19 @@
-
-.text-red{
+/* .text-red {
   color: #cc080b;
+  font-weight: bold;
+} */
+.starbg {
+  background-color: #bdbdbd;
+  cursor: pointer;
 }
-
-::ng-deep td{
-  padding: 8px 15px !important;
+.starbgclicked {
+  background-color: #f9a825;
+}
+::ng-deep td {
+  padding: 5px 10px !important;
   margin: 0px !important;
 }
-
+::ng-deep th {
+  color: #cc080b !important;
+  font-weight: bold !important;
+}

@@ -1,13 +1,15 @@
-<div class="px-[60px] py-[40px]">
-  <div class="border-b-1 border-red-700 mb-7 text-4xl font-bold">
-    <h1 class="heading-font">Add Employee</h1>
+<div>
+  <div class="mb-[20px] h-full">
+    <div>
+      <h1 class="heading-font heading-font-size mb-[10px]">Add Employee</h1>
+    </div>
   </div>
 
   @if(!isLoading){
-  <form action="" #addEmployeeForm="ngForm" class="bg-white p-[40px]">
+  <form action="" #addEmployeeForm="ngForm" class="bg-white form-padding ">
     <!--Name And Image-->
-    <div class="flex flex-col-reverse lg:grid lg:grid-cols-3">
-      <div class="lg:col-span-2">
+    <div class="form-col-2 ">
+      <div class="">
         <div class="flex flex-col p-[12px]">
           <div class="mb-[18px]">
             <p-floatlabel variant="on">
@@ -66,13 +68,13 @@
         </div>
       </div>
 
-      <div class="lg:col-span-1 p-[12px]">
+      <div class=" p-[12px]">
         <app-imagepreview></app-imagepreview>
       </div>
     </div>
 
     <!--SPOUSE AND PARENTS Name-->
-    <div class="flex flex-col lg:grid lg:grid-cols-3">
+    <div class="form-col-3">
       <div class="p-[12px]">
         <p-floatlabel variant="on">
           <input
@@ -128,7 +130,7 @@
       </div>
     </div>
 
-    <div class="flex flex-col lg:grid lg:grid-cols-3">
+    <div class="form-col-3">
       <div class="p-[12px]">
         <p-floatlabel variant="on">
           <input
@@ -203,7 +205,7 @@
       </div>
     </div>
 
-    <div class="flex flex-col lg:grid lg:grid-cols-4">
+    <div class="form-col-4">
       <div class="p-[12px] w-full">
         <p-iftalabel class="">
           <p-select
@@ -272,7 +274,7 @@
             name="nid"
             id="on_label"
             autocomplete="off"
-            class="w-full h-[56px] py-[16px] px-[15px]"
+            class="w-full h-[58px] py-[16px] px-[15px]"
             required
             #nid="ngModel"
           />
@@ -296,7 +298,7 @@
     </div>
   </form>
   } @if (isLoading){
-  <div class="fixed inset-0 flex items-center justify-center ">
+  <div class="fixed inset-0 flex items-center justify-center">
     <app-spinner></app-spinner>
   </div>
   }

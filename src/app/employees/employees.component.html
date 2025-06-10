@@ -1,7 +1,7 @@
 <div>
   <div class="flex justify-between items-center mb-[20px] h-full">
     <div>
-      <h1 class="heading-font heading-font-size  mb-[10px]">All Employee</h1>
+      <h1 class="heading-font heading-font-size mb-[10px]">All Employee</h1>
     </div>
 
     <div>
@@ -34,6 +34,7 @@
         <tr>
           <th class="text-red">Image</th>
           <th class="text-red">Name</th>
+          <th></th>
           <th class="text-red">Email</th>
           <th class="text-red">Designation</th>
           <th class="text-red">Join Date</th>
@@ -43,8 +44,8 @@
       </ng-template>
 
       <ng-template #body let-employee>
-        <tr>
-          <td>
+        <tr >
+          <td >
             <div class="flex justify-start items-center">
               <img
                 [src]="
@@ -56,21 +57,34 @@
               />
             </div>
           </td>
-          <td>{{ employee.user.fullName }}</td>
-          <td>{{ employee.user.email }}</td>
-          <td>{{ employee.designation }}</td>
-          <td>{{ employee.joinDate }}</td>
-          <td>{{ employee.user.phoneNumber }}</td>
+          <td><span class="ellipsis ellipsis-width">{{ employee.user.fullName }}</span></td>
+          
           <td>
-            <div class="flex">
+            <div
+              class="w-[20px] h-[20px] rounded-full flex justify-center items-center starbg"
+              (click)="isStarClicked = !isStarClicked"
+              [ngClass]="{'starbgclicked': isStarClicked}"
+            > 
+              <i
+                class="pi pi-star-fill"
+                style="font-size: 13px; color: white"
+              ></i>
+            </div>
+          </td>
+          <td><span class="ellipsis ellipsis-width">{{ employee.user.email }}</span></td>
+          <td><span class="ellipsis ellipsis-width">{{ employee.designation }}</span></td>
+          <td><span class="ellipsis ellipsis-width">{{ employee.joinDate }}</span></td>
+          <td><span class="ellipsis ellipsis-width">{{ employee.user.phoneNumber }}</span></td>
+          <td >
+            <div class="flex justify-between ">
               <i
                 (click)="onUpdate(employee.id)"
-                class="pi pi-user-edit text-green-300 mr-5 cursor-pointer"
+                class="pi pi-user-edit text-green-300 px-[10px] cursor-pointer"
                 style="font-size: 20px"
               ></i>
               <i
                 (click)="onDelete(employee.id)"
-                class="pi pi-trash text-red-300 cursor-pointer"
+                class="pi pi-trash text-red-300 pr-[10px] cursor-pointer"
                 style="font-size: 20px"
               ></i>
             </div>
