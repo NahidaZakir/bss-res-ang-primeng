@@ -1,92 +1,96 @@
 <div class="flex">
-  <div class="navbar-container">
+  <div class="navbar-container w-[256px]">
     <app-navbar></app-navbar>
   </div>
-
-  <div class="w-full">
-    <div class="bgimage dashboard-container h-screen">
-      <!--Topbar -->
-      <div
+  <div class="flex flex-col w-full">
+    <!-- <div
         class="flex justify-between items-center w-full red-bg topbar-height sticky top-0 z-40 topbar-shadow"
-      >
-        <div class="logo-container flex items-center">
-          <img class="w-[50px] h-[50px]" src="/logo.png" alt="" />
-          <div>
-            <h1 class="rest-name-layout rest-name-size">BSS RESTAURANT</h1>
-          </div>
-        </div>
-
-        <div class="flex h-full">
-          <div class="flex justify-between items-center">
-            <div
-              class="username-container bg-red-800 h-full flex justify-center items-center"
-            >
-              <div class="flex justify-center items-center h-full px-[36px]">
-                <h1 class="text-white">
-                  {{ userFullName() }}
-                </h1>
-              </div>
-            </div>
-            <div class="flex h-full">
-              <div class="card">
-                <div class="flex h-full">
-                  <div
-                    class="flex items-center justify-center h-full items-center px-[36px]"
-                  >
-                    <i
-                      class="pi pi-shopping-cart cartbtn"
-                      (click)="cartDrawervisible = true"
-                    >
-                    </i>
-                  </div>
-                  @if(foodCart>0){
-                  <div
-                    class="w-[18px] h-[18px] font-bold text-sm mt-3 ml-1 rounded-full bg-white"
-                  >
-                    <p class="flex justify-center items-center">
-                      {{ foodCart }}
-                    </p>
-                  </div>
-                  }
-                </div>
-
-                <div class="card flex justify-center">
-                  <p-drawer
-                    [(visible)]="cartDrawervisible"
-                    position="right"
-                    header="Cart"
-                    styleClass="mt-[65px]"
-                    class="cartdesign"
-                  >
-                    <app-cartfood
-                      (toShowCart)="setCartVisible($event)"
-                    ></app-cartfood>
-                  </p-drawer>
-                </div>
-              </div>
-
-              <!--MenuBar logo on small devices-->
-              <div class="hamburger-menu mr-[10px]">
-                <div class="flex justify-center items-center h-full">
-                  <p-drawer [(visible)]="menudrawerVisible" [closable]="false">
-                    <app-navbar
-                      (menuClicked)="closeSidebar($event)"
-                    ></app-navbar>
-                  </p-drawer>
-                  <i
-                    class="pi pi-bars"
-                    (click)="setMenuDrawerVisible(true)"
-                    style="font-size: 19px; color: white"
-                  ></i>
-                </div>
-              </div>
-            </div>
-          </div>
+      > -->
+    <div
+      class="flex justify-between items-center red-bg topbar-height topbar-shadow sticky top-0 z-40"
+    >
+      <div class="logo-container flex items-center">
+        <img class="w-[50px] h-[50px]" src="/logo.png" alt="" />
+        <div>
+          <h1 class="rest-name-layout rest-name-size">BSS RESTAURANT</h1>
         </div>
       </div>
-      <div class="outlet-container">
-        <router-outlet></router-outlet>
+
+      <div class="flex h-full">
+        <div class="flex justify-between items-center">
+          <div
+            class="username-container bg-red-800 h-full flex justify-center items-center"
+          >
+            <div class="flex justify-center items-center h-full px-[36px]">
+              <h1 class="text-white">
+                {{ userFullName() }}
+              </h1>
+            </div>
+          </div>
+          <div class="flex h-full">
+            <div class="card">
+              <div class="flex h-full">
+                <div
+                  class="flex items-center justify-center h-full items-center px-[36px]"
+                >
+                  <i
+                    class="pi pi-shopping-cart cartbtn"
+                    (click)="cartDrawervisible = true"
+                  >
+                  </i>
+                </div>
+                @if(foodCart>0){
+                <div
+                  class="w-[18px] h-[18px] font-bold text-sm mt-3 ml-1 rounded-full bg-white"
+                >
+                  <p class="flex justify-center items-center">
+                    {{ foodCart }}
+                  </p>
+                </div>
+                }
+              </div>
+
+              <div class="card flex justify-center">
+                <p-drawer
+                  [(visible)]="cartDrawervisible"
+                  position="right"
+                  header="Cart"
+                  styleClass="mt-[65px]"
+                  class="cartdesign"
+                >
+                  <app-cartfood
+                    (toShowCart)="setCartVisible($event)"
+                  ></app-cartfood>
+                </p-drawer>
+              </div>
+            </div>
+
+            <!--MenuBar logo on small devices-->
+            <div class="hamburger-menu mr-[10px]">
+              <div class="flex justify-center items-center h-full">
+                <p-drawer [(visible)]="menudrawerVisible" [closable]="false">
+                  <app-navbar (menuClicked)="closeSidebar($event)"></app-navbar>
+                </p-drawer>
+                <i
+                  class="pi pi-bars"
+                  (click)="setMenuDrawerVisible(true)"
+                  style="font-size: 19px; color: white"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- <div class="bgimage dashboard-container ">
+      <div class="outlet-container ">
+        <router-outlet></router-outlet>
+      </div>
+    </div> -->
   </div>
 </div>

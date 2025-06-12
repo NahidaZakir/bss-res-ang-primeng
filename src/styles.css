@@ -95,7 +95,9 @@ body {
   background-color: #cc080b !important;
   color: white !important;
 }
-
+.form-shadow {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+}
 /* -------- min-width breakpoints -------- */
 @media (min-width: 576px) {
   /* mobile styles here */
@@ -103,13 +105,14 @@ body {
 
 @media (min-width: 768px) {
   /* tablet styles here */
+    .ellipsis-width {
+    max-width: 100%;
+  } 
 }
 
 @media (min-width: 992px) {
   /* laptop styles here */
-  .ellipsis-width {
-    max-width: 100%;
-  }
+
 }
 
 @media (min-width: 1200px) {
@@ -127,6 +130,9 @@ body {
 
 @media (max-width: 767.98px) {
   /* tablet-max styles here */
+  .ellipsis-width {
+    max-width: 50px;
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -134,8 +140,8 @@ body {
   .heading-font-size {
     font-size: 22px;
   }
-    .ellipsis-width {
-    max-width: 50px;
+  .ellipsis-name-width{
+    max-width: 80px;
   }
 }
 

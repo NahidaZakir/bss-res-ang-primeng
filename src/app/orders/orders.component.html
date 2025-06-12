@@ -1,109 +1,264 @@
-<div>
-  <div class="ordertitle-search mb-[20px] h-full">
-    <div class="order-title">
-      <h1 class="heading-font heading-font-size mb-[10px]">All Orders</h1>
+<div class="dashboard-container">
+  <div class="outlet-container">
+    <div class="ordertitle-search mb-[20px] h-full">
+      <div class="order-title">
+        <h1 class="heading-font heading-font-size mb-[10px]">All Orders</h1>
+      </div>
+
+      <div class="">
+        <p-iftalabel>
+          <p-select
+            [(ngModel)]="selectedSearch"
+            inputId="dd-city"
+            [options]="searchType"
+            optionLabel="name"
+            class="searchField"
+            (onChange)="searchFor($event)"
+          />
+          <label for="dd-city" class="text-green-500"
+            >Filter Order by Status</label
+          >
+        </p-iftalabel>
+      </div>
     </div>
 
-    <div class="">
-      <p-iftalabel >
-        <p-select
-          [(ngModel)]="selectedSearch"
-          inputId="dd-city"
-          [options]="searchType"
-          optionLabel="name"
-          class="searchField"
-          (onChange)="searchFor($event)"
-          
-        />
-        <label for="dd-city" class="text-green-500"
-          >Filter Order by Status</label
-        >
-      </p-iftalabel>
-    </div>
-  </div>
-
-
-
-  <!--Orders-->
-  @if(isloading){
-  <div class="flex flex-col md:grid md:grid-cols-12 gap-5">
-    @if(showAllOrdersByDefault){ @for(order of allorders; track order.id ){
-    <div class="md:col-span-6 lg:col-span-4">
-      <div>
-        <p-card class="ordercard">
-          <ng-template #title>
-            <div class="flex justify-between items-center">
-              <div>
+    <!--Orders-->
+    @if(isloading){
+    <div class="form-col-3">
+      @if(showAllOrdersByDefault){ @for(order of allorders; track order.id ){
+      <div class="">
+        <div>
+          <p-card class="ordercard">
+            <ng-template #title>
+              <div class="flex justify-between items-center">
                 <div>
-                  <h1 class="font-bold text-lg text-black">
-                    {{ order.orderNumber }}
-                  </h1>
-                </div>
-                <div>
-                  <p class="text-gray-400 text-[15px] pb-[10px]">
-                    {{ order.orderTime }}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="w-[40px] h-[40px] cursor-pointer rounded-full border-1 border-red-700 flex justify-center items-center deletebg"
-                (click)="onDeleteOrder(order.id)"
-              >
-                <div class="deletebtn flex justify-center items-center w-full">
-                  <i class="pi pi-trash"></i>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-
-          <!-- <ng-template #title> Advanced Card </ng-template> -->
-          <ng-template #subtitle>
-            <div class="foodItems">
-              @for(item of order.orderItems; track item.id){
-
-              <div class="flex items-center mb-[10px] mr-[15px]">
-                <!--Image-->
-                <div class="mr-[20px]">
-                  <img
-                    [src]="
-                      'https://restaurantapi.bssoln.com/images/food/' +
-                      item.food.image
-                    "
-                    alt=""
-                    class="w-[80px] h-[80px] rounded-full"
-                  />
-                </div>
-
-                <!--Name-->
-                <div class="flex justify-between w-2/3">
                   <div>
-                    <h1 class="mb-2 text-black font-bold text-lg">
-                      {{ item.food.name }}
-                    </h1>
-                    <h1 class="text-green-600 font-bold">
-                      {{ item.totalPrice }} ৳
+                    <h1 class="font-bold text-lg text-black">
+                      {{ order.orderNumber }}
                     </h1>
                   </div>
-                  <div class="flex justify-center items-end">
-                    <h1 class="text-black">Qty: {{ item.quantity }}</h1>
+                  <div>
+                    <p class="text-gray-400 text-[15px] pb-[10px]">
+                      {{ order.orderTime }}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="w-[40px] h-[40px] cursor-pointer rounded-full border-1 border-red-700 flex justify-center items-center deletebg"
+                  (click)="onDeleteOrder(order.id)"
+                >
+                  <div
+                    class="deletebtn flex justify-center items-center w-full"
+                  >
+                    <i class="pi pi-trash"></i>
                   </div>
                 </div>
               </div>
-              }
-            </div>
-          </ng-template>
+            </ng-template>
 
-          <ng-template #footer>
-            <div class="gap-4 mt-1">
-              <div class="flex justify-between text-black">
-                <h1>Total Item: {{ order.orderItems.length }}</h1>
-                <h1>Table: {{ order.table.tableNumber }}</h1>
+            <!-- <ng-template #title> Advanced Card </ng-template> -->
+            <ng-template #subtitle>
+              <div class="foodItems">
+                @for(item of order.orderItems; track item.id){
+
+                <div class="flex items-center mb-[10px] mr-[15px]">
+                  <!--Image-->
+                  <div class="mr-[20px]">
+                    <img
+                      [src]="
+                        'https://restaurantapi.bssoln.com/images/food/' +
+                        item.food.image
+                      "
+                      alt=""
+                      class="w-[80px] h-[80px] rounded-full"
+                    />
+                  </div>
+
+                  <!--Name-->
+                  <div class="flex justify-between w-2/3">
+                    <div>
+                      <h1 class="mb-2 text-black font-bold text-lg">
+                        {{ item.food.name }}
+                      </h1>
+                      <h1 class="text-green-600 font-bold">
+                        {{ item.totalPrice }} ৳
+                      </h1>
+                    </div>
+                    <div class="flex justify-center items-end">
+                      <h1 class="text-black">Qty: {{ item.quantity }}</h1>
+                    </div>
+                  </div>
+                </div>
+                }
               </div>
+            </ng-template>
 
-              <div
-                class="flex justify-between items-center text-black h-[35px]"
-              >
-                <div class="flex h-full justify-center items-end">
+            <ng-template #footer>
+              <div class="gap-4 mt-1">
+                <div class="flex justify-between text-black">
+                  <h1>Total Item: {{ order.orderItems.length }}</h1>
+                  <h1>Table: {{ order.table.tableNumber }}</h1>
+                </div>
+
+                <div
+                  class="flex justify-between items-center text-black h-[35px]"
+                >
+                  <div class="flex h-full justify-center items-end">
+                    <h1>
+                      Total:
+                      <span class="text-green-600 font-bold"
+                        >{{ order.amount }} ৳</span
+                      >
+                    </h1>
+                  </div>
+
+                  <div class="flex justify-end">
+                    @if(showStatusOption && selectedOrderId === order.id){
+                    <div class="card flex justify-center statusfield">
+                      <p-select
+                        [options]="allStatus"
+                        [(ngModel)]="order.orderStatus"
+                        optionLabel="name"
+                        placeholder="{{ order.orderStatus }}"
+                        class="statusText"
+                        [appendTo]="'body'"
+                        display="chip"
+                        panelStyleClass="custom-multiselect-panel"
+                        [style]="{
+                          width: '160px',
+                          border: 'none',
+                          color: '#6cb150'
+                        }"
+                        (onChange)="setNewStatus($event, order)"
+                      />
+                    </div>
+
+                    } @if(selectedOrderId !==order.id && otherShow ){
+                    @if(order.orderStatus === 'Pending'){
+                    <h1 class="mr-[10px] text-orange-400 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'Preparing'){
+                    <h1 class="mr-[10px] text-amber-400 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'Confirmed'){
+                    <h1 class="mr-[10px] text-blue-500 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'PreparedToServe'){
+                    <h1 class="mr-[10px] text-lime-600 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'Served'){
+                    <h1 class="mr-[10px] text-green-600 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'Paid'){
+                    <h1 class="mr-[10px] text-emerald-600 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    }
+                    <div
+                      class="editstatus cursor-pointer"
+                      (click)="onEditStatus(order.id)"
+                    >
+                      <i
+                        class="pi pi-pen-to-square"
+                        style="font-size: 1.3rem"
+                      ></i>
+                    </div>
+                    } @if(showUpdated && selectedOrderId === order.id ){
+                    <h1 class="mr-[10px]">{{ order.orderStatus }}</h1>
+                    <div
+                      class="editstatus cursor-pointer"
+                      (click)="onEditStatus(order.id)"
+                    >
+                      <i
+                        class="pi pi-pen-to-square"
+                        style="font-size: 1.3rem"
+                      ></i>
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
+      } } @if(!showAllOrdersByDefault){ @for(order of searchedOrder; track
+      order.id ){
+      <div class="md:col-span-6 lg:col-span-4">
+        <div class=" ">
+          <p-card>
+            <ng-template #title>
+              <div class="flex justify-between items-center">
+                <div>
+                  <div>
+                    <h1 class="font-bold text-lg text-black">
+                      {{ order.orderNumber }}
+                    </h1>
+                  </div>
+                  <div>
+                    <p class="text-gray-400 text-[15px] pb-[10px]">
+                      {{ order.orderTime }}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="w-[40px] h-[40px] rounded-full border-1 border-red-700 flex justify-center items-center deletebg"
+                >
+                  <div
+                    class="deletebtn flex justify-center items-center w-full"
+                  >
+                    <i class="pi pi-trash"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+            <!-- <ng-template #title> Advanced Card </ng-template> -->
+            <ng-template #subtitle>
+              <div class="foodItems">
+                @for(item of order.orderItems; track item.id){
+
+                <div class="flex items-center mb-[10px] mr-[15px]">
+                  <!--Image-->
+                  <div class="mr-[20px]">
+                    <img
+                      [src]="
+                        'https://restaurantapi.bssoln.com/images/food/' +
+                        item.food.image
+                      "
+                      alt=""
+                      class="w-[80px] h-[80px] rounded-full"
+                    />
+                  </div>
+
+                  <!--Name-->
+                  <div class="flex justify-between w-2/3">
+                    <div>
+                      <h1 class="mb-2 text-black font-bold text-lg">
+                        {{ item.food.name }}
+                      </h1>
+                      <h1 class="text-green-600 font-bold">
+                        {{ item.totalPrice }} ৳
+                      </h1>
+                    </div>
+                    <div class="flex justify-center items-end">
+                      <h1 class="text-black">Qty: {{ item.quantity }}</h1>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+            </ng-template>
+
+            <ng-template #footer>
+              <div class="flex justify-between gap-4 mt-1">
+                <div class="text-black">
+                  <h1>Total Item: {{ order.orderItems.length }}</h1>
                   <h1>
                     Total:
                     <span class="text-green-600 font-bold"
@@ -112,250 +267,99 @@
                   </h1>
                 </div>
 
-                <div class="flex justify-end">
-                  @if(showStatusOption && selectedOrderId === order.id){
-                  <div class="card flex justify-center statusfield">
-                    <p-select
-                      [options]="allStatus"
-                      [(ngModel)]="order.orderStatus"
-                      optionLabel="name"
-                      placeholder="{{ order.orderStatus }}"
-                      class="statusText"
-                      [appendTo]="'body'"
-                      display="chip"
-                      panelStyleClass="custom-multiselect-panel"
-                      [style]="{
-                        width: '160px',
-                        border: 'none',
-                        color: '#6cb150'
-                      }"
-                      (onChange)="setNewStatus($event, order)"
-                    />
-                  </div>
+                <div class="text-black">
+                  <h1>Table: {{ order.table.tableNumber }}</h1>
+                  <div class="flex justify-end">
+                    @if(showStatusOption && selectedOrderId === order.id){
+                    <div
+                      class="card flex justify-center items-center statusfield"
+                    >
+                      <p-select
+                        [options]="allStatus"
+                        [(ngModel)]="order.orderStatus"
+                        optionLabel="name"
+                        placeholder="{{ order.orderStatus }}"
+                        class="statusText"
+                        [appendTo]="'body'"
+                        display="chip"
+                        panelStyleClass="custom-multiselect-panel"
+                        [style]="{
+                          width: '160px',
+                          border: 'none',
+                          color: '#6cb150'
+                        }"
+                        (onChange)="setNewStatus($event, order)"
+                      />
+                    </div>
 
-                  } @if(selectedOrderId !==order.id && otherShow ){
-                  @if(order.orderStatus === 'Pending'){
-                  <h1 class="mr-[10px] text-orange-400 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Preparing'){
-                  <h1 class="mr-[10px] text-amber-400 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Confirmed'){
-                  <h1 class="mr-[10px] text-blue-500 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'PreparedToServe'){
-                  <h1 class="mr-[10px] text-lime-600 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Served'){
-                  <h1 class="mr-[10px] text-green-600 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Paid'){
-                  <h1 class="mr-[10px] text-emerald-600 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  }
-                  <div
-                    class="editstatus cursor-pointer"
-                    (click)="onEditStatus(order.id)"
-                  >
-                    <i
-                      class="pi pi-pen-to-square"
-                      style="font-size: 1.3rem"
-                    ></i>
-                  </div>
-                  } @if(showUpdated && selectedOrderId === order.id ){
-                  <h1 class="mr-[10px]">{{ order.orderStatus }}</h1>
-                  <div
-                    class="editstatus cursor-pointer"
-                    (click)="onEditStatus(order.id)"
-                  >
-                    <i
-                      class="pi pi-pen-to-square"
-                      style="font-size: 1.3rem"
-                    ></i>
-                  </div>
-                  }
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </p-card>
-      </div>
-    </div>
-    } } @if(!showAllOrdersByDefault){ @for(order of searchedOrder; track
-    order.id ){
-    <div class="md:col-span-6 lg:col-span-4">
-      <div class=" ">
-        <p-card>
-          <ng-template #title>
-            <div class="flex justify-between items-center">
-              <div>
-                <div>
-                  <h1 class="font-bold text-lg text-black">
-                    {{ order.orderNumber }}
-                  </h1>
-                </div>
-                <div>
-                  <p class="text-gray-400 text-[15px] pb-[10px]">
-                    {{ order.orderTime }}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="w-[40px] h-[40px] rounded-full border-1 border-red-700 flex justify-center items-center deletebg"
-              >
-                <div class="deletebtn flex justify-center items-center w-full">
-                  <i class="pi pi-trash"></i>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-
-          <!-- <ng-template #title> Advanced Card </ng-template> -->
-          <ng-template #subtitle>
-            <div class="foodItems">
-              @for(item of order.orderItems; track item.id){
-
-              <div class="flex items-center mb-[10px] mr-[15px]">
-                <!--Image-->
-                <div class="mr-[20px]">
-                  <img
-                    [src]="
-                      'https://restaurantapi.bssoln.com/images/food/' +
-                      item.food.image
-                    "
-                    alt=""
-                    class="w-[80px] h-[80px] rounded-full"
-                  />
-                </div>
-
-                <!--Name-->
-                <div class="flex justify-between w-2/3">
-                  <div>
-                    <h1 class="mb-2 text-black font-bold text-lg">
-                      {{ item.food.name }}
+                    } @if(selectedOrderId !==order.id && otherShow ){
+                    @if(order.orderStatus === 'Pending'){
+                    <h1 class="mr-[10px] text-orange-400 font-bold">
+                      {{ order.orderStatus }}
                     </h1>
-                    <h1 class="text-green-600 font-bold">
-                      {{ item.totalPrice }} ৳
+                    } @if(order.orderStatus === 'Preparing'){
+                    <h1 class="mr-[10px] text-amber-400 font-bold">
+                      {{ order.orderStatus }}
                     </h1>
-                  </div>
-                  <div class="flex justify-center items-end">
-                    <h1 class="text-black">Qty: {{ item.quantity }}</h1>
-                  </div>
-                </div>
-              </div>
-              }
-            </div>
-          </ng-template>
-
-          <ng-template #footer>
-            <div class="flex justify-between gap-4 mt-1">
-              <div class="text-black">
-                <h1>Total Item: {{ order.orderItems.length }}</h1>
-                <h1>
-                  Total:
-                  <span class="text-green-600 font-bold"
-                    >{{ order.amount }} ৳</span
-                  >
-                </h1>
-              </div>
-
-              <div class="text-black">
-                <h1>Table: {{ order.table.tableNumber }}</h1>
-                <div class="flex justify-end">
-                  @if(showStatusOption && selectedOrderId === order.id){
-                  <div
-                    class="card flex justify-center items-center statusfield"
-                  >
-                    <p-select
-                      [options]="allStatus"
-                      [(ngModel)]="order.orderStatus"
-                      optionLabel="name"
-                      placeholder="{{ order.orderStatus }}"
-                      class="statusText"
-                      [appendTo]="'body'"
-                      display="chip"
-                      panelStyleClass="custom-multiselect-panel"
-                      [style]="{
-                        width: '160px',
-                        border: 'none',
-                        color: '#6cb150'
-                      }"
-                      (onChange)="setNewStatus($event, order)"
-                    />
-                  </div>
-
-                  } @if(selectedOrderId !==order.id && otherShow ){
-                  @if(order.orderStatus === 'Pending'){
-                  <h1 class="mr-[10px] text-orange-400 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Preparing'){
-                  <h1 class="mr-[10px] text-amber-400 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Confirmed'){
-                  <h1 class="mr-[10px] text-blue-500 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'PreparedToServe'){
-                  <h1 class="mr-[10px] text-lime-600 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Served'){
-                  <h1 class="mr-[10px] text-green-600 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  } @if(order.orderStatus === 'Paid'){
-                  <h1 class="mr-[10px] text-emerald-600 font-bold">
-                    {{ order.orderStatus }}
-                  </h1>
-                  }
-                  <div class="editstatus" (click)="onEditStatus(order.id)">
-                    <i
-                      class="pi pi-pen-to-square"
-                      style="font-size: 1.3rem"
-                    ></i>
-                  </div>
-                  } @if(showUpdated && selectedOrderId === order.id ){
-                  <div class="flex justify-center items-center">
-                    <h1 class="mr-[10px]">{{ order.orderStatus }}</h1>
+                    } @if(order.orderStatus === 'Confirmed'){
+                    <h1 class="mr-[10px] text-blue-500 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'PreparedToServe'){
+                    <h1 class="mr-[10px] text-lime-600 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'Served'){
+                    <h1 class="mr-[10px] text-green-600 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    } @if(order.orderStatus === 'Paid'){
+                    <h1 class="mr-[10px] text-emerald-600 font-bold">
+                      {{ order.orderStatus }}
+                    </h1>
+                    }
                     <div class="editstatus" (click)="onEditStatus(order.id)">
                       <i
                         class="pi pi-pen-to-square"
                         style="font-size: 1.3rem"
                       ></i>
                     </div>
+                    } @if(showUpdated && selectedOrderId === order.id ){
+                    <div class="flex justify-center items-center">
+                      <h1 class="mr-[10px]">{{ order.orderStatus }}</h1>
+                      <div class="editstatus" (click)="onEditStatus(order.id)">
+                        <i
+                          class="pi pi-pen-to-square"
+                          style="font-size: 1.3rem"
+                        ></i>
+                      </div>
+                    </div>
+                    }
                   </div>
-                  }
                 </div>
               </div>
-            </div>
-          </ng-template>
-        </p-card>
+            </ng-template>
+          </p-card>
+        </div>
       </div>
+      } }
     </div>
-    } }
-  </div>
-  <div class="card flex justify-center">
-    <p-paginator
-      (onPageChange)="onPageChange($event)"
-      [first]="first"
-      [rows]="rows"
-      [totalRecords]="totalOrders"
-      showFirstLastIcon="false"
-      class="orderpaginator"
-    />
-  </div>
-  } @if (!isloading){
+    <div class="card flex justify-center">
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="first"
+        [rows]="rows"
+        [totalRecords]="totalOrders"
+        showFirstLastIcon="false"
+        class="orderpaginator"
+      />
+    </div>
+    } 
+    <!-- @if (!isloading){
 
-  <div class="fixed inset-0 flex items-center justify-center">
-    <app-spinner></app-spinner>
+    <div class="fixed inset-0 flex items-center justify-center">
+      <app-spinner></app-spinner>
+    </div>
+    } -->
   </div>
-  }
 </div>

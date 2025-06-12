@@ -56,6 +56,30 @@
   padding: 0px;
 }
 
+
+.outlet-container {
+  padding: 10px;
+}
+
+.dashboard-container {
+  background: linear-gradient(
+      0deg,
+      rgba(240, 240, 240, 0.5),
+      rgb(240, 240, 240)
+    ),
+    url(/background.png);
+  background-color: #f0f0f0;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100lvh;
+  /* height: max-content; */
+}
+
+
 /* -------- min-width breakpoints -------- */
 @media (min-width: 576px) {
   /* mobile styles here */
@@ -74,6 +98,9 @@
   }
   .order-title {
     width: 170px;
+  }
+    .outlet-container {
+    padding: 40px 60px;
   }
 
   .searchField {

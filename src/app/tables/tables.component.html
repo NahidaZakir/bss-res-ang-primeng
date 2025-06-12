@@ -1,7 +1,9 @@
-<div>
+
+<div class="dashboard-container">
+<div class="outlet-container">
   <div class="flex justify-between items-center mb-[20px] h-full">
     <div>
-      <h1 class="heading-font heading-font-size mb-[10px]">All Table</h1>
+      <h1 class="heading-font heading-font-size mb-[10px]">All Table List</h1>
     </div>
     <div>
       <p-button
@@ -24,23 +26,25 @@
       [rows]="10"
       [totalRecords]="totalRecords"
       [showCurrentPageReport]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+      currentPageReportTemplate="{first}-{last} of {totalRecords}"
       [rowsPerPageOptions]="[10, 25, 50, 100]"
-      [tableStyle]="{ 'min-width': '50rem' }"
+      [tableStyle]="{ 'min-width': '40rem' }"
     >
       <ng-template #header>
         <tr>
-          <th class="text-red">Table Number</th>
-          <th class="text-red">Total seats</th>
-          <th class="text-red">Booking Status</th>
-          <th class="text-red">Employees</th>
-          <th class="text-red">Action</th>
+          <th class="text-red"><span class="ellipsis ellipsis-width">Table Number</span></th>
+          <th class="text-red"><span class="ellipsis ellipsis-width">Total seats</span></th>
+          <th class="text-red"><span class="ellipsis ellipsis-width">Booking Status</span></th>
+          <th class="text-red"><span >Employees</span></th>
+          <th class="text-red"><span >Action</span></th>
         </tr>
       </ng-template>
 
       <ng-template #body let-table>
         <tr class="hover:bg-base-300">
-          <td>{{ table.tableNumber }}</td>
+          <td>
+            <span class="ellipsis ellipsis-width">{{ table.tableNumber }}</span>
+          </td>
           <td>{{ table.numberOfSeats }}</td>
           @if(table.isOccupied === true){
           <td>Not Available</td>
@@ -54,7 +58,9 @@
                 <div
                   class="flex justify-center items-center m-2 employeeName rounded-full py-[5px] px-[10px] mt-[0px] mb-[10px]"
                 >
-                  <p class="text-[16px] mr-[5px] text-black">{{ emp.name }}</p>
+                  <p class="text-[16px] mr-[5px] text-black ellipsis ellipsis-width">
+                    {{ emp.name }}
+                  </p>
                   <i
                     class="pi pi-minus-circle text-black cursor-pointer"
                     style="font-size: 18px"
@@ -87,4 +93,5 @@
     <app-spinner></app-spinner>
   </div>
   }
+</div>
 </div>

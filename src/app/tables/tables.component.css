@@ -1,22 +1,53 @@
-::ng-deep .tableButton{
+::ng-deep .tableButton {
   width: 200px;
   border: 2px solid #cc080b !important;
   background-color: white;
 }
 
-::ng-deep .tableButton:hover{
- background-color:#cc080b !important;
- color: white !important;
+::ng-deep .tableButton:hover {
+  background-color: #cc080b !important;
+  color: white !important;
 }
 
-
-.text-red{
-  color: #cc080b;
-}
 ::ng-deep .p-datatable .p-datatable-thead .p-datatable-column-header-content {
   color: red !important;
 }
 
-.employeeName{
+.employeeName {
   background-color: #dfdfdf;
+}
+::ng-deep td {
+  padding: 5px 10px !important;
+  margin: 0px !important;
+}
+::ng-deep th {
+  color: #cc080b !important;
+  font-weight: bold !important;
+}
+.outlet-container {
+  padding: 10px;
+}
+
+.dashboard-container {
+  background: linear-gradient(
+      0deg,
+      rgba(240, 240, 240, 0.5),
+      rgb(240, 240, 240)
+    ),
+    url(/background.png);
+  background-color: #f0f0f0;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100lvh;
+}
+
+@media (min-width: 992px) {
+  /* laptop styles here */
+  .outlet-container {
+    padding: 40px 60px;
+  }
 }

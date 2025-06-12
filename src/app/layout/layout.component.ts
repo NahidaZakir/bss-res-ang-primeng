@@ -17,7 +17,6 @@ import { CartfoodComponent } from '../cartfood/cartfood.component';
     SplitterModule,
     NavbarComponent,
     RouterOutlet,
-    Dialog,
     InputTextModule,
     CartfoodComponent,
   ],

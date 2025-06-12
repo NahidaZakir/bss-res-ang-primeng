@@ -1,4 +1,6 @@
-<div>
+
+<div class="dashboard-container">
+<div class="outlet-container">
   <div class="flex justify-between items-center mb-[20px] h-full">
     <div>
       <h1 class="heading-font heading-font-size mb-[10px]">All Food List</h1>
@@ -15,9 +17,10 @@
     </div>
   </div>
 
+
   @if (isLoading){
   <!--original table-->
-  <div class="card">
+  <div class="card ">
     <p-table
       [value]="allfood"
       [tableStyle]="{ 'min-width': '40rem' }"
@@ -35,9 +38,9 @@
           <th class="text-red">Image</th>
           <th class="text-red">Name</th>
           <th class="text-red">Price</th>
-          <th class="text-red">Discount Type</th>
-          <th class="text-red">Discount</th>
-          <th class="text-red">Discount Price</th>
+          <th class="text-red"><span class="ellipsis ellipsis-width">Discount Type</span></th>
+          <th class="text-red"><span class="ellipsis ellipsis-width">Discount</span></th>
+          <th class="text-red"><span class="ellipsis ellipsis-width">Discount Price</span></th>
           <th class="text-red">Action</th>
         </tr>
       </ng-template>
@@ -45,18 +48,18 @@
       <ng-template #body let-food>
         <tr>
           <td>
-            <div class="flex justify-start items-center">
-              <p-avatar
-                [image]="
+            <div class="flex justify-start items-center ">
+              <img
+                [src]="
                   'https://restaurantapi.bssoln.com/images/food/' + food.image
                 "
-                shape="circle"
+                class="w-[40px] h-[40px] rounded-full"
               />
             </div>
           </td>
-          <td>{{ food.name }}</td>
+          <td><span class="ellipsis ellipsis-name-width ">{{ food.name }}</span></td>
           <td>{{ food.price }}</td>
-          <td>{{ food.discountType }}</td>
+          <td><span class="ellipsis ellipsis-width">{{ food.discountType }}</span></td>
           <td>{{ food.discount }}</td>
           <td>{{ food.discountPrice }}</td>
           <td>
@@ -77,9 +80,13 @@
       </ng-template>
     </p-table>
   </div>
-  } @if (!isLoading){
+  } 
+  
+  <!-- @if (!isLoading){
   <div class="fixed inset-0 flex items-center justify-center">
     <app-spinner></app-spinner>
   </div>
-  }
+  } -->
+</div>
+
 </div>
