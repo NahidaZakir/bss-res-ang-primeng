@@ -26,7 +26,6 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .form-padding {
-
 }
 
 .outlet-container {
@@ -47,7 +46,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: max-content;
+  min-height: 100vh;
+  padding: 5px;
   /* height: max-content; */
 }
 
@@ -59,27 +59,25 @@
   .outlet-container {
     padding: 40px 60px;
   }
-
 }
 @media (min-width: 1200px) {
   /* desktop styles here */
-    .dashboard-container {
-  background: linear-gradient(
-      0deg,
-      rgba(240, 240, 240, 0.5),
-      rgb(240, 240, 240)
-    ),
-    url(/background.png);
-  background-color: #f0f0f0;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100lvh;
-
-}
+  /* .dashboard-container {
+    background: linear-gradient(
+        0deg,
+        rgba(240, 240, 240, 0.5),
+        rgb(240, 240, 240)
+      ),
+      url(/background.png);
+    background-color: #f0f0f0;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100lvh;
+  } */
 }
 
 @media (max-width: 1199.98px) {

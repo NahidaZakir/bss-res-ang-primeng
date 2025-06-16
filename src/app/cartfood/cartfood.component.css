@@ -30,4 +30,24 @@
   justify-content: center !important;
   text-align: center !important;
 }
+.cart-container{
+height: 100%;
+overflow-y: hidden;
+}
+.cart-items{
+    flex: 0 1 auto;
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.cart-footer{
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+}
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 

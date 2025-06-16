@@ -1,9 +1,8 @@
-
-.text-red{
+.text-red {
   color: #cc080b;
 }
 
-::ng-deep td{
+::ng-deep td {
   padding: 8px 15px !important;
   margin: 0px !important;
 }
@@ -25,10 +24,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 100lvh;
+  min-height: 100vh;
+  padding: 5px;
   /* height: max-content; */
 }
-
 
 @media (min-width: 992px) {
   /* laptop styles here */

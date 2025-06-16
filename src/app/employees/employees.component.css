@@ -36,7 +36,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 100lvh;
+  min-height: 100vh;
+  padding: 5px;
   /* height: max-content; */
 }
 

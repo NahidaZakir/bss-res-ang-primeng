@@ -1,13 +1,10 @@
 <div class="flex">
-  <div class="navbar-container w-[256px]">
+  <div class="navbar-container w-[256px] bg-white z-5000">
     <app-navbar></app-navbar>
   </div>
   <div class="flex flex-col w-full">
-    <!-- <div
-        class="flex justify-between items-center w-full red-bg topbar-height sticky top-0 z-40 topbar-shadow"
-      > -->
     <div
-      class="flex justify-between items-center red-bg topbar-height topbar-shadow sticky top-0 z-40"
+      class="flex justify-between items-center red-bg topbar-height topbar-shadow sticky top-0 z-5000"
     >
       <div class="logo-container flex items-center">
         <img class="w-[50px] h-[50px]" src="/logo.png" alt="" />
@@ -30,8 +27,10 @@
 
           <div class="flex h-full">
             <div class="">
-              <div class="flex  h-full">
-                <div class="flex flex-col items-center  justify-center px-[36px] h-full  ">
+              <div class="flex h-full">
+                <div
+                  class="flex flex-col items-center justify-center px-[36px] h-full"
+                >
                   @if(foodCart>0){
                   <div
                     class="w-[15px] h-[15px] ml-[6px] font-bold text-[12px] rounded-full bg-white"
@@ -43,7 +42,7 @@
                   }
                   <i
                     class="pi pi-shopping-cart cartbtn"
-                    (click)="cartDrawervisible = true"
+                    (click)="setcartVisible()"
                   >
                   </i>
                 </div>
@@ -54,12 +53,14 @@
                   [(visible)]="cartDrawervisible"
                   position="right"
                   header="Cart"
-                  styleClass="mt-[65px]"
-                  class="cartdesign"
+                  styleClass="pt-[65px]"
+                  
                 >
-                  <app-cartfood
-                    (toShowCart)="setCartVisible($event)"
-                  ></app-cartfood>
+                 
+                    <app-cartfood 
+                      (toShowCart)="setCartVisible($event)"
+                    ></app-cartfood>
+                 
                 </p-drawer>
               </div>
             </div>
@@ -82,7 +83,7 @@
       </div>
     </div>
 
-    <div class="">
+    <div class="z-40">
       <router-outlet></router-outlet>
     </div>
 

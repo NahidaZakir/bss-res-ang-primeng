@@ -24,6 +24,7 @@ import { CartfoodComponent } from '../cartfood/cartfood.component';
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
+
   menudrawerVisible: boolean = false;
   userEmail = signal('');
   userFullName = signal('');
@@ -38,7 +39,9 @@ export class LayoutComponent {
       this.foodCart = res;
     });
   }
-
+  setcartVisible(){
+    this.cartDrawervisible = !this.cartDrawervisible;
+  }
   closeSidebar(event: any) {
     this.menudrawerVisible = false;
     console.log(event, 'closing side bar');

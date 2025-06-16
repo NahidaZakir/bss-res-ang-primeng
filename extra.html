@@ -1,185 +1,104 @@
-<p-toast [position]="'bottom-right'" />
-
-<div class="dashboard-container">
-  <div class="outlet-container">
-    <div class="ordertitle-search mb-[20px] h-full">
-      <div class="order-title">
-        <h1 class="heading-font heading-font-size mb-[10px]">Order Food</h1>
-      </div>
-      <div>
-        <p-iftalabel>
-          <input
-            pInputText
-            id="username"
-            [(ngModel)]="searchFoodName"
-            name="searchFoodName"
-            autocomplete="off"
-            (input)="onSearch(searchFoodName)"
-            class="searchField"
-          />
-          <label for="username">Search Food</label>
-        </p-iftalabel>
-      </div>
-    </div>
-
-    @if(isloading){
-    <div class="form-col-2">
-      <div class="col-span-3 bg-white py-[20px] px-[8px]">
-        <h1 class="text-center font-bold text-[14px]">
-          SELECT A TABLE : ({{ showTotalTable }})
-        </h1>
-        <div
-          #scrollContainer
-          (scroll)="onScroll()"
-          class="selectTableContainer"
-        >
-          @for(table of tables; track table.id){
+<!-- <div class="h-[100%] max-w-[100%] border-t-4 pt-2 border-red-700"> -->
+  <div class="border-t-4 pt-2 border-red-600 z-5000  ">
+  @if(isAnythingAdded){
+  <div class="card">
+    <div class="">
+      <p-scrollpanel [style]="{ width: '100%' }" styleClass="cartpanel">
+        <div class="">
+          @for(item of cartFoodItems; track item.id ){
           <div
-            class="flex flex-col items-center justify-center mb-[20px] mx-[10px] rounded-md tableSelect cursor-pointer"
-            style="height: 180px"
-            (click)="onTableSelected(table.id)"
+            class="flex justify-between border-b-2 border-gray-300 py-[12px]"
           >
-            <img
-              [src]="
-                'https://restaurantapi.bssoln.com/images/Table/' + table.image
-              "
-              class="w-[130px] h-[130px] rounded-full p-[10px]"
-            />
+            <div class="flex justify-center items-center">
+              <div class="flex justify-start items-center mr-2">
+                <img
+                  [src]="
+                    'https://restaurantapi.bssoln.com/images/food/' + item.image
+                  "
+                  class="rounded-full w-[70px] h-[70px]"
+                />
+              </div>
+              <div class="flex flex-col h-full">
+                <div class="flex justify-start">
+                  <h1 class="font-[700] text-[18px]">
+                    {{ item.name }}
+                  </h1>
+                </div>
+                <div class="flex justify-start items-end h-full">
+                  <div class="flex">
+                    <div
+                      class="border-1 border-gray-300 w-[20px] flex justify-center items-center px-[12px]"
+                      (click)="decCount(item.id, item.count, item.price)"
+                    >
+                      <i class="pi pi-minus" style="font-size: 10px"></i>
+                    </div>
 
-            <p class="text-[18px]">{{ table.tableNumber }}</p>
+                    <div
+                      class="border-1 border-gray-300 flex justify-center items-center w-[50px]"
+                    >
+                      <h1>{{ item.count }}</h1>
+                    </div>
+                    <div
+                      class="border-1 border-gray-300 w-[20px] flex justify-center items-center px-[12px]"
+                      (click)="incCount(item.id, item.count, item.price)"
+                    >
+                      <i class="pi pi-plus" style="font-size: 10px"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col">
+              <div class="flex justify-end m-1">
+                <i
+                  class="pi pi-trash"
+                  style="font-size: 1.3rem"
+                  (click)="onDelete(item.id)"
+                ></i>
+              </div>
+              <div class="flex justify-end items-end h-full">
+                <h1>Price: {{ item.countPrice }} ৳</h1>
+              </div>
+            </div>
           </div>
           }
         </div>
-      </div>
-
-      @if(!isTableSelected && foodAddedinCart===0){
-      <div class="col-span-9 h-full text-center m-5">
-        <div class="flex justify-center items-center h-1/2 tableMessageBorder">
-          <h1 class="text-4xl font-bold">At first select a table!</h1>
-        </div>
-      </div>
-
-      } @if(isTableSelected || foodAddedinCart>0){
-      <div class="col-span-9 bg-white p-[20px] w-full">
-        <h1 class="font-bold text-[14px]">
-          SELECT FOODS : ({{ showTotalFood }})
-        </h1>
-        <div
-          #scrollFoodContainer
-          (scroll)="onFoodScroll()"
-          class="selectFoodContainer"
-        >
-          @if(!showSearchedFood){ @for(food of foods; track food.id){
-          <div class="mb-4">
-            <p-card>
-              <div class="flex justify-around p-[10px]">
-                <div class="w-[30%]">
-                  <img
-                    [src]="
-                      'https://restaurantapi.bssoln.com/images/Food/' +
-                      food.image
-                    "
-                    alt=""
-                    class="w-[190px] h-[190px] rounded-full"
-                  />
-                </div>
-                <div class="flex flex-col justify-center w-[70%]">
-                  <h1 class="text-[24px] font-bold">{{ food.name }}</h1>
-                  <p>{{ food.description }}</p>
-                  <div class="flex justify-between items-center my-[10px]">
-                    <div>
-                      @if(food.discountPrice){
-                      <p class="line-through textPrice text-red-700">
-                        Price:<span class="font-bold"> {{ food.price }} ৳</span>
-                      </p>
-                      <p class="text-lime-600 textPrice">
-                        Discounted Price:<span class="font-bold">
-                          {{ food.discountPrice }} ৳</span
-                        >
-                      </p>
-                      } @if(!food.discountPrice){
-                      <p class="textPrice">
-                        Price:<span class="font-bold"> {{ food.price }} ৳</span>
-                      </p>
-                      }
-                    </div>
-                    <div>
-                      <p-button
-                        (onClick)="showSuccess(food)"
-                        pRipple
-                        label="Add To Cart"
-                        class="addtocartbtn"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </p-card>
-          </div>
-          } } @if(showSearchedFood){ @for(searchedfood of searchedFoodList;
-          track searchedfood.id){
-          <div class="mb-4">
-            <p-card>
-              <div class="flex justify-around">
-                <div class="w-[30%]">
-                  <img
-                    [src]="
-                      'https://restaurantapi.bssoln.com/images/Food/' +
-                      searchedfood.image
-                    "
-                    alt=""
-                    class="w-[190px] h-[190px] rounded-full"
-                  />
-                </div>
-                <div class="flex flex-col justify-center w-[70%]">
-                  <h1 class="text-[24px] font-bold">
-                    {{ searchedfood.name }}
-                  </h1>
-                  <p>{{ searchedfood.description }}</p>
-                  <div class="flex justify-between items-center">
-                    <div>
-                      @if(searchedfood.discountPrice){
-                      <p class="line-through textPrice text-red-700">
-                        Price:<span class="font-bold">
-                          {{ searchedfood.price }} ৳</span
-                        >
-                      </p>
-                      <p class="text-lime-600 textPrice">
-                        Discounted Price:<span class="font-bold">
-                          {{ searchedfood.discountPrice }} ৳</span
-                        >
-                      </p>
-                      } @if(!searchedfood.discountPrice){
-                      <p class="textPrice">
-                        Price:<span class="font-bold">
-                          {{ searchedfood.price }} ৳</span
-                        >
-                      </p>
-                      }
-                    </div>
-
-                    <button
-                      class="bg-red-700 p-2 text-white addtocartbtn"
-                      (onClick)="showSuccess(searchedfood)"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </p-card>
-          </div>
-          } }
-        </div>
-      </div>
-      }
+      </p-scrollpanel>
     </div>
-    }
-    <!-- @if (!isloading){
-
-    <div class="fixed inset-0 flex items-center justify-center">
-      <app-spinner></app-spinner>
-    </div>
-    } -->
   </div>
+
+  <div class="">
+    <div
+      class="border-b-2 border-gray-300 flex justify-between items-center w-full py-[12px]"
+    >
+
+      <h1>Subtotal</h1>
+      <p class="font-bold">{{ subTotal }} ৳</p>
+    </div>
+
+    <div class="card flex justify-center">
+      <p-toast />
+      <p-confirmdialog [style]="{ width: '500px' }">
+        <ng-template #message let-message>
+          <div class="flex flex-col items-center w-full">
+            <i [ngClass]="message.icon" class="!text-8xl text-green-500"></i>
+            <p class="text-3xl pt-8">Order Placed</p>
+            <p class="text-gray-500 py-3">{{ message.message }}</p>
+          </div>
+        </ng-template>
+      </p-confirmdialog>
+      <div class="w-full">
+        <p-button label="Confirm Order" (click)="confirm()" class="orderBtn" />
+      </div>
+    </div>
+  </div>
+  } 
+  @if(!isAnythingAdded){
+  <div
+    class="h-[400px] text-[25px] text-black flex justify-center items-center "
+  >
+    <h1>Cart is Empty</h1>
+  </div>
+  }
 </div>

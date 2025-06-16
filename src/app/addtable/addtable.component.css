@@ -16,7 +16,6 @@
 }
 .outlet-container {
   padding: 10px;
-
 }
 .dashboard-container {
   background: linear-gradient(
@@ -32,7 +31,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 100%;
+  min-height: 100vh;
+  padding: 5px;
 }
 @media (min-width: 992px) {
   /* laptop styles here */

@@ -40,7 +40,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 100lvh;
+  min-height: 100vh;
+  padding: 5px;
 }
 @media (min-width: 992px) {
   /* laptop styles here */
@@ -50,7 +51,7 @@
   .outlet-container {
     padding: 40px 60px;
   }
-  .dashboard-container {
+  /* .dashboard-container {
     background: linear-gradient(
         0deg,
         rgba(240, 240, 240, 0.5),
@@ -65,7 +66,7 @@
     background-size: cover;
     background-attachment: fixed;
     height: max-content;
-  }
+  } */
 }
 @media (min-width: 1200px) {
   /* desktop styles here */

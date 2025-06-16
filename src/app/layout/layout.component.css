@@ -76,18 +76,8 @@ ul li a:hover {
   width: calc(100% - 256px);
 }
 
-::ng-deep .cartdesign .p-drawer {
-  right: 0px;
-  z-index: 1004;
-  transform: translateX(0%);
-  position: fixed;
-  height: 50% !important;
-  /* height: calc(100% - 65px); */
-  top: 100px;
-  bottom: 0px;
-  width: 256px;
-  background-color: red;
-}
+
+
 .navbar-container {
   display: none;
 }
@@ -102,26 +92,35 @@ ul li a:hover {
 .hamburger-menu {
   display: inline;
 }
-::ng-deep .p-drawer {
-  width: 256px !important;
-}
+
 ::ng-deep .p-drawer-header {
   margin: 0px !important;
-  padding: 0px !important;
+  padding: 10px !important;
+  color:#cc080b;
 }
 ::ng-deep .p-drawer-content {
   padding: 0px !important;
   margin: 0px !important;
 }
+::ng-deep .p-drawer-close-button{
+  color: #cc080b !important;
+}
 
 
 /* -------- min-width breakpoints -------- */
+@media (min-width: 992px) {
+  ::ng-deep .p-drawer {
+  width: 450px !important;
+}
+}
+
 @media (min-width: 1200px) {
   .rest-name-size {
     font-size: 22px;
   }
   .navbar-container {
     display: block;
+
   }
   .hamburger-menu {
     display: none;
@@ -145,4 +144,9 @@ ul li a:hover {
   .outlet-container {
     padding: 10px;
   }
+  ::ng-deep .p-drawer {
+  width: 100% !important;
 }
+
+}
+
