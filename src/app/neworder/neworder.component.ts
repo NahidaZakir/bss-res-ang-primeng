@@ -1,4 +1,12 @@
-import { Component, OnInit, output, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  output,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ScrollerModule } from 'primeng/scroller';
 import { TableInfoService } from '../services/tablesinfo.service';
 import { showAllTable } from '../model/table.model';
@@ -39,10 +47,14 @@ interface LazyEvent {
     ButtonModule,
     Ripple,
     SpinnerComponent,
+    CommonModule
   ],
   providers: [MessageService],
 })
-export class NeworderComponent implements OnInit {
+export class NeworderComponent implements OnInit, AfterViewInit {
+  @ViewChild('scrollContainer') scrollContainerRef!: ElementRef;
+  @ViewChild('scrollFoodContainer') scrollFoodContainerRef!: ElementRef;
+  isActive: boolean = true;
   searchFoodName!: string;
   searchedFoodList: showAllFood[] = [];
   tables: showAllTable[] = [];
@@ -70,6 +82,7 @@ export class NeworderComponent implements OnInit {
 
   initialTableLoadDone: boolean = false;
   initialFoodLoadDone: boolean = false;
+  item: number = 0;
   constructor(
     private tablesService: TableInfoService,
     private foodService: FoodService,
@@ -94,9 +107,31 @@ export class NeworderComponent implements OnInit {
   }
   ngOnInit() {
     this.getTotalFoodNum();
-    this.getTables(1);
+
     this.getFoods(1);
     this.foodAddedinCart = this.cartfoodService.getItems();
+  }
+
+  ngAfterViewInit() {
+    this.getTables(1);
+  }
+  onScroll() {
+    const el = this.scrollContainerRef.nativeElement;
+
+    const reachedBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 5;
+
+    if (reachedBottom) {
+      this.getMoreTables();
+    }
+  }
+  onFoodScroll() {
+    const el = this.scrollFoodContainerRef.nativeElement;
+
+    const reachedBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 5;
+
+    if (reachedBottom) {
+      this.getMoreFoods();
+    }
   }
 
   getTotalFoodNum() {

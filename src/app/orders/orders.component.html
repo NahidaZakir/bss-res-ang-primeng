@@ -43,6 +43,7 @@
                     </p>
                   </div>
                 </div>
+                @if(order.orderStatus=== 'Pending'){
                 <div
                   class="w-[40px] h-[40px] cursor-pointer rounded-full border-1 border-red-700 flex justify-center items-center deletebg"
                   (click)="onDeleteOrder(order.id)"
@@ -53,6 +54,18 @@
                     <i class="pi pi-trash"></i>
                   </div>
                 </div>
+                } @if(order.orderStatus!== 'Pending') {
+                <div
+                  class="w-[40px] h-[40px]  rounded-full border-1 border-red-700 flex justify-center items-center disabledDelete opacity-50 "
+                  (click)="onDeleteOrder(order.id)"
+                >
+                  <div
+                    class="disabledbtn flex justify-center items-center w-full"
+                  >
+                    <i class="pi pi-trash"></i>
+                  </div>
+                </div>
+                }
               </div>
             </ng-template>
 
@@ -63,20 +76,19 @@
 
                 <div class="flex items-center mb-[10px] mr-[15px]">
                   <!--Image-->
-                  <div class="mr-[20px]">
-                    <img
-                      [src]="
-                        'https://restaurantapi.bssoln.com/images/food/' +
-                        item.food.image
-                      "
-                      alt=""
-                      class="w-[80px] h-[80px] rounded-full"
-                    />
-                  </div>
+                  <!-- <div class="mr-[20px] "> -->
+                  <img
+                    [src]="
+                      'https://restaurantapi.bssoln.com/images/food/' +
+                      item.food.image
+                    "
+                    alt=""
+                    class="w-[80px] h-[80px] rounded-full mr-[20px]"
+                  />
 
                   <!--Name-->
-                  <div class="flex justify-between w-2/3">
-                    <div>
+                  <div class="flex justify-between w-full">
+                    <div class="">
                       <h1 class="mb-2 text-black font-bold text-lg">
                         {{ item.food.name }}
                       </h1>
@@ -354,7 +366,7 @@
         class="orderpaginator"
       />
     </div>
-    } 
+    }
     <!-- @if (!isloading){
 
     <div class="fixed inset-0 flex items-center justify-center">

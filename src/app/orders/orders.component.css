@@ -13,7 +13,12 @@
   background-color: #cc080b;
   border: #cc080b;
 }
-
+.disabledDelete {
+  color: #cc080b;
+}
+.disabledbtn{
+    color: #cc080b;
+}
 .deletebg:hover {
   background-color: #cc080b;
   color: white;
@@ -28,6 +33,8 @@
 .foodItems {
   height: 200px;
   overflow-y: scroll;
+  width: 100%;
+  border-bottom: 1px solid grey;
 }
 .editstatus {
   color: lightgray !important;
@@ -103,28 +110,34 @@
   background-attachment: fixed;
   height: max-content;
 }
-.form-col-1 {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-.form-col-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap:20px;
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 2px;
 }
 
 
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
+/* -------- min-width breakpoints -------- */
+@media (min-width: 576px) {
+  /* mobile styles here */
+}
 
-
-
-
-
-
-
-
-
+@media (min-width: 768px) {
+  /* tablet styles here */
+}
 
 @media (min-width: 992px) {
   /* laptop styles here */
@@ -140,11 +153,37 @@
   .searchField {
     width: 300px;
   }
-    .outlet-container {
+  .outlet-container {
     padding: 40px 60px;
+  }
+  .form-col-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
   }
 }
 
+@media (min-width: 1200px) {
+  /* desktop styles here */
+  .form-col-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1400px) {
+  /* large-screen styles here */
+}
+
+/* -------- max-width breakpoints -------- */
+@media (max-width: 575.98px) {
+  /* mobile-max styles here */
+}
+
+@media (max-width: 767.98px) {
+  /* tablet-max styles here */
+}
 
 @media (max-width: 991.98px) {
   /* laptop-max styles here */
@@ -152,6 +191,7 @@
     display: flex;
     flex-direction: column;
   }
+
   .order-title {
     width: 130px;
   }
@@ -164,4 +204,16 @@
     border-radius: 0px;
     border-bottom: 1px solid black !important;
   }
+  .form-col-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  /* desktop-max styles here */
+}
+
+@media (max-width: 1399.98px) {
+  /* large-screen-max styles here */
 }

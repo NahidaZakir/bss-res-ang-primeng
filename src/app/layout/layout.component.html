@@ -27,27 +27,26 @@
               </h1>
             </div>
           </div>
+
           <div class="flex h-full">
-            <div class="card">
-              <div class="flex h-full">
-                <div
-                  class="flex items-center justify-center h-full items-center px-[36px]"
-                >
+            <div class="">
+              <div class="flex  h-full">
+                <div class="flex flex-col items-center  justify-center px-[36px] h-full  ">
+                  @if(foodCart>0){
+                  <div
+                    class="w-[15px] h-[15px] ml-[6px] font-bold text-[12px] rounded-full bg-white"
+                  >
+                    <p class="flex justify-center items-center">
+                      {{ foodCart }}
+                    </p>
+                  </div>
+                  }
                   <i
                     class="pi pi-shopping-cart cartbtn"
                     (click)="cartDrawervisible = true"
                   >
                   </i>
                 </div>
-                @if(foodCart>0){
-                <div
-                  class="w-[18px] h-[18px] font-bold text-sm mt-3 ml-1 rounded-full bg-white"
-                >
-                  <p class="flex justify-center items-center">
-                    {{ foodCart }}
-                  </p>
-                </div>
-                }
               </div>
 
               <div class="card flex justify-center">

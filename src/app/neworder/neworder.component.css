@@ -1,12 +1,8 @@
-.tableSelect {
-  background-color: white;
-  border: 2px solid lightgray;
-  border-radius: 10px;
-}
 .tableSelect:hover {
   background-color: #cc080b;
   border: 2px solid #cc080b;
   color: white;
+  box-shadow: #0000003d 0 3px 8px;
 }
 ::ng-deep .tablescroller .p-virtualscroller {
   padding: 20px !important;
@@ -28,13 +24,16 @@
   border: 2px solid #cc080b !important;
 }
 ::ng-deep .addtocartbtn .p-button {
+  display: inline-block;
+  color: #fff;
   background-color: #cc080b;
+  padding: 10px 40px;
   border: #cc080b;
   border-radius: 0px;
 }
 ::ng-deep .addtocartbtn .p-button:hover {
-  background-color: #8f0709;
-  border: #8f0709;
+  background-color: #8f0709 !important;
+  border: #8f0709 !important;
 }
 
 .textPrice {
@@ -55,7 +54,6 @@
   height: calc(100vh - 305px);
   padding: 0px;
 }
-
 
 .outlet-container {
   padding: 10px;
@@ -78,7 +76,36 @@
   height: 100lvh;
   /* height: max-content; */
 }
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 2px;
+}
 
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.selectFoodContainer {
+  height: calc(100vh - 305px);
+  padding-bottom: 0;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.form-col-2 {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
 
 /* -------- min-width breakpoints -------- */
 @media (min-width: 576px) {
@@ -99,17 +126,51 @@
   .order-title {
     width: 170px;
   }
-    .outlet-container {
+  .outlet-container {
     padding: 40px 60px;
   }
 
   .searchField {
     width: 300px;
   }
+  .tableSelect {
+    background-color: white;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+  }
+  .selectTableContainer {
+    height: calc(100vh - 305px);
+    padding-bottom: 0;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .showrow {
+    display: flex;
+    flex-direction: row;
+  }
+  .showrows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .showrowcenter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 @media (min-width: 1200px) {
   /* desktop styles here */
+  .form-col-2 {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -137,10 +198,60 @@
   .searchField {
     width: 100%;
   }
+  .tableSelect {
+    flex-shrink: 0;
+    width: 160px;
+    height: 300px;
+    background-color: white;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .selectTableContainer {
+    height: auto; /* or a fixed height like 200px */
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    overflow-x: auto; /* Enable horizontal scroll */
+    overflow-y: hidden; /* Disable vertical scroll */
+    white-space: nowrap; /* Prevent items from wrapping */
+    scroll-behavior: smooth; /* Optional: smooth scroll effect */
+    gap: 10px;
+  }
+  .selectTableContainer::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .selectTableContainer::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+
+  .showcol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+    .showcols {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+  }
 }
 
 @media (max-width: 1199.98px) {
   /* desktop-max styles here */
+  .form-col-2 {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 1399.98px) {
